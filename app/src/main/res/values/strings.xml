@@ -56,6 +56,10 @@
 - To view bus statistics, click the "View Statistics" button.
 
 - To navigate to another application, click the appropriate icon in the toolbar.</string>
-    <string name = "app_name">movie search</string>
 
+
+
+    <!--movie search-->
+    <string name = "app_name">movie search</string>
+    <string name="search_movie">enter title</string>
 </resources>
