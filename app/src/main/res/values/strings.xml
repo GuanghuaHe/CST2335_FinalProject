@@ -1,4 +1,5 @@
 <resources>
+
     <string name="start_welcome">CST2335 FINAL PROJECT Milestone1</string>
     <string name="title_activity_display_bus_stops">Bus Stops</string>
     <string name="ocBtnText">OC Transpo</string>
@@ -59,8 +60,20 @@
 
 
     <!--movie search-->
-    <string name="app_name">movie search</string>
+  
     <string name="search_movie">enter title</string>
     <string name="homeButton">home</string>
     <string name="searchButton">search</string>
+
+    <string name="app_name">CST2335 MileStone1</string>
+
+    <!--OC_Transport-->
+    <string name="desc">Image</string>
+    <string name="welcome">Welcome to OC Transport!</string>
+    <string name="select">Please select only one route below!</string>
+    <string name="deleteALL">Delete All?</string>
+    <string name="byStop">Search By Stop</string>
+    <string name="goHome">Go back to home page!</string>
+    <string name="hint">Please enter the stop number</string>
+
 </resources>
