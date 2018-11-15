@@ -43,7 +43,9 @@ public class OCTranspo extends AppCompatActivity {
         Button goHomeO = (Button) findViewById(R.id.goHomeO);
 
 
+
         Toast.makeText(getApplicationContext(), "Searching", Toast.LENGTH_SHORT).show();
+
 
         byStop.setOnClickListener(new View.OnClickListener() {
             @Override
