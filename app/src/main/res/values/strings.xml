@@ -1,65 +1,12 @@
 <resources>
-    <string name="start_welcome">CST2335 FINAL PROJECT Milestone1</string>
-    <string name="title_activity_display_bus_stops">Bus Stops</string>
-    <string name="ocBtnText">OC Transpo</string>
-    <string name="add_stop">Add Bus Stop</string>
-    <string name="clear_stops">Delete all Bus Stops</string>
-    <string name="view_stats">View Statistics</string>
-    <string name="title_activity_display_buses">Buses</string>
-    <string name="bus_list">Stop: </string>
-    <string name="stop_list">Stop List </string>
-    <string name="delete_Stop">Delete Stop </string>
-    <string name="eastBuses">Eastbound</string>
-    <string name="westBuses">Westbound</string>
-    <string name="northBuses">Northbound</string>
-    <string name="southBuses">Southbound</string>
-    <string name="refresh">Refresh Bus Data</string>
-    <string name="aboutButton">About</string>
-    <string name="stats">Statistics</string>
-    <string name="avgLat">Average Latitude:</string>
-    <string name="avgLon">Average Longitude:</string>
-    <string name="avgSpeed">Average Speed:</string>
-    <string name="avgAdjSch">Average Adjusted Schedule Time:</string>
-    <string name="loadStop">Loading info for Stop</string>
-    <string name="loadBus">Loading info for Bus</string>
-    <string name="invalidStop">Invalid Stop!</string>
-    <string name="noBuses">No buses at this stop at this time.</string>
-    <string name="enRoute">(En Route)</string>
-    <string name="scheduled">(Scheduled)</string>
-    <string name="noUpc">No upcoming trips for Bus</string>
-    <string name="atStop">at Stop</string>
-    <string name="atThis">at this time.</string>
-    <string name="noStops">No stops to delete!</string>
-    <string name="fromList"> from your list?"</string>
-    <string name="thereAre">There are</string>
-    <string name="inYour">stop(s) in your list. Delete all of them?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="allStops">All stop(s) (</string>
-    <string name="already">already exists in your list!</string>
-    <string name="added">added to Stops List!</string>
-    <string name="deleted">) deleted from the list!</string>
-    <string name="about">About OC Transpo App By Guanghua He
+    <string name="app_name">CST2335 MileStone1</string>
 
-- To view buses for a bus stop, click an item in the Bus Stops list.
-
-- To view bus information for a particular route, click an item in the Buses list.
-
-- To add a bus stop to the list, click the "Add Stop" button.
-
-- To delete a bus stop, click and hold a bus stop in the list.
-
-- To delete all bus stops, click the "Delete all bus stops" button.
-
-- To refresh bus data, click the "Refresh Bus Data" button.
-
-- To view bus statistics, click the "View Statistics" button.
-
-- To navigate to another application, click the appropriate icon in the toolbar.</string>
-
-
-
-    <!--movie search-->
-    <string name = "app_name">movie search</string>
-    <string name="search_movie">enter title</string>
+    <!--OC_Transport-->
+    <string name="desc">Image</string>
+    <string name="welcome">Welcome to OC Transport!</string>
+    <string name="select">Please select only one route below!</string>
+    <string name="deleteALL">Delete All?</string>
+    <string name="byStop">Search By Stop</string>
+    <string name="goHome">Go back to home page!</string>
+    <string name="hint">Please enter the stop number</string>
 </resources>
