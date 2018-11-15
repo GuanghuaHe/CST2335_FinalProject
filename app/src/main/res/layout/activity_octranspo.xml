@@ -9,7 +9,6 @@
 
 
 
-
     <TextView
         android:id="@+id/welcomeO"
         android:layout_width="match_parent"
@@ -30,6 +29,14 @@
         android:layout_height="wrap_content"
         android:hint="@string/hint"
         />
+    <ProgressBar
+        android:id="@+id/ocProgressBar"
+        android:layout_alignStart="@+id/byStop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        style="?android:attr/progressBarStyle"/>
+
 
     <ListView
         android:layout_width="match_parent"
@@ -52,20 +59,14 @@
         android:textSize="20sp" />
 
 
-
     <Button
         android:id="@+id/goHomeO"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/goHome"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:textSize="20sp"/>
 
-    <ProgressBar
-        android:id="@+id/progressBarO"
-        android:layout_alignStart="@+id/byStop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        style="?android:attr/progressBarStyleHorizontal"/>
+
 
 </LinearLayout>

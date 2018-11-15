@@ -69,11 +69,11 @@
 
     <!--OC_Transport-->
     <string name="desc">Image</string>
-    <string name="welcome">Welcome to OC Transport!</string>
+    <string name="welcome">OC Transpo Search</string>
     <string name="select">Please select only one route below!</string>
     <string name="deleteALL">Delete All?</string>
-    <string name="byStop">Search By Stop</string>
-    <string name="goHome">Go back to home page!</string>
+    <string name="byStop">Search</string>
+    <string name="goHome">Return</string>
     <string name="hint">Please enter the stop number</string>
 
 
@@ -83,6 +83,10 @@
     <string name="Hint">search nutrition here</string>
 
 
-
+    <string name="cbc_search">Search</string>
+    <string name="cbc_editText">Type the title of the article</string>
+    <string name="cbc_button_save">Save</string>
+    <string name="cbc_button_quit">Quit</string>
+    <string name="cbc_button_search">Search</string>
 
 </resources>

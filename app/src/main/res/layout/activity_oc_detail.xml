@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OCDetails">
+
+
+    <ImageView
+        android:id="@+id/OCTranspo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/bus_icon" />
+
+    <TextView
+        android:id="@+id/ocDestination"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Destination" />
+
+    <TextView
+        android:id="@+id/ocLatitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Latitude " />
+
+    <TextView
+        android:id="@+id/ocLongitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Longitude" />
+
+    <TextView
+        android:id="@+id/ocGPSSpeed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="GPS Speed" />
+
+
+
+    <TextView
+        android:id="@+id/ocStartTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Time" />
+
+    <TextView
+        android:id="@+id/ocAdjustedScheduleTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Adjusted Schedule Time" />
+</LinearLayout>
