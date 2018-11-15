@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ public class Movie extends Activity {
     private static final String ACTIVITY_NAME = Movie.class.getSimpleName();
     private Button goHome, searchButton;
     private EditText movieName;
-
+    private ProgressBar movieProgressBar;
 
 
     @Override
@@ -39,6 +40,7 @@ public class Movie extends Activity {
         goHome = findViewById(R.id.homeButton);
         searchButton = findViewById(R.id.buttonSearchMovie);
         movieName = findViewById(R.id.editText);
+        movieProgressBar = findViewById(R.id.MovieProgressBar);
 
 
         Toast.makeText(this, "enter movie title to search", Toast.LENGTH_SHORT).show();
@@ -60,10 +62,12 @@ public class Movie extends Activity {
 
         searchButton.setOnClickListener(e->{
             Snackbar.make(e, "start to search", Snackbar.LENGTH_LONG).show();
+            Intent toDetail = new Intent(this, MovieDetail.class);
+            startActivity(toDetail);
         });
 
 
-
+        movieProgressBar.setVisibility(View.VISIBLE);
    }
 
 

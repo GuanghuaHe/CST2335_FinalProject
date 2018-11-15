@@ -60,10 +60,10 @@
 
 
     <!--movie search-->
-
+    <string name="MovieGreeting">MOVIE SEARCH</string>
     <string name="search_movie">enter title</string>
-    <string name="homeButton">home</string>
-    <string name="searchButton">search</string>
+    <string name="homeButton">home page</string>
+    <string name="searchButton">ADD TO LIST</string>
 
     <string name="app_name">CST2335 MileStone1</string>
 
