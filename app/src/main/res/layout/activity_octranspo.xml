@@ -7,7 +7,13 @@
     tools:context=".OCTranspo"
     android:orientation="vertical">
 
-
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1b5e20"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"/>
 
 
     <TextView
@@ -52,16 +58,16 @@
         android:textSize="20sp" />
 
 
-
     <Button
         android:id="@+id/goHomeO"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/goHome"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:textSize="20sp"/>
 
     <ProgressBar
-        android:id="@+id/progressBarO"
+        android:id="@+id/OCprogressBar"
         android:layout_alignStart="@+id/byStop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
