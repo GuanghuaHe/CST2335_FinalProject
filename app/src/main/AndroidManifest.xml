@@ -17,15 +17,17 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".Movie" />
+        <activity android:name=".MovieDetail" />
+        <activity android:name=".MovieFragment"></activity>
+
+
         <activity android:name=".OCTranspo" >
 
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            
         </activity>
+
 
     </application>
 
