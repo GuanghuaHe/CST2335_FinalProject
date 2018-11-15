@@ -54,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
         mov3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
+                Intent intent = new Intent(MainActivity.this, Movie.class);
+                startActivity(intent);
+               // Log.i(ACTIVITY_NAME, "In onClick()");
             }
         });
 

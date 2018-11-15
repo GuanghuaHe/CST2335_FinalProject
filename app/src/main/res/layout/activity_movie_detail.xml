@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MovieDetail">
+
+
+    <ImageView
+        android:id="@+id/imageMoveDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/film" />
+
+    <TextView
+        android:id="@+id/MoveDetailTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title" />
+
+    <TextView
+        android:id="@+id/MoveDetailYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Year" />
+
+    <TextView
+        android:id="@+id/MoveDetailRating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rating" />
+
+    <TextView
+        android:id="@+id/MoveDetailRuntime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Runtime" />
+
+    <TextView
+        android:id="@+id/MoveDetailMainActors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="main actors" />
+
+    <TextView
+        android:id="@+id/MoveDetailPlot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="plot" />
+
+    <TextView
+        android:id="@+id/MoveDetailURL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="URL" />
+
+</LinearLayout>

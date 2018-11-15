@@ -58,8 +58,9 @@
 - To navigate to another application, click the appropriate icon in the toolbar.</string>
 
 
-
     <!--movie search-->
-    <string name = "app_name">movie search</string>
+    <string name="app_name">movie search</string>
     <string name="search_movie">enter title</string>
+    <string name="homeButton">home</string>
+    <string name="searchButton">search</string>
 </resources>
