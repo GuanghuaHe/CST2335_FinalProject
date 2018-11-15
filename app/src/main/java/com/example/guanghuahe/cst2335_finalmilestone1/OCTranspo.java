@@ -38,7 +38,7 @@ public class OCTranspo extends Activity {
         EditText userEnter = (EditText) findViewById(R.id.userEnter);
         Button goHomeO = (Button) findViewById(R.id.goHomeO);
 
-        Toast.makeText(getApplicationContext(), "message", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "message", Toast.LENGTH_SHORT).show();
 
         byStop.setOnClickListener(new View.OnClickListener() {
             @Override
