@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
 
 
 
-        mov3.setOnClickListener(new View.OnClickListener() {
+        movie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Movie.class);
@@ -51,7 +51,14 @@ public class MainActivity extends Activity {
         });
 
 
-
+        nutrition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Nutrition.class);
+                startActivity(intent);
+                Log.i(ACTIVITY_NAME, "In onClick()");
+            }
+        });
 
     }
 
