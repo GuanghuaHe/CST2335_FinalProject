@@ -60,7 +60,7 @@
 
 
     <!--movie search-->
-  
+
     <string name="search_movie">enter title</string>
     <string name="homeButton">home</string>
     <string name="searchButton">search</string>
@@ -75,5 +75,14 @@
     <string name="byStop">Search</string>
     <string name="goHome">Return</string>
     <string name="hint">Please enter the stop number</string>
+
+
+    <!--Food Nutrition-->
+    <string name="NutritionButton">Food Nutrition</string>
+    <string name="ExitButton">Back Home</string>
+    <string name="Hint">search nutrition here</string>
+
+
+
 
 </resources>
