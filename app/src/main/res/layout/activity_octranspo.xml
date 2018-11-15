@@ -7,13 +7,6 @@
     tools:context=".OCTranspo"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#1b5e20"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"/>
 
 
     <TextView
@@ -36,6 +29,14 @@
         android:layout_height="wrap_content"
         android:hint="@string/hint"
         />
+    <ProgressBar
+        android:id="@+id/ocProgressBar"
+        android:layout_alignStart="@+id/byStop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        style="?android:attr/progressBarStyle"/>
+
 
     <ListView
         android:layout_width="match_parent"
@@ -66,12 +67,6 @@
         android:layout_alignParentBottom="true"
         android:textSize="20sp"/>
 
-    <ProgressBar
-        android:id="@+id/OCprogressBar"
-        android:layout_alignStart="@+id/byStop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        style="?android:attr/progressBarStyleHorizontal"/>
+
 
 </LinearLayout>

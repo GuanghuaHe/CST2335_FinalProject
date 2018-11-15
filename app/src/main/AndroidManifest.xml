@@ -16,11 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".CBC" />
         <activity android:name=".Movie" />
         <activity android:name=".MovieDetail" />
         <activity android:name=".MovieFragment" />
         <activity android:name=".OCTranspo"></activity>
+        <activity android:name=".OCDetails"></activity>
         <activity android:name=".Nutrition"></activity>
+
     </application>
 
 </manifest>

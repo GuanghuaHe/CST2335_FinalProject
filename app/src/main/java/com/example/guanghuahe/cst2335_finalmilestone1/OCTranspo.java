@@ -30,7 +30,7 @@ public class OCTranspo extends AppCompatActivity {
     private Button deleteALL;
     private EditText userEnter;
     private Button goHomeO;
-
+    private ProgressBar ocProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,22 +38,23 @@ public class OCTranspo extends AppCompatActivity {
         setContentView(R.layout.activity_octranspo);
         Log.i(ACTIVITY_NAME, "In onCreate()");
 
-        Button byStop = (Button) findViewById(R.id.byStop);
-        Button deleteALL = (Button) findViewById(R.id.deleteALL);
-        EditText userEnter = (EditText) findViewById(R.id.userEnter);
-        Button goHomeO = (Button) findViewById(R.id.goHomeO);
-
+         byStop = (Button) findViewById(R.id.byStop);
+         deleteALL = (Button) findViewById(R.id.deleteALL);
+         userEnter = (EditText) findViewById(R.id.userEnter);
+         goHomeO = (Button) findViewById(R.id.goHomeO);
+        ocProgressBar = findViewById(R.id.ocProgressBar);
 
 
         Toast.makeText(getApplicationContext(), "Searching", Toast.LENGTH_SHORT).show();
 
 
-        byStop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(v, "Searching", Snackbar.LENGTH_LONG).show();
-            }
+        byStop.setOnClickListener(e->{
+                Snackbar.make(e, "Searching", Snackbar.LENGTH_LONG).show();
+                Intent toDetail = new Intent(this, OCDetails.class);
+                startActivity(toDetail);
         });
+
+        ocProgressBar.setVisibility(View.VISIBLE);
 
         deleteALL.setOnClickListener(new View.OnClickListener() {
             @Override

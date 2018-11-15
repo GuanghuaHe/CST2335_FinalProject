@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".CBC">
+
+    //build the image for CBC welcome ICON by using ImageView
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:src="@drawable/cbc"
+        android:id="@+id/cbc_image_welcome" />
+
+    //listview for titles of the news
+    <ListView
+        android:id="@+id/cbc_titles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    //editText for the search titles
+    <EditText
+        android:id="@+id/cbc_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="@string/cbc_editText"/>
+
+    //Button for committing the searching
+    <Button
+        android:id="@+id/cbc_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cbc_search"/>
+
+    //Button for quiting the page
+    <Button
+        android:id="@+id/cbc_quit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cbc_button_quit"/>
+
+    //button for save the article
+    <Button
+        android:id="@+id/cbc_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cbc_button_save"/>
+
+    //ProgressBar for the progress
+    <ProgressBar
+        android:id="@+id/cbc_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"/>
+
+</LinearLayout>
