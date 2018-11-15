@@ -30,6 +30,15 @@ public class MainActivity extends Activity {
         octranspo = findViewById(R.id.OCTranspo);
 
 
+        cbc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CBC.class);
+                startActivity(intent);
+                Log.i(ACTIVITY_NAME, "In onClick()");
+            }
+        });
+
 
         movie.setOnClickListener(new View.OnClickListener() {
             @Override
