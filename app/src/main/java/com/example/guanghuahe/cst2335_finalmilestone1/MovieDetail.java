@@ -3,6 +3,7 @@ package com.example.guanghuahe.cst2335_finalmilestone1;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 public class MovieDetail extends Activity {
 
