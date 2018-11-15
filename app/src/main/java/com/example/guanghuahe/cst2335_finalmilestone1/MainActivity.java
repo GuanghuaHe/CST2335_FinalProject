@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
 
 
 
-        mov3.setOnClickListener(new View.OnClickListener() {
+        movie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Movie.class);
