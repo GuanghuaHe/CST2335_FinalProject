@@ -15,10 +15,13 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
+import android.widget.TextView;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import static android.widget.Toast.LENGTH_LONG;
 
-public class OCTranspo extends Activity {
+public class OCTranspo extends AppCompatActivity {
 
 
     protected static final String ACTIVITY_NAME = "OCTranspo";
@@ -26,6 +29,7 @@ public class OCTranspo extends Activity {
     private Button deleteALL;
     private EditText userEnter;
     private Button goHomeO;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,19 +42,20 @@ public class OCTranspo extends Activity {
         EditText userEnter = (EditText) findViewById(R.id.userEnter);
         Button goHomeO = (Button) findViewById(R.id.goHomeO);
 
-        Toast.makeText(getApplicationContext(), "message", Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(getApplicationContext(), "Searching", Toast.LENGTH_SHORT).show();
 
         byStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(v, "message", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(v, "Searching", Snackbar.LENGTH_LONG).show();
             }
         });
 
         deleteALL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(v, "message", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(v, "deleting", Snackbar.LENGTH_LONG).show();
             }
         });
 
@@ -60,7 +65,7 @@ public class OCTranspo extends Activity {
             public void onClick(View v) {
                 AlertDialog dialog = new AlertDialog.Builder(OCTranspo.this)
                         .setTitle("Notice!")
-                        .setMessage("You are leaving the page!")
+                        .setMessage("Exit")
 
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             @Override
@@ -83,6 +88,7 @@ public class OCTranspo extends Activity {
 
 
     }
+
 
 
     @Override
@@ -114,4 +120,6 @@ public class OCTranspo extends Activity {
         super.onDestroy();
         Log.i(ACTIVITY_NAME, "In onDestroy()");
     }
+
+
 }
