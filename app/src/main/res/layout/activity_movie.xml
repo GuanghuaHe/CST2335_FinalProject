@@ -7,19 +7,22 @@
     android:orientation="vertical"
     tools:context=".Movie">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+
+    <TextView
+        android:id="@+id/welcomeO"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        />
-
+        android:background="@color/movieback1"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:text="@string/MovieGreeting"
+        android:textSize="25sp" />
     <Button
         android:id="@+id/homeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:background="@color/movieback2"
         android:text="@string/homeButton" />
 
     <EditText
@@ -34,18 +37,25 @@
         android:id="@+id/buttonSearchMovie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:background="@color/movieback2"
         android:text="@string/searchButton" />
-
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
     <ProgressBar
         android:id="@+id/MovieProgressBar"
-        style="?android:attr/progressBarStyleHorizontal"
+        style="?android:attr/progressBarStyle"
+        android:visibility="visible"
+        android:indeterminateTint="#d60909"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom" />
+
+        />
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/movieback3"/>
+
+
+
 
 
 </LinearLayout>
