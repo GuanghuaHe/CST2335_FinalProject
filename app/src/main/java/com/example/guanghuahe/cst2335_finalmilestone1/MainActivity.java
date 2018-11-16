@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
         movie = findViewById(R.id.Movie);
         octranspo = findViewById(R.id.OCTranspo);
 
-
+        //CBC app starts here
         cbc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
             }
         });
 
-
+        //Movie app starts here
         movie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,7 +49,7 @@ public class MainActivity extends Activity {
             }
         });
 
-
+        //Octranpo app starts here
         octranspo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +59,7 @@ public class MainActivity extends Activity {
             }
         });
 
-
+        //Food app starts here
         nutrition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

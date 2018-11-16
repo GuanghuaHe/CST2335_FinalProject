@@ -22,6 +22,11 @@ import android.support.v7.widget.Toolbar;
 
 import static android.widget.Toast.LENGTH_LONG;
 
+
+/**
+ * Bus main activity class
+ */
+
 public class OCTranspo extends AppCompatActivity {
 
 
@@ -38,24 +43,24 @@ public class OCTranspo extends AppCompatActivity {
         setContentView(R.layout.activity_octranspo);
         Log.i(ACTIVITY_NAME, "In onCreate()");
 
-         byStop = (Button) findViewById(R.id.byStop);
-         deleteALL = (Button) findViewById(R.id.deleteALL);
-         userEnter = (EditText) findViewById(R.id.userEnter);
-         goHomeO = (Button) findViewById(R.id.goHomeO);
+        byStop = (Button) findViewById(R.id.byStop);
+        deleteALL = (Button) findViewById(R.id.deleteALL);
+        userEnter = (EditText) findViewById(R.id.userEnter);
+        goHomeO = (Button) findViewById(R.id.goHomeO);
         ocProgressBar = findViewById(R.id.ocProgressBar);
 
 
         Toast.makeText(getApplicationContext(), "Searching", Toast.LENGTH_SHORT).show();
 
-
-        byStop.setOnClickListener(e->{
-                Snackbar.make(e, "Searching", Snackbar.LENGTH_LONG).show();
-                Intent toDetail = new Intent(this, OCDetails.class);
-                startActivity(toDetail);
+        // Search button on click action
+        byStop.setOnClickListener(e -> {
+            Snackbar.make(e, "Searching", Snackbar.LENGTH_LONG).show();
+            Intent toDetail = new Intent(this, OCDetails.class);
+            startActivity(toDetail);
         });
 
         ocProgressBar.setVisibility(View.VISIBLE);
-
+        // delete button on click action
         deleteALL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +68,7 @@ public class OCTranspo extends AppCompatActivity {
             }
         });
 
-
+// Back button on click action
         goHomeO.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +97,6 @@ public class OCTranspo extends AppCompatActivity {
 
 
     }
-
 
 
     @Override
