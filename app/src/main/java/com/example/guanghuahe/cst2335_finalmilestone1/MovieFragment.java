@@ -3,6 +3,9 @@ package com.example.guanghuahe.cst2335_finalmilestone1;
 import android.app.Activity;
 import android.os.Bundle;
 
+/**
+ *   this class for later use
+ */
 public class MovieFragment extends Activity {
 
     @Override

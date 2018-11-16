@@ -5,6 +5,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+/**
+ * just show the template for mileStone 1.
+ * logic business will update later
+ */
 public class MovieDetail extends Activity {
 
     protected static final String ACTIVITY_NAME = "MovieDetail";
