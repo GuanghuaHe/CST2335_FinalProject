@@ -34,7 +34,7 @@ public class CBC extends Activity {
         quitButton = (Button) findViewById(R.id.cbc_quit);
 
 
-
+        // save button on click
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,6 +42,7 @@ public class CBC extends Activity {
             }
         });
 
+        //search button on click
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,7 +55,7 @@ public class CBC extends Activity {
             }
         });
 
-
+        //quit button on click
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
