@@ -63,8 +63,8 @@
     <string name="MovieGreeting">MOVIE SEARCH</string>
     <string name="search_movie">enter title</string>
     <string name="homeButton">home page</string>
-    <string name="searchButton">ADD TO LIST</string>
-
+    <string name="searchButton">Search</string>
+    <string name="searchHistory">History</string>
     <string name="app_name">CST2335 MileStone1</string>
 
     <!--OC_Transport-->

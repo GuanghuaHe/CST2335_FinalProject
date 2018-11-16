@@ -11,9 +11,11 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,8 +32,9 @@ public class Movie extends Activity {
      * search entry of editText view
      * progressBar to show process status
      */
-    private Button goHome, searchButton;
+    private Button goHome, clearText, searchButton, historyButton;
     private EditText movieName;
+    private ListView listView;
     private ProgressBar movieProgressBar;
 
 
@@ -47,9 +50,12 @@ public class Movie extends Activity {
          * assign values to references with objects from View of LayOut
          */
         goHome = findViewById(R.id.homeButton);
+        clearText = findViewById(R.id.clear_txt);
         searchButton = findViewById(R.id.buttonSearchMovie);
+        historyButton = findViewById(R.id.buttonSearchHistory);
         movieName = findViewById(R.id.editText);
         movieProgressBar = findViewById(R.id.MovieProgressBar);
+        listView = findViewById(R.id.listView);
 
         /**
          * toast to show the message
@@ -93,8 +99,25 @@ public class Movie extends Activity {
          * set progressBar visibility equal to true
          */
         movieProgressBar.setVisibility(View.VISIBLE);
+        listView.setVisibility(View.INVISIBLE);
+        movieName = (EditText)findViewById(R.id.editText);
+        movieName.setOnEditorActionListener((v, actionId, event) ->{
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    if(movieName.getText() != null && movieName.getText().length() > 0)
+                        performSearch();
+                    return true;
+                }
+                return false;
+
+        });
+
+        clearText.setOnClickListener( (v) ->movieName.setText(""));
    }
 
+
+
+
+    private void performSearch() {}
     /**
      * overridden methods with built-in logging.
      */
