@@ -2,19 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/powderblue"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Movie">
+    tools:context=".movie.activities.Movie">
 
 
-    <Button
-        android:id="@+id/homeButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:background="@color/movieback2"
-        android:text="@string/homeButton" />
+
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -71,11 +67,11 @@
         android:visibility="visible"
         android:layout_gravity="center_vertical"
         />
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/movieback3"/>
+     <ListView
+         android:id="@+id/list_movie_search"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"/>
+
 
 
 

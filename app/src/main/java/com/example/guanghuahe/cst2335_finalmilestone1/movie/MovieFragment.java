@@ -1,7 +1,9 @@
-package com.example.guanghuahe.cst2335_finalmilestone1;
+package com.example.guanghuahe.cst2335_finalmilestone1.movie;
 
 import android.app.Activity;
 import android.os.Bundle;
+
+import com.example.guanghuahe.cst2335_finalmilestone1.R;
 
 /**
  *   this class for later use

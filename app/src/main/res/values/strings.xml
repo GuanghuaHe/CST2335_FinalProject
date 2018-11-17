@@ -14,6 +14,12 @@
     <string name="searchHistory">History</string>
     <string name="app_name">CST2335 MileStone1</string>
 
+    <string name="menuItem1">HOME</string>
+    <string name="menuItem2">OCTRANSP</string>
+    <string name="menuItem3">NUTRITION</string>
+    <string name="menuItem4">CBCNEWS</string>
+
+
     <!--OC_Transport-->
     <string name="desc">Image</string>
     <string name="welcome">OC Transpo Search</string>

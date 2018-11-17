@@ -1,15 +1,18 @@
-package com.example.guanghuahe.cst2335_finalmilestone1;
+package com.example.guanghuahe.cst2335_finalmilestone1.movie;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.TextView;
+
+
+import com.example.guanghuahe.cst2335_finalmilestone1.R;
 
 /**
  * just show the template for mileStone 1.
  * logic business will update later
  */
-public class MovieDetail extends Activity {
+public class MovieDetail extends AppCompatActivity {
 
     protected static final String ACTIVITY_NAME = "MovieDetail";
 
