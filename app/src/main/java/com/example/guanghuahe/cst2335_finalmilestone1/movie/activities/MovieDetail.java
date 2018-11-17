@@ -1,4 +1,4 @@
-package com.example.guanghuahe.cst2335_finalmilestone1.movie;
+package com.example.guanghuahe.cst2335_finalmilestone1.movie.activities;
 
 import android.app.Activity;
 import android.os.Bundle;

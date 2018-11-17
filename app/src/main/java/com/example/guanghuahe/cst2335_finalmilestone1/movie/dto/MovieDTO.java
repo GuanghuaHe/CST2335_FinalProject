@@ -1,5 +1,6 @@
 package com.example.guanghuahe.cst2335_finalmilestone1.movie.dto;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -15,7 +16,12 @@ public class MovieDTO implements Parcelable{
     private String imDbId;
     private String ratings_imDb;
     private String type;
+
+
+
+    private Bitmap image;
     private boolean isFavourite;
+
 
 
     public MovieDTO(Parcel in) {
@@ -143,6 +149,10 @@ public class MovieDTO implements Parcelable{
     public void setFavourite(boolean favourite) {
         isFavourite = favourite;
     }
+
+    public Bitmap getImage() { return image; }
+
+    public void setImage(Bitmap image) { this.image = image; }
 
     @Override
     public int describeContents() {

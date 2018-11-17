@@ -3,35 +3,27 @@ package com.example.guanghuahe.cst2335_finalmilestone1.movie.activities;
 
 import android.app.AlertDialog;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import android.util.Xml;
-import android.view.LayoutInflater;
 import android.view.Menu;
 
 import android.view.MenuItem;
 import android.view.View;
 
-import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.guanghuahe.cst2335_finalmilestone1.CBC;
@@ -39,23 +31,20 @@ import com.example.guanghuahe.cst2335_finalmilestone1.MainActivity;
 import com.example.guanghuahe.cst2335_finalmilestone1.Nutrition;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo;
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
-import com.example.guanghuahe.cst2335_finalmilestone1.movie.MovieDetail;
+import com.example.guanghuahe.cst2335_finalmilestone1.movie.adapters.MovieAdapter;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.database.DatabaseHelper;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.dto.MovieDTO;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
+import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,107 +70,36 @@ public class Movie extends AppCompatActivity {
     private ProgressBar movieProgressBar;
     private MyTask mTask;
     private MovieAdapter movieAdapter;
-    private DatabaseHelper movieDB;
+
+    private DatabaseHelper movieDB; // 数据库只存历史记录， 每次查询出来的清单，经过选择后自动进入数据库
 
 
 
 
-    private class MovieAdapter extends ArrayAdapter<MovieDTO> {
-        protected ArrayList<MovieDTO> movieList;
-        private Context mContext;
-
-
-        public MovieAdapter( Context context) {
-            super(context, 0);
-            mContext = context;
-            movieList = new ArrayList<>();
-
-        }
-
-        public void setMoviesList(List list){
-            movieList = (ArrayList<MovieDTO>) list;
-        }
-
-        public MovieDTO getMovie(int indx){
-            return movieList.get(indx);
-        }
-
-        public void setMovie(int indx, MovieDTO m){
-            movieList.set(indx,m);
-        }
 
 
 
 
-        public View getView(int position, View convertView, ViewGroup parent){
 
-            LayoutInflater inflater = Movie.this.getLayoutInflater();
-            View result = null;
-
-
-            result = inflater.inflate(R.layout.list_view_item, null);
-
-            TextView title = result.findViewById(R.id.list_item_title);
-            title.setText(getItem(position).getMovieName());
-            TextView year = result.findViewById(R.id.movie_year);
-            year.setText(getItem(position).getYear());
-            ImageView image = result.findViewById(R.id.list_item_image);
-            String urlPath = getItem(position).getPosterLink();
-            image.setImageBitmap(getBitMBitmap(urlPath));
-
-            return result;
-        }
-    }
-
-    /**
-     * get bitmap from urlpath (String)
-     * @param urlpath
-     * @return
-     */
-    public static Bitmap getBitMBitmap(String urlpath) {
-        Bitmap map = null;
-        try {
-            URL url = new URL(urlpath);
-            URLConnection conn = url.openConnection();
-            conn.connect();
-            InputStream in;
-            in = conn.getInputStream();
-            map = BitmapFactory.decodeStream(in);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return map;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
-       /* *//**
-         * using platform default setting ： NetworKSecurityConfig;
-         *//*
-        if (android.os.Build.VERSION.SDK_INT > 9)
-        {
-            StrictMode.ThreadPolicy policy = new
-                    StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }*/
 
-        Log.i(TAG, "In onCreate()");
-        movieDB = new DatabaseHelper(this);
-
-        /**
-         * assign values to references with objects from View of LayOut
-         */
 
         clearText = findViewById(R.id.clear_txt);
         searchButton = findViewById(R.id.buttonSearchMovie);
         historyButton = findViewById(R.id.buttonSearchHistory);
         movieName = findViewById(R.id.editText);
         movieProgressBar = findViewById(R.id.MovieProgressBar);
+
+        /**
+         * construct Adapter
+         */
+
+        movieAdapter = new MovieAdapter(Movie.this, R.layout.list_view_item,movies);
         listView = findViewById(R.id.list_movie_search);
-        movieAdapter = new MovieAdapter(this);
         listView.setAdapter(movieAdapter);
 
 
@@ -220,7 +138,7 @@ public class Movie extends AppCompatActivity {
         movieName.setOnEditorActionListener((v, actionId, event) ->{
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     if(movieName.getText() != null && movieName.getText().length() > 0)
-                        performSearch(movieName.getText().toString());
+                        performSearch(movieName.getText().toString().trim());
                     return true;
                 }
                 return false;
@@ -300,12 +218,13 @@ public class Movie extends AppCompatActivity {
 
 
     private void performSearch(String title) {
+        Log.i(TAG, "step1");
         movies.clear();
         mTask = new MyTask();
         mTask.execute(URL+title);
         movieName.setText("");
         movieName.setEnabled(false);
-        Log.i(TAG, "step1");
+
     }
 
      class MyTask extends AsyncTask<String, Integer, String> {
@@ -329,7 +248,7 @@ public class Movie extends AppCompatActivity {
         protected String doInBackground(String... params) {
             try {
                 URL url = new URL(params[0]);
-                Log.i(TAG, "step2");
+                Log.i(TAG, "step2" + url +"");
                 HttpURLConnection hcn = (HttpURLConnection)url.openConnection();
                 hcn.setRequestMethod("GET");
                 hcn.setReadTimeout(10000 /* milliseconds */);
@@ -338,8 +257,9 @@ public class Movie extends AppCompatActivity {
                 XmlPullParser parser = Xml.newPullParser();
                 //we don't use namespaces
                 parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-
+                Log.i(TAG, "step2.3");
                 parser.setInput(hcn.getInputStream(), null);
+                Log.i(TAG, "step2.5");
                 int eventType = parser.getEventType();
 
                 while(eventType != XmlPullParser.END_DOCUMENT){
@@ -354,21 +274,24 @@ public class Movie extends AppCompatActivity {
                             publishProgress(75);
                             movie.setType(parser.getAttributeValue(null, "type"));
                             movie.setPosterLink(parser.getAttributeValue(null, "poster"));
-
-                            //debug
-                            Log.i(TAG, "step3"+parser.getAttributeValue(null, "title"));
+                            movie.setImage(getBitmapFromUrl(parser.getAttributeValue(null, "poster")));
+//                            //debug
+                          Log.i(TAG, "step3"+parser.getAttributeValue(null, "title"));
+                            movies.add(movie);
                         }
 
                     }
                     eventType = parser.next();
                     /**
-                     * for each movie insert into DB.
+                     * for each movie insert into DB. 这只是每次搜索的结果，不存入数据库。
                      */
-                    movieDB.insertMovie(movie);
+                    //movieDB.insertMovie(movie);
                     /**
                      * show the list currently
                      */
-                    movieAdapter.setMoviesList(movieDB.getAllMovies());
+
+                    //debug
+                      //  Log.i(TAG, "step3"+movieAdapter.getMovie(0).getImDbId());
                 }
 
                 hcn.disconnect();
@@ -401,14 +324,40 @@ public class Movie extends AppCompatActivity {
              * set UI to show the moive info (title, year, post)
              *
              */
-
+            movieAdapter.notifyDataSetChanged();
         }
 
 
-      /*  private boolean isExist(String file){
+        private boolean isExist(String file){
             return getBaseContext().getFileStreamPath(file).exists();
-        }*/
+        }
+         /**
+          * get bitmap from urlpath (String)
+          * @param urlStr
+          * @return
+          */
 
+         public Bitmap getBitmapFromUrl(String urlStr){
+             URL url = null;
+             Bitmap bitmap = null;
+             HttpURLConnection connection = null;
+             try{
+                 url = new URL(urlStr);
+                 connection = (HttpURLConnection)url.openConnection();
+                 connection.setReadTimeout(5000);
+                 connection.setConnectTimeout(5000);
+
+                 InputStream inputStream = new BufferedInputStream(connection.getInputStream());
+                 bitmap = BitmapFactory.decodeStream(inputStream);
+                 inputStream.close();
+
+             }catch (Exception e){
+                 e.printStackTrace();
+             }finally {
+                 connection.disconnect();
+             }
+             return bitmap;
+         }
     }
 
 
