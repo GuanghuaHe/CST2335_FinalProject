@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/list_view_row"
+    android:id="@+id/history_item_row"
     android:padding="0dp"
     android:background="@android:color/white">
     <ImageView
-        android:id="@+id/list_item_image"
+        android:id="@+id/history_list_item_image"
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:src="@drawable/placeholder1"
@@ -19,7 +19,7 @@
         android:text="This is the title for the Category which can grow longer"
         android:textStyle="bold"
         android:textSize="16sp"
-        android:layout_toRightOf="@+id/list_item_image"
+        android:layout_toRightOf="@+id/history_list_item_image"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:layout_marginTop="10dp"
@@ -31,7 +31,7 @@
         android:text="Year:"
         android:textStyle="bold"
         android:textSize="15sp"
-        android:layout_toRightOf="@+id/list_item_image"
+        android:layout_toRightOf="@+id/history_list_item_image"
         android:layout_below="@+id/history_list_item_title"
 
         android:layout_alignParentBottom="true"
@@ -64,6 +64,13 @@
         android:layout_alignParentBottom="true"
         android:paddingBottom="10dp"
         android:paddingRight="2dp" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="Remove"
+        android:id="@+id/removeItem"/>
 
 
 </RelativeLayout>

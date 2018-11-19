@@ -1,10 +1,6 @@
 package com.example.guanghuahe.cst2335_finalmilestone1.movie.adapters;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
+import com.example.guanghuahe.cst2335_finalmilestone1.movie.BitmapConverter;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.dto.MovieDTO;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +29,7 @@ public  class MovieAdapter extends ArrayAdapter<MovieDTO> {
 
     }
 
-    public void setMoviesList(List list){
+    public void setMoviesList(List<MovieDTO> list){
         movieList = (ArrayList<MovieDTO>) list;
     }
 
@@ -60,14 +52,14 @@ public  class MovieAdapter extends ArrayAdapter<MovieDTO> {
 
 
 
-        TextView title = result.findViewById(R.id.list_item_title);
+        TextView title = result.findViewById(R.id.history_list_item_title);
         title.setText(movie.getMovieName());
-        TextView year = result.findViewById(R.id.movie_year);
+        TextView year = result.findViewById(R.id.history_movie_year);
         year.setText(movie.getYear());
         ImageView image = result.findViewById(R.id.list_item_image);
 
 
-        image.setImageBitmap(movie.getImage());
+        image.setImageBitmap(BitmapConverter.getBitmapFromUrl(movie.getPosterLink()));
 
         return result;
     }

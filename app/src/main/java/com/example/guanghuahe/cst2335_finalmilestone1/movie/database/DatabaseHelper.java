@@ -3,20 +3,23 @@ package com.example.guanghuahe.cst2335_finalmilestone1.movie.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.guanghuahe.cst2335_finalmilestone1.R;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.dto.MovieDTO;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+
     /**
      * version number
      */
-    private static final int database_VERSION = 1;
+    private static final int database_VERSION = 2;
     /**
      * database name
      */
@@ -32,7 +35,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String Movie_Title = "title";
     private static final String Movie_Year = "year";
     private static final String Movie_Poster = "poster";
-    private static final String[] COLUMNS = {Movie_ID, Movie_Title, Movie_Year, Movie_Poster};
+    private static final String Movie_Runtime = "runtime";
+    private static final String Movie_Rate = "Rating";
+
+
+
+
+
+
+
+
+
+    private static final String[] COLUMNS =
+            {Movie_ID, Movie_Title, Movie_Year,Movie_Runtime,Movie_Rate,Movie_Poster};
     /**
      * current context name for log track
      */
@@ -53,7 +68,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
          * SQL statement to create movie table
          */
         String CREATE_Movie_TABLE = "CREATE TABLE " + table_Movies + " ( " +
-                "imdbID TEXT PRIMARY KEY, " + Movie_Title + " TEXT, " + Movie_Year + " TEXT, " + Movie_Poster + " TEXT )";
+                "imdbID TEXT PRIMARY KEY, " + Movie_Title + " TEXT, " + Movie_Year + " TEXT, "+ Movie_Runtime + " TEXT, "+ Movie_Rate + " TEXT, " + Movie_Poster + " TEXT )";
         // execute SQL statement
         sqLiteDatabase.execSQL(CREATE_Movie_TABLE);
     }
@@ -71,17 +86,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @param Movie selected movie from search list to be added
      */
     public void insertMovie(MovieDTO Movie) {
+
         SQLiteDatabase db = this.getWritableDatabase();
+        String id = Movie.getImDbId();
+        long count = DatabaseUtils.queryNumEntries(db, table_Movies,Movie_ID + "=?", new String[] {id});
+        if(count == 0) {
+            ContentValues values = new ContentValues();
+            values.put(Movie_ID, Movie.getImDbId());
+            values.put(Movie_Title, Movie.getMovieName());
+            values.put(Movie_Year, Movie.getYear());
+            values.put(Movie_Poster, Movie.getPosterLink());
+            values.put(Movie_Runtime, Movie.getRuntime());
+            values.put(Movie_Rate, Movie.getRatings_imDb());
 
-        ContentValues values = new ContentValues();
-        values.put(Movie_ID, Movie.getImDbId());
-        values.put(Movie_Title, Movie.getMovieName());
-        values.put(Movie_Year, Movie.getYear());
-        values.put(Movie_Poster, Movie.getPosterLink());
 
-        db.insert(table_Movies, null, values);
-        db.close();
+
+
+            db.insert(table_Movies, null, values);
+            db.close();
+        }
     }
+
 
     /**
      * find movie by id within database
@@ -93,16 +118,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.query(table_Movies, COLUMNS, Movie_ID+" = ?", new String[]{id}, null, null, null, null);
 
-        if (cursor != null)
+        Log.i(TAG, cursor.getColumnName(1));
+        Log.i(TAG, cursor.getColumnName(2));
+        if (cursor != null && cursor.getCount()>0){
             cursor.moveToFirst();
 
         MovieDTO Movie = new MovieDTO();
         Movie.setImDbId(id);
         Movie.setMovieName(cursor.getString(1));
         Movie.setYear(cursor.getString(2));
-        Movie.setPosterLink(cursor.getString(2));
+        Movie.setPosterLink(cursor.getString(3));
         db.close();
         return Movie;
+        }
+        return null;
     }
 
 
@@ -172,7 +201,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @param movies
      * @return
      */
-    public List udpateHistoryList(List movies){
+  /*  public List udpateHistoryList(List movies){
         ArrayList<MovieDTO> movieList = (ArrayList<MovieDTO>) movies;
         SQLiteDatabase db = getWritableDatabase();
         for(int i = 0; i < movieList.size(); i++) {
@@ -191,7 +220,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         db.close();
         return movieList;
-    }
+    }*/
 
     /**
      * remove movie from databse
@@ -200,6 +229,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void deleteMovie(MovieDTO Movie) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(table_Movies, Movie_ID + " = ?", new String[]{Movie.getImDbId()});
+        db.close();
+    }
+
+    public void removeAll() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM " + table_Movies);
         db.close();
     }
 

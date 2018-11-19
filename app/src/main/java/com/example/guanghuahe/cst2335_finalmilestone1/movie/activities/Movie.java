@@ -4,15 +4,15 @@ package com.example.guanghuahe.cst2335_finalmilestone1.movie.activities;
 import android.app.AlertDialog;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import android.util.Xml;
 import android.view.Menu;
 
 import android.view.MenuItem;
@@ -22,8 +22,9 @@ import android.view.inputmethod.EditorInfo;
 
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.guanghuahe.cst2335_finalmilestone1.CBC;
@@ -31,20 +32,14 @@ import com.example.guanghuahe.cst2335_finalmilestone1.MainActivity;
 import com.example.guanghuahe.cst2335_finalmilestone1.Nutrition;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo;
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
+import com.example.guanghuahe.cst2335_finalmilestone1.movie.adapters.HistoryAdapter;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.adapters.MovieAdapter;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.database.DatabaseHelper;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.dto.MovieDTO;
+import com.example.guanghuahe.cst2335_finalmilestone1.movie.fragments.HistoryFragment;
+import com.example.guanghuahe.cst2335_finalmilestone1.movie.fragments.HistoryToolBarFragment;
+import com.example.guanghuahe.cst2335_finalmilestone1.movie.fragments.MovieSearchFragment;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-
-import java.io.BufferedInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,10 +49,8 @@ public class Movie extends AppCompatActivity {
      * get app name which is type of string
      */
     protected static final String TAG = Movie.class.getSimpleName();
-    /**
-     * searchList
-     */
-    private static final List<MovieDTO> movies = new ArrayList<>();
+
+
     /**
      * declaration of View components including back-home button, add-title search button
      * search entry of editText view
@@ -65,13 +58,24 @@ public class Movie extends AppCompatActivity {
      */
 
     private Button clearText, searchButton, historyButton;
-    private EditText movieName;
-    private ListView listView;
+    private EditText editText;
+    private TextView textView;
     private ProgressBar movieProgressBar;
-    private MyTask mTask;
-    private MovieAdapter movieAdapter;
 
-    private DatabaseHelper movieDB; // 数据库只存历史记录， 每次查询出来的清单，经过选择后自动进入数据库
+    /**
+     * search bar including buttons
+     */
+    private FrameLayout searchBar;
+
+
+
+    /**
+     * fragment management
+     */
+    private FragmentManager fm;
+    private FragmentTransaction ft;
+
+
 
 
 
@@ -87,65 +91,127 @@ public class Movie extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
 
+        // config security
+        if (android.os.Build.VERSION.SDK_INT > 9)
+        {
+            StrictMode.ThreadPolicy policy = new
+                    StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 
+
+
+        //subviews
         clearText = findViewById(R.id.clear_txt);
         searchButton = findViewById(R.id.buttonSearchMovie);
         historyButton = findViewById(R.id.buttonSearchHistory);
-        movieName = findViewById(R.id.editText);
+        editText = findViewById(R.id.editText);
+        textView = findViewById(R.id.startSearchText);
+        searchBar = findViewById(R.id.movie_button_layout);
         movieProgressBar = findViewById(R.id.MovieProgressBar);
 
+
+
+
+
+
+
+
         /**
-         * construct Adapter
+         * Fragment Manager
          */
+        fm = getSupportFragmentManager();
 
-        movieAdapter = new MovieAdapter(Movie.this, R.layout.list_view_item,movies);
-        listView = findViewById(R.id.list_movie_search);
-        listView.setAdapter(movieAdapter);
 
 
 
         /**
-         * set ActionBar
-         *
+         * editText entry => start search
          */
-       // setSupportActionBar(toolbar);
+        editText = (EditText)findViewById(R.id.editText);
+        editText.setOnEditorActionListener((v, actionId, event) ->{
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                if(editText.getText() != null && editText.getText().length() > 0)
+                  //  performSearch(editText.getText().toString().trim());
+                return true;
+            }
+            return false;
+
+        });
 
         /**
-         * toast to show the message
-         */
-        Toast.makeText(this, "enter movie title to search", Toast.LENGTH_SHORT).show();
-
-        /**
-         * add input to search list
-         * for mileStone 1 , just use it to call detail page.
+         * event handlers
          */
         searchButton.setOnClickListener(e->{
-            Snackbar.make(e, "start to search", Snackbar.LENGTH_LONG).show();
-            performSearch(movieName.getText().toString());
-            /*Intent toDetail = new Intent(this, MovieDetail.class);
-            startActivity(toDetail);*/
+            //check input
+            if(editText.getText() != null && editText.getText().length() > 0){
+
+                //show the Snackbar.
+                Snackbar.make(e, "start to search", Snackbar.LENGTH_LONG).show();
+
+                //get input from edit text
+                String title= editText.getText().toString().trim();
+
+                // get instance of search list fragment
+                Fragment searchFragment = new MovieSearchFragment();
+
+                //deliver the title to fragment for later use
+                Bundle bundle = new Bundle();
+                bundle.putString("TITLE", title);
+                searchFragment.setArguments(bundle);
+
+                //replace the text view of main activity with fragment which contained a fresh search-list
+                ft = fm.beginTransaction();
+                ft.addToBackStack(null);
+                ft.replace(R.id.movie_list_view_layout,searchFragment );
+                ft.commit();
+                editText.setText("");
+            } else{  Snackbar.make(e, "please enter movie title", Snackbar.LENGTH_LONG).show();}
         });
+
+        historyButton.setOnClickListener(e->{
+            movieProgressBar.setVisibility(View.GONE);
+
+            // get instance of search list fragment
+            Fragment historyFragment = new HistoryFragment();
+
+            Toast.makeText(this,"go to history",Toast.LENGTH_SHORT).show();
+            ft = fm.beginTransaction();
+            ft.addToBackStack(null);
+            ft.replace(R.id.movie_list_view_layout, historyFragment);
+
+            HistoryToolBarFragment toolBarFragment = new HistoryToolBarFragment();
+            Bundle bundle = new Bundle();
+
+
+
+            ft.replace(R.id.movie_button_layout, toolBarFragment);
+            ft.commit();
+            //fragments
+
+
+
+
+
+        });
+
+
+
+
+
+
+
+
+        clearText.setOnClickListener( (v) -> editText.setText(""));
 
         /**
          * set progressBar visibility equal to true
          */
         movieProgressBar.setVisibility(View.VISIBLE);
-
         /**
-         * editText entry => start search
+         * toast to show the message
          */
-        movieName = (EditText)findViewById(R.id.editText);
-        movieName.setOnEditorActionListener((v, actionId, event) ->{
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    if(movieName.getText() != null && movieName.getText().length() > 0)
-                        performSearch(movieName.getText().toString().trim());
-                    return true;
-                }
-                return false;
-
-        });
-
-        clearText.setOnClickListener( (v) ->movieName.setText(""));
+        Toast.makeText(this, "enter movie title to search", Toast.LENGTH_SHORT).show();
    }
 
     /**
@@ -205,171 +271,6 @@ public class Movie extends AppCompatActivity {
         }
         return true;
     }
-
-
-
-
-    /**
-     * Movie XML url
-     */
-
-    private static final String URL = "http://www.omdbapi.com/?type=movie&plot=full&apikey=ce73c386&r=xml&s=";
-    private static final String URL_ID = "http://www.omdbapi.com/?plot=full&apikey=ce73c386&r=xml&i=";
-
-
-    private void performSearch(String title) {
-        Log.i(TAG, "step1");
-        movies.clear();
-        mTask = new MyTask();
-        mTask.execute(URL+title);
-        movieName.setText("");
-        movieName.setEnabled(false);
-
-    }
-
-     class MyTask extends AsyncTask<String, Integer, String> {
-
-
-
-
-        //onPreExecute方法用于在执行后台任务前做一些UI操作
-        @Override
-        protected void onPreExecute() {
-            Log.i(TAG, "onPreExecute() called");
-
-        }
-
-         /**doInBackground  loading movie Object from URL search (can not modify UI within this method)
-          *
-          * @param params
-          * @return
-          */
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-                URL url = new URL(params[0]);
-                Log.i(TAG, "step2" + url +"");
-                HttpURLConnection hcn = (HttpURLConnection)url.openConnection();
-                hcn.setRequestMethod("GET");
-                hcn.setReadTimeout(10000 /* milliseconds */);
-                hcn.setConnectTimeout(15000 /* milliseconds */);
-
-                XmlPullParser parser = Xml.newPullParser();
-                //we don't use namespaces
-                parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-                Log.i(TAG, "step2.3");
-                parser.setInput(hcn.getInputStream(), null);
-                Log.i(TAG, "step2.5");
-                int eventType = parser.getEventType();
-
-                while(eventType != XmlPullParser.END_DOCUMENT){
-                    MovieDTO movie = new MovieDTO();
-                    if(eventType == XmlPullParser.START_TAG) {
-                        if (parser.getName().equals("result")) {
-                            movie.setMovieName(parser.getAttributeValue(null, "title"));
-                            publishProgress(25);
-                           movie.setYear(parser.getAttributeValue(null, "year"));
-                            publishProgress(50);
-                            movie.setImDbId(parser.getAttributeValue(null, "imDbId"));
-                            publishProgress(75);
-                            movie.setType(parser.getAttributeValue(null, "type"));
-                            movie.setPosterLink(parser.getAttributeValue(null, "poster"));
-                            movie.setImage(getBitmapFromUrl(parser.getAttributeValue(null, "poster")));
-//                            //debug
-                          Log.i(TAG, "step3"+parser.getAttributeValue(null, "title"));
-                            movies.add(movie);
-                        }
-
-                    }
-                    eventType = parser.next();
-                    /**
-                     * for each movie insert into DB. 这只是每次搜索的结果，不存入数据库。
-                     */
-                    //movieDB.insertMovie(movie);
-                    /**
-                     * show the list currently
-                     */
-
-                    //debug
-                      //  Log.i(TAG, "step3"+movieAdapter.getMovie(0).getImDbId());
-                }
-
-                hcn.disconnect();
-
-
-            }catch (MalformedURLException e){
-                e.printStackTrace();
-
-            }catch (XmlPullParserException xe){
-                xe.printStackTrace();
-            }catch(FileNotFoundException fe){
-                fe.printStackTrace();
-            }
-            catch (IOException ie){
-                ie.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected  void onProgressUpdate(Integer ... value){
-            movieProgressBar.setVisibility(View.VISIBLE);
-            movieProgressBar.setProgress(value[0]);
-        }
-
-        @Override
-        protected  void onPostExecute(String args){
-            movieProgressBar.setVisibility(View.INVISIBLE);
-            /**
-             * set UI to show the moive info (title, year, post)
-             *
-             */
-            movieAdapter.notifyDataSetChanged();
-        }
-
-
-        private boolean isExist(String file){
-            return getBaseContext().getFileStreamPath(file).exists();
-        }
-         /**
-          * get bitmap from urlpath (String)
-          * @param urlStr
-          * @return
-          */
-
-         public Bitmap getBitmapFromUrl(String urlStr){
-             URL url = null;
-             Bitmap bitmap = null;
-             HttpURLConnection connection = null;
-             try{
-                 url = new URL(urlStr);
-                 connection = (HttpURLConnection)url.openConnection();
-                 connection.setReadTimeout(5000);
-                 connection.setConnectTimeout(5000);
-
-                 InputStream inputStream = new BufferedInputStream(connection.getInputStream());
-                 bitmap = BitmapFactory.decodeStream(inputStream);
-                 inputStream.close();
-
-             }catch (Exception e){
-                 e.printStackTrace();
-             }finally {
-                 connection.disconnect();
-             }
-             return bitmap;
-         }
-    }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

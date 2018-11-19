@@ -5,6 +5,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class MovieDTO implements Parcelable{
+
+
     private String movieName;
     private String director;
     private String year;
@@ -16,11 +18,12 @@ public class MovieDTO implements Parcelable{
     private String imDbId;
     private String ratings_imDb;
     private String type;
+    private String runtime;
 
 
 
-    private Bitmap image;
-    private boolean isFavourite;
+
+
 
 
 
@@ -36,7 +39,7 @@ public class MovieDTO implements Parcelable{
         imDbId = in.readString();
         ratings_imDb = in.readString();
         type = in.readString();
-        isFavourite = in.readByte() != 0;
+
     }
 
     public static final Parcelable.Creator<MovieDTO> CREATOR = new Parcelable.Creator<MovieDTO>() {
@@ -134,6 +137,10 @@ public class MovieDTO implements Parcelable{
         this.ratings_imDb = ratings_imDb;
     }
 
+    public String getRuntime() { return runtime; }
+
+    public void setRuntime(String runtime) { this.runtime = runtime;}
+
     public String getType() {
         return type;
     }
@@ -141,18 +148,6 @@ public class MovieDTO implements Parcelable{
     public void setType(String type) {
         this.type = type;
     }
-
-    public boolean isFavourite() {
-        return isFavourite;
-    }
-
-    public void setFavourite(boolean favourite) {
-        isFavourite = favourite;
-    }
-
-    public Bitmap getImage() { return image; }
-
-    public void setImage(Bitmap image) { this.image = image; }
 
     @Override
     public int describeContents() {
@@ -172,6 +167,6 @@ public class MovieDTO implements Parcelable{
         dest.writeString(imDbId);
         dest.writeString(ratings_imDb);
         dest.writeString(type);
-        dest.writeByte((byte) (isFavourite ? 1 : 0));
+
     }
 }
