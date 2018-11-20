@@ -1,72 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OCTranspo"
-    android:orientation="vertical">
+    android:background="#BB86FC"
+    android:orientation="vertical"
+    tools:context=".OCTranspo.activity.OCTranspo">
 
-
-
-    <TextView
-        android:id="@+id/welcomeO"
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:background="@drawable/ocstoplist" />
+    <fragment
+        android:id="@+id/fragmentSpace"
+        android:name="com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.fragment.DisplayStopsFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="25dp"
-        android:gravity="center"
-        android:text="@string/welcome"
-        android:textSize="30sp" />
-
+        android:layout_height="wrap_content" />
 
     <EditText
-        android:id="@+id/userEnter"
-        android:layout_below="@+id/welcomeO"
+        android:id="@+id/stopNoInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint"
-        />
+        android:cacheColorHint="#FFF4F4F4"
+        android:hint="Please input bus stop number:"
+        android:inputType="text" />
+
     <ProgressBar
         android:id="@+id/ocProgressBar"
-        android:layout_alignStart="@+id/byStop"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
-        style="?android:attr/progressBarStyle"/>
+        android:layout_gravity="center"
+        android:max="100"
+        android:progress="50"
+        android:progressDrawable="@drawable/my_progressbar"
+        />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/addStopNoButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/oc_addstationbutton" />
 
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_alignParentTop="true"
-        android:layout_weight="1" />
-
-    <Button
-        android:id="@+id/byStop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/byStop"
-        android:textSize="20sp" />
-
-    <Button
-        android:id="@+id/deleteALL"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/deleteALL"
-        android:textSize="20sp" />
+        <Button
+            android:id="@+id/helpButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="ChangeFragment"
+            android:text="@string/oc_help" />
 
 
-    <Button
-        android:id="@+id/goHomeO"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/goHome"
-        android:layout_alignParentBottom="true"
-        android:textSize="20sp"/>
-
-
-
+    </LinearLayout>
 </LinearLayout>

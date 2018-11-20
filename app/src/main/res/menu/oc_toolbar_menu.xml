@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/menuItemFood"
+        android:title="Food Nutrition"
+        android:icon="@drawable/food"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/menuItemMovie"
+        android:title="Moive Search"
+        android:icon="@drawable/film"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/menuItemCBC"
+        android:title="CBC News"
+        android:icon="@drawable/cbc_news"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/menuItemAbout"
+        android:title="About"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+</menu>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+>
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_column="0"
+        android:layout_row="4"
+        android:background="@drawable/bus" />
+
+    <TextView
+        android:id="@+id/route_text"
+
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_row="4"
+        android:layout_column="1"
+        android:background="#ff000d"
+        android:gravity="start|center_vertical|center_horizontal"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light"
+        android:textSize="30sp"
+
+         />
+    </GridLayout>
+</LinearLayout>
