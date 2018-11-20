@@ -11,35 +11,38 @@ import android.widget.Toast;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.activity.OCRoute;
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
 
+/**
+ * This class displays the stop data
+ */
+
 public class DisplayRouteInfor extends Activity {
     public static final String ACTIVITY_NAME = "DisplayRouteInfor";
 
-    OCRoute route;
 
+    Button refresh;
+    OCRoute route;
     TextView routenoDestination;
     TextView direction;
     TextView startTime;
     TextView adjustedTime;
     TextView coordinates;
     TextView speed;
-    Button refresh;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ocroute_infor);
 
-        routenoDestination = (TextView) findViewById(R.id.routenoDestinationView);
-        direction = (TextView) findViewById(R.id.directionView);
-        startTime = (TextView) findViewById(R.id.startTimeView);
-        adjustedTime = (TextView) findViewById(R.id.adjustedTimeView);
-        coordinates = (TextView) findViewById(R.id.coordinatesView);
-        speed = (TextView) findViewById(R.id.speedView);
-        refresh = (Button) findViewById(R.id.refreshRouteButton);
 
-
+        speed = findViewById(R.id.speedView);
+        refresh = findViewById(R.id.refreshRouteButton);
+        routenoDestination = findViewById(R.id.routenoDestinationView);
+        direction = findViewById(R.id.directionView);
+        startTime = findViewById(R.id.startTimeView);
+        adjustedTime = findViewById(R.id.adjustedTimeView);
+        coordinates =  findViewById(R.id.coordinatesView);
         Bundle extras = getIntent().getExtras();
+
 
         route = new OCRoute(extras.getString("routeno"), extras.getString("destination"),
                 extras.getString("direction"), extras.getString("stationNum")
@@ -47,6 +50,7 @@ public class DisplayRouteInfor extends Activity {
 
         new Update().executeOnExecutor( ((r) -> {r.run();}),"");
 
+        //connects to a action button to get refeshed data
 
         refresh.setOnClickListener((e) -> {
             Toast toast = Toast.makeText(this, getString(R.string.oc_refresh), Toast.LENGTH_SHORT);
@@ -65,6 +69,10 @@ public class DisplayRouteInfor extends Activity {
         speed.setText(getString(R.string.oc_gpsspeed) + route.getSpeed());
     }
 
+    /**
+     * uses Async to get updated bus details from server
+     *
+     */
     public class Update extends AsyncTask<String, Integer, String> {
         @Override
         protected String doInBackground(String... strings) {

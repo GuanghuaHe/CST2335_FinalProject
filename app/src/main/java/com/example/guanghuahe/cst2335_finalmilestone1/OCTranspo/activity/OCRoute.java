@@ -16,11 +16,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Created by Guanghua He on 2018-10-16.
+ * Created by Guanghua He on 2018-11-20.
+ * Detail shows bus stats
  */
 
 public class OCRoute {
 
+    private boolean ready = false;
     private String stationNum;
     private String routeno;
     private String destination;
@@ -30,35 +32,20 @@ public class OCRoute {
     private String adjustedTime;
     private String direction;
 
-    private boolean ready = false;
+
 
     public static String getRouteInfo = "https://api.octranspo1.com/v1.2/GetNextTripsForStop?appID=223eb5c3&&apiKey=ab27db5b435b8c8819ffb8095328e775&stopNo=";
     public static String getRouteInfoTrailer = "&routeNo=";
 
-    public OCRoute (String stationNum, String routeno, String destination, String coordinates, String speed, String startTime, String adjustedTime, String direction) {
-        this.stationNum = ((stationNum != null) ? stationNum : "Information unavailable");
-        this.routeno = ((routeno != null) ? routeno : "Information unavailable");
-        this.destination = ((destination != null) ? destination : "Information unavailable");
-        this.coordinates = ((coordinates != null) ? coordinates : "Information unavailable");
-        this.speed = ((speed != null) ? speed : "Information unavailable");
-        this.startTime = ((startTime != null) ? startTime : "Information unavailable");
-        this.adjustedTime = ((adjustedTime != null) ? adjustedTime : "Information unavailable");
-        this.direction = ((direction != null) ? direction : "Information unavailable");
-
-        ready = true;
-    }
 
     public OCRoute(String routeno, String destination, String direction, String stationNum) {
-        this.routeno = routeno;
-        this.destination = destination;
+
         this.direction = direction;
         this.stationNum = stationNum;
-    }
+        this.routeno = routeno;
+        this.destination = destination;
 
-    public void updateData() {
-        new OCRouteQuery().execute("");
     }
-
 
     public String getRouteno() { return routeno; }
     public String getDestination() {
@@ -71,19 +58,25 @@ public class OCRoute {
     public String getAdjustedTime() { return adjustedTime; }
     public String getDirection() { return direction; }
 
-    public boolean isReady () {
-        return ready;
+    public void updateData() {
+        new OCRouteQuery().execute("");
     }
 
-
-
+    /**
+     * uses Async to get bus details from server
+     *
+     */
 
     public class OCRouteQuery extends AsyncTask<String, Integer, String> {
 
+        /**
+         Load the data from the OCTranspo URL
+         based on CST2335 – Graphical Interface Programming Lab 6
+         */
+
         @Override
         protected String doInBackground(String... array) {
-            Log.i("OCRoute constructor", "background activity begun..");
-
+            Log.i("OCRoute constructor", "background activity start..");
 
             try {
                 String urlstring = getRouteInfo.concat(stationNum);
@@ -115,6 +108,8 @@ public class OCRoute {
 
             String fullCoordinates = "";
             try {
+
+                //Use xml parser to load the data
                 XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
                 factory.setNamespaceAware(false);
 
@@ -124,6 +119,9 @@ public class OCRoute {
 
                 int eventType = xpp.getEventType();
 
+                //basically we cycle through the parser, we add data to our data object one piece at a time for each trip, at the end of each
+                //trip we add that trip to our result array, then reset the data object for a new trip. Until we reach the end of our XML
+
                 while ((eventType != XmlPullParser.END_DOCUMENT) && cont) {
 
                     switch (eventType) {
@@ -131,6 +129,7 @@ public class OCRoute {
                             lastTag = xpp.getName();
                             break;
                         case XmlPullParser.TEXT:
+                            // Starts by looking for the entry tag
                             if (lastTag.equals("Direction") && xpp.getText().equals(direction)) {
                                 foundDirection = true;
                             } else if (foundDirection) {
@@ -172,18 +171,20 @@ public class OCRoute {
                 Log.i("OCRoute constructor","closed input stream");
             }
         }
-
+        /**
+         *   after the async task completes
+         *   adds the data downloaded to the activity so it can be put in to the inflator and shown
+         */
         @Override
         protected void onPostExecute(String result) {
-            stationNum = ((stationNum != null) ? stationNum : "Information unavailable");
-            routeno = ((routeno != null) ? routeno : "Information unavailable");
-            destination = ((destination != null) ? destination : "Information unavailable");
-            coordinates = ((coordinates != null) ? coordinates : "Information unavailable");
-            speed = ((speed != null) ? speed : "Information unavailable");
-            startTime = ((startTime != null) ? startTime : "Information unavailable");
-            adjustedTime = ((adjustedTime != null) ? adjustedTime : "Information unavailable");
-            direction = ((direction != null) ? direction : "Information unavailable");
-
+            stationNum = ((stationNum != null) ? stationNum : "Info NA");
+            routeno = ((routeno != null) ? routeno : "Info NA");
+            destination = ((destination != null) ? destination : "Info NA");
+            coordinates = ((coordinates != null) ? coordinates : "Info NA");
+            speed = ((speed != null) ? speed : "Info NA");
+            startTime = ((startTime != null) ? startTime : "Info NA");
+            adjustedTime = ((adjustedTime != null) ? adjustedTime : "Info NA");
+            direction = ((direction != null) ? direction : "Info NA");
             ready = true;
         }
     }

@@ -36,27 +36,26 @@ import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.adapters.Display
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.fragment.DisplayStopsFragment;
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
 
+/**
+ * Start Activity for Guanghua's OCtranspo app
+ */
 
 public class OCTranspo extends AppCompatActivity {
 
-    protected static final String ACTIVITY_NAME = "OCTranspoActivity";
     final Context ctxt = this;
-    ArrayList<String> stationsList = new ArrayList<>();
-    ArrayList<String> stationsNumbers = new ArrayList<>();
-    ListView stations;
-    EditText stationInput;
-    Button addStation;
     private ProgressBar ocProgressBar;
-
+    protected static final String ACTIVITY_NAME = "OCTranspoActivity";
     private Context ctx;
     private SQLiteDatabase db;
     private Cursor cursor;
-
     private int currentStationIndex = 0;
-
-    StationAdapter adapter;
-
     boolean menuOn = false;
+    StationAdapter adapter;
+    ListView stations;
+    EditText stationInput;
+    Button addStation;
+    ArrayList<String> stationsList = new ArrayList<>();
+    ArrayList<String> stationsNumbers = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +65,9 @@ public class OCTranspo extends AppCompatActivity {
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarOCtranspo);
         //setSupportActionBar(toolbar);
 
+        // This section connects to the database and loads a query into the cursor
         OCDatabaseHelper dbHelper = new OCDatabaseHelper(ctx);
         db = dbHelper.getWritableDatabase();
-
         setContentView(R.layout.activity_octranspo);
 
         stations = (ListView) findViewById(R.id.stationsView);
@@ -92,7 +91,8 @@ public class OCTranspo extends AppCompatActivity {
                 OCDatabaseHelper.STATION_NO + " FROM " +
                 OCDatabaseHelper.TABLE_NAME, null, null);
         cursor.moveToFirst();
-
+        //The data has been loaded into the cursor
+        //Look through the cursor and add data from the database to the array - to show the data in the listview
         while (!cursor.isAfterLast()) {
             Log.i(ACTIVITY_NAME, "Current cursor position: " + cursor.getPosition());
             String newStation = "Bus Stop number: ";
@@ -100,11 +100,10 @@ public class OCTranspo extends AppCompatActivity {
 
             stationsList.add(newStation);
             stationsNumbers.add(cursor.getString(1));
-
-
             cursor.moveToNext();
         }
 
+        //When you click the floating action button it adds a bus number - CST2335 – Graphical Interface Programming Lab 3
 
         addStation.setOnClickListener((e) -> {
             String s = stationInput.getText().toString();
@@ -133,20 +132,18 @@ public class OCTranspo extends AppCompatActivity {
                 stationInput.setText("");
                 adapter.notifyDataSetChanged();
             } else {
-                Snackbar badinput = Snackbar.make(findViewById(android.R.id.content), getString(R.string.oc_badinput), Snackbar.LENGTH_SHORT);
-                badinput.show();
+                Snackbar wronginput = Snackbar.make(findViewById(android.R.id.content), getString(R.string.oc_badinput), Snackbar.LENGTH_SHORT);
+                wronginput.show();
                 stationInput.setText("");
             }
         });
 
-
-
-
-
+        //Saves the text to the database, then loads the OCTranspoStop activit with the Stop number added
         stations.setOnItemClickListener((parent, view, position, id) -> {
             String s = stationsList.get(position);
             Log.i(ACTIVITY_NAME, "Message: " + s);
             String stationNumber = stationsNumbers.get(position);
+            //Passes the input text to new activity when starting the activity
             Intent i = new Intent(OCTranspo.this, DisplayStopInfor.class);
             i.putExtra("stationNumber", stationNumber);
             currentStationIndex = position;
@@ -163,6 +160,10 @@ public class OCTranspo extends AppCompatActivity {
     }
 
 
+    /**
+     * This class is used to connect all the other app links
+     * This was Largely based on CST2335 – Graphical Interface Programming Lab 8
+     */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -285,7 +286,10 @@ public class OCTranspo extends AppCompatActivity {
         }
     }
 
-
+    /**
+     * This adapter updates/generates the list view elements
+     * This was Largely based on CST2335 – Graphical Interface Programming Lab 4
+     */
     public class StationAdapter extends ArrayAdapter<String> {
         public StationAdapter(Context ctx) {
             super(ctx, 0);

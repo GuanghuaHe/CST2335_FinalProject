@@ -32,54 +32,51 @@ import java.util.ArrayList;
 
 public class DisplayStopInfor extends Activity {
 
-    private static boolean deleteStation = false;
-    private static String lastStation = "";
 
-    public static String getRouteSummaryForStop = "https://api.octranspo1.com/v1.2/GetRouteSummaryForStop?appID=223eb5c3&&apiKey=ab27db5b435b8c8819ffb8095328e775&stopNo=";
-
-    protected static final String ACTIVITY_NAME = "DisplayStopInfor";
-
-    int stationNumber;
     String stationName = "";
-
-    private Context ctx = this;
     ArrayList<OCRoute> allRoutes = new ArrayList<>();
     ArrayList<String> routesInfo = new ArrayList<String>();
     ListView routes;
     ProgressBar progressBar;
-    int progress;
     TextView stationNameView;
-
-
     Button delete;
+
+    int progress;
+    int stationNumber;
+
+    private Context ctx = this;
+    private static boolean deleteStation = false;
+    private static String lastStation = "";
+
+    protected static final String ACTIVITY_NAME = "DisplayStopInfor";
 
     public static void resetDeleteStation() {
         deleteStation = false;
     }
-
     public static boolean getDeleteStation() {
         return deleteStation;
     }
-
     public static String getDeletedStationNo() { return lastStation; }
+    public static String getRouteSummaryForStop = "https://api.octranspo1.com/v1.2/GetRouteSummaryForStop?appID=223eb5c3&&apiKey=ab27db5b435b8c8819ffb8095328e775&stopNo=";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ocstops_infor);
 
-        routes = (ListView) findViewById(R.id.routesView);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progress = 0;
-        stationNameView = (TextView) findViewById(R.id.stopName);
-        delete = (Button) findViewById(R.id.deleteStopButton);
+        routes = findViewById(R.id.routesView);
+        progressBar =  findViewById(R.id.progressBar);
+        stationNameView =  findViewById(R.id.stopName);
+        delete = findViewById(R.id.deleteStopButton);
 
         Bundle extras = getIntent().getExtras();
         if (extras == null) {
             Log.i(ACTIVITY_NAME, "Error: no stop number could be found");
         } else {
             stationNumber = Integer.parseInt(extras.getString("stationNumber"));
-            stationNameView.setText("Station name: " + stationName);
+            stationNameView.setText("Bus stop: " + stationName);
         }
 
         new OCQuery().execute("");
@@ -100,12 +97,12 @@ public class DisplayStopInfor extends Activity {
         routes.setOnItemClickListener((parent, view, position, id) -> {
             String s = routesInfo.get(position);
             Log.i(ACTIVITY_NAME, "Message: " + s);
-            Intent i = new Intent(DisplayStopInfor.this, DisplayRouteInfor.class);
-            i.putExtra("routeno", allRoutes.get(position).getRouteno());
-            i.putExtra("destination", allRoutes.get(position).getDestination());
-            i.putExtra("stationNum", allRoutes.get(position).getStationNum());
-            i.putExtra("direction", allRoutes.get(position).getDirection());
-            startActivity(i);
+            Intent intent = new Intent(DisplayStopInfor.this, DisplayRouteInfor.class);
+            intent.putExtra("routeno", allRoutes.get(position).getRouteno());
+            intent.putExtra("destination", allRoutes.get(position).getDestination());
+            intent.putExtra("stationNum", allRoutes.get(position).getStationNum());
+            intent.putExtra("direction", allRoutes.get(position).getDirection());
+            startActivity(intent);
         });
 
 
@@ -160,13 +157,13 @@ public class DisplayStopInfor extends Activity {
         dialog.setTitle("Bus Stop not found");
 
 
-        TextView text = (TextView) dialog.findViewById(R.id.textDialog);
+        TextView text =  dialog.findViewById(R.id.textDialog);
         text.setText(getString(R.string.oc_station_w_number) + " " + stationNumber + " "+ getString(R.string.oc_station_not_found));
 
-        ImageView image = (ImageView) dialog.findViewById(R.id.image);
+        ImageView image =  dialog.findViewById(R.id.image);
         image.setImageResource(R.drawable.ic_launcher_foreground);
 
-        Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+        Button dialogButton = dialog.findViewById(R.id.dialogButtonOK);
 
         dialogButton.setOnClickListener((x) -> {
             dialog.dismiss();
@@ -313,7 +310,7 @@ public class DisplayStopInfor extends Activity {
             ListView routesview = (ListView)findViewById(R.id.routesView);
             routesview.setAdapter(adapter);
 
-            stationNameView.setText("Station name: " + stationName);
+            stationNameView.setText("Bus stop: " + stationName);
 
             for (OCRoute r : routesList) {
                 String newRoute = "";
