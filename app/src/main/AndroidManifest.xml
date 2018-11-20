@@ -26,6 +26,8 @@
 
         </activity>
         <activity android:name=".movie.activities.MovieDetail" />
+        <activity android:name=".OCT.activity.OCTranspo"></activity>
+        <activity android:name=".OCT.OCDetails"></activity>
         <activity android:name=".movie.MovieFragment" />
         <activity android:name=".OCDetails"></activity>
         <activity android:name=".Nutrition"></activity>

@@ -30,18 +30,12 @@ import android.widget.Toast;
 import com.example.guanghuahe.cst2335_finalmilestone1.CBC;
 import com.example.guanghuahe.cst2335_finalmilestone1.MainActivity;
 import com.example.guanghuahe.cst2335_finalmilestone1.Nutrition;
-import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo;
+import com.example.guanghuahe.cst2335_finalmilestone1.OCT.activity.OCTranspo;
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
-import com.example.guanghuahe.cst2335_finalmilestone1.movie.adapters.HistoryAdapter;
-import com.example.guanghuahe.cst2335_finalmilestone1.movie.adapters.MovieAdapter;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.database.DatabaseHelper;
-import com.example.guanghuahe.cst2335_finalmilestone1.movie.dto.MovieDTO;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.fragments.HistoryFragment;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.fragments.HistoryToolBarFragment;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.fragments.MovieSearchFragment;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class Movie extends AppCompatActivity {
@@ -49,6 +43,8 @@ public class Movie extends AppCompatActivity {
      * get app name which is type of string
      */
     protected static final String TAG = Movie.class.getSimpleName();
+
+    public static DatabaseHelper databaseHelper;
 
 
     /**
@@ -60,13 +56,12 @@ public class Movie extends AppCompatActivity {
     private Button clearText, searchButton, historyButton;
     private EditText editText;
     private TextView textView;
-    private ProgressBar movieProgressBar;
+    private  static  ProgressBar movieProgressBar;
 
     /**
      * search bar including buttons
      */
     private FrameLayout searchBar;
-
 
 
     /**
@@ -76,29 +71,17 @@ public class Movie extends AppCompatActivity {
     private FragmentTransaction ft;
 
 
-
-
-
-
-
-
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie);
-
+        setContentView(R.layout.activity_movie_home);
+        databaseHelper = new DatabaseHelper(this);
         // config security
-        if (android.os.Build.VERSION.SDK_INT > 9)
-        {
+        if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new
                     StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-
 
 
         //subviews
@@ -111,29 +94,21 @@ public class Movie extends AppCompatActivity {
         movieProgressBar = findViewById(R.id.MovieProgressBar);
 
 
-
-
-
-
-
-
         /**
          * Fragment Manager
          */
         fm = getSupportFragmentManager();
 
 
-
-
         /**
          * editText entry => start search
          */
-        editText = (EditText)findViewById(R.id.editText);
-        editText.setOnEditorActionListener((v, actionId, event) ->{
+        editText = (EditText) findViewById(R.id.editText);
+        editText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                if(editText.getText() != null && editText.getText().length() > 0)
-                  //  performSearch(editText.getText().toString().trim());
-                return true;
+                if (editText.getText() != null && editText.getText().length() > 0)
+
+                    return true;
             }
             return false;
 
@@ -142,15 +117,16 @@ public class Movie extends AppCompatActivity {
         /**
          * event handlers
          */
-        searchButton.setOnClickListener(e->{
+        searchButton.setOnClickListener(e -> {
+            movieProgressBar.setVisibility(View.VISIBLE);
             //check input
-            if(editText.getText() != null && editText.getText().length() > 0){
+            if (editText.getText() != null && editText.getText().length() > 0) {
 
                 //show the Snackbar.
                 Snackbar.make(e, "start to search", Snackbar.LENGTH_LONG).show();
 
                 //get input from edit text
-                String title= editText.getText().toString().trim();
+                String title = editText.getText().toString().trim();
 
                 // get instance of search list fragment
                 Fragment searchFragment = new MovieSearchFragment();
@@ -163,46 +139,37 @@ public class Movie extends AppCompatActivity {
                 //replace the text view of main activity with fragment which contained a fresh search-list
                 ft = fm.beginTransaction();
                 ft.addToBackStack(null);
-                ft.replace(R.id.movie_list_view_layout,searchFragment );
+                ft.replace(R.id.movie_list_view_layout, searchFragment);
                 ft.commit();
                 editText.setText("");
-            } else{  Snackbar.make(e, "please enter movie title", Snackbar.LENGTH_LONG).show();}
+            } else {
+                Snackbar.make(e, "please enter movie title", Snackbar.LENGTH_LONG).show();
+            }
         });
 
-        historyButton.setOnClickListener(e->{
+        historyButton.setOnClickListener(e -> {
             movieProgressBar.setVisibility(View.GONE);
 
             // get instance of search list fragment
             Fragment historyFragment = new HistoryFragment();
 
-            Toast.makeText(this,"go to history",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "go to history", Toast.LENGTH_SHORT).show();
             ft = fm.beginTransaction();
             ft.addToBackStack(null);
-            ft.replace(R.id.movie_list_view_layout, historyFragment);
+            ft.replace(R.id.movie_list_view_layout, historyFragment, "historyFragment");
 
             HistoryToolBarFragment toolBarFragment = new HistoryToolBarFragment();
             Bundle bundle = new Bundle();
 
 
-
             ft.replace(R.id.movie_button_layout, toolBarFragment);
             ft.commit();
-            //fragments
-
-
-
 
 
         });
 
 
-
-
-
-
-
-
-        clearText.setOnClickListener( (v) -> editText.setText(""));
+        clearText.setOnClickListener((v) -> editText.setText(""));
 
         /**
          * set progressBar visibility equal to true
@@ -212,21 +179,29 @@ public class Movie extends AppCompatActivity {
          * toast to show the message
          */
         Toast.makeText(this, "enter movie title to search", Toast.LENGTH_SHORT).show();
-   }
-
+    }
+    /**
+     * share progressBar with fragments
+     *
+     */
+    public static ProgressBar getMovieProgressBar(){
+        return movieProgressBar;
+    }
     /**
      * load tool bar
+     *
      * @param menu
      * @return
      */
-   @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-           getMenuInflater().inflate(R.menu.moive_menu, menu);
-           return true;
-   }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.moive_menu, menu);
+        return true;
+    }
 
     /**
      * set event hanlder for tool bar including Home, OCTransport, Nutrition,CBC NEWS
+     *
      * @param menuItem
      * @return
      */
@@ -273,7 +248,6 @@ public class Movie extends AppCompatActivity {
     }
 
 
-
     /**
      * overridden methods with built-in logging.
      */
@@ -282,21 +256,25 @@ public class Movie extends AppCompatActivity {
         super.onResume();
         Log.i(TAG, "In onResume()");
     }
+
     @Override
     protected void onStart() {
         super.onStart();
         Log.i(TAG, "In onStart()");
     }
+
     @Override
     protected void onPause() {
         super.onPause();
         Log.i(TAG, "In onPause()");
     }
+
     @Override
     protected void onStop() {
         super.onStop();
         Log.i(TAG, "In onStop()");
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

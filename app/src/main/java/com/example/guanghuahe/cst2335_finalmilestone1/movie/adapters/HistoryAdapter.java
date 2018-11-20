@@ -8,16 +8,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
-import com.example.guanghuahe.cst2335_finalmilestone1.movie.BitmapConverter;
+
+import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
+import com.example.guanghuahe.cst2335_finalmilestone1.movie.database.DatabaseHelper;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.dto.MovieDTO;
+
 
 import java.util.List;
 
 public class HistoryAdapter extends ArrayAdapter<MovieDTO> {
+    private static final String TAG = "HISTORYADAPTER";
+    private DatabaseHelper databaseHelper;
     protected List<MovieDTO> historyList;
     private int resourceID;
 
@@ -27,6 +33,7 @@ public class HistoryAdapter extends ArrayAdapter<MovieDTO> {
         super(context, listItemViewId, movieDTOList);
         historyList = movieDTOList;
         resourceID = listItemViewId;
+        databaseHelper = Movie.databaseHelper;
     }
 
 
@@ -44,12 +51,25 @@ public class HistoryAdapter extends ArrayAdapter<MovieDTO> {
         TextView year = result.findViewById(R.id.history_movie_year);
         year.setText(movie.getYear());
         ImageView image = result.findViewById(R.id.history_list_item_image);
-        Bitmap bm = BitmapConverter.getBitmapFromUrl(movie.getPosterLink());
-        Log.i("AA", "YOU MEI YOU TU A" + movie.getPosterLink());
-        image.setImageBitmap(bm);
+        image.setImageBitmap(movie.getImage());
+
+
+
+        Button remove = result.findViewById(R.id.removeItem);
+        remove.setOnClickListener(e->{
+            historyList.remove(movie);
+
+            databaseHelper.deleteMovie(movie);
+            Log.i(TAG, "AFTER  :  movie id:  -->" + movie.getImDbId());
+            notifyDataSetChanged();
+        });
 
         return result;
     }
 
 
+    @Override
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
+    }
 }

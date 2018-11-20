@@ -1,8 +1,7 @@
 package com.example.guanghuahe.cst2335_finalmilestone1.movie.activities;
 
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,12 +16,9 @@ import com.example.guanghuahe.cst2335_finalmilestone1.movie.database.DatabaseHel
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.dto.MovieDTO;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
-import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.HttpURLConnection;
-
 import java.net.URL;
 
 /**
@@ -43,20 +39,27 @@ public class MovieDetail extends AppCompatActivity {
         setContentView(R.layout.activity_movie_detail);
       //  movieProgressBar = findViewById(R.id.MovieProgressBar);
 
-        active = (MovieDTO) getIntent().getParcelableExtra("MOVIE");
+        active =  (MovieDTO) getIntent().getParcelableExtra("Movie");
 
-        databaseHelper = new DatabaseHelper(this);
+        databaseHelper = Movie.databaseHelper;
+
+        /**
+         * check local first
+         */
+           String id = active.getImDbId();
+
+        if( databaseHelper.readMovieDetail(id) == null) {
+
+            MyTask myTask = new MyTask();
+            myTask.execute(URL_ID + id);
+        }
         save = findViewById(R.id.save_movie);
         save.setOnClickListener(e-> {
 
             databaseHelper.insertMovie(active);
+
             finish();
         });
-        Log.i(TAG, "MOVIE: ===" + active);
-
-
-        MyTask myTask = new MyTask();
-        myTask.execute(URL_ID+active.getImDbId());
 
     }
 
@@ -141,7 +144,8 @@ public class MovieDetail extends AppCompatActivity {
 
                             active.setActors(parser.getAttributeValue(null, "actors"));
 
-
+                            active.setImage(BitmapConverter.getBitmapFromUrl(parser.getAttributeValue(null, "poster")));
+                            Log.i(TAG, "   Image  isExist ?  =" +(active.getImage() == null));
 
                         }
                     }
@@ -206,6 +210,6 @@ public class MovieDetail extends AppCompatActivity {
 
         ImageView imageView = (ImageView) findViewById(R.id.movie_detail_image_View);
 
-        imageView.setImageBitmap(BitmapConverter.getBitmapFromUrl(active.getPosterLink()));
+        imageView.setImageBitmap(active.getImage());
     }
 }

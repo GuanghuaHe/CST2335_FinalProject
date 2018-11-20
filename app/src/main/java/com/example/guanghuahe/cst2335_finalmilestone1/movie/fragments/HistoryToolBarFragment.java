@@ -5,23 +5,24 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
+
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
-import com.example.guanghuahe.cst2335_finalmilestone1.movie.adapters.HistoryAdapter;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.database.DatabaseHelper;
 
 
 public class HistoryToolBarFragment extends Fragment {
         private Button removeAll, byYear, byRuntime, byRating;
         private DatabaseHelper DB;
-        private HistoryAdapter historyAdapter;
+        private HistoryFragment historyFragment;
         private Context mainActivity;
-        //private Fragment historyListFragment;
+
 
 
     @Override
@@ -34,8 +35,8 @@ public class HistoryToolBarFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DB = new DatabaseHelper(mainActivity);
-        historyAdapter = new HistoryFragment().getHistoryAdapter();
+        DB = Movie.databaseHelper;
+        historyFragment = (HistoryFragment) getFragmentManager().findFragmentByTag("historyFragment");
     }
 
 
@@ -49,12 +50,25 @@ public class HistoryToolBarFragment extends Fragment {
         byRating = tools.findViewById(R.id.sort_byRating);
 
 
-        removeAll.setOnClickListener(e->{
-                DB.removeAll();
-            if(historyAdapter != null)historyAdapter.notifyDataSetChanged();
+
+
+        removeAll.setOnClickListener(e-> {
+                    DB.removeAll();
+            historyFragment.updateView();
+
+                });
+        byRuntime.setOnClickListener(e->{
+            historyFragment.orderBy("runtime");
+
         });
 
-        byRuntime.setOnClickListener(e->{
+        byYear.setOnClickListener(e->{
+            historyFragment.orderBy("year");
+
+        });
+
+        byRating.setOnClickListener(e->{
+            historyFragment.orderBy("rating");
 
         });
         return tools;

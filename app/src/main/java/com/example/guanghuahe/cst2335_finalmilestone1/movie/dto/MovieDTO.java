@@ -22,6 +22,10 @@ public class MovieDTO implements Parcelable{
 
 
 
+    private Bitmap image;
+
+
+
 
 
 
@@ -148,6 +152,12 @@ public class MovieDTO implements Parcelable{
     public void setType(String type) {
         this.type = type;
     }
+
+
+
+    public Bitmap getImage() { return image; }
+
+    public void setImage(Bitmap image) { this.image = image; }
 
     @Override
     public int describeContents() {

@@ -2,16 +2,22 @@ package com.example.guanghuahe.cst2335_finalmilestone1.movie;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.util.Log;
 
 import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class BitmapConverter {
-
+    private static File dir;
 
     /**
      * get bitmap from urlpath (String)
@@ -20,7 +26,7 @@ public class BitmapConverter {
      */
 
     public static Bitmap getBitmapFromUrl(String urlStr){
-        Log.i("图片地址===========", urlStr);
+        Log.i("BitmapConverter --------------->","图片地址=========== "+ urlStr);
         URL url = null;
         Bitmap bitmap = null;
         HttpURLConnection connection = null;
@@ -44,4 +50,75 @@ public class BitmapConverter {
         }
         return bitmap;
     }
+
+
+    public static byte[] getByte(Bitmap bitmap){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+
+        return baos.toByteArray();
+
+    }
+
+    public static Bitmap bytes2Bimap(byte[] b) {
+        if (b.length != 0) {
+            return BitmapFactory.decodeByteArray(b, 0, b.length);
+        } else {
+            return null;
+        }
+    }
+
+
+
+
+    /**
+     * save bitmap locally
+     * @param bitmap
+     * @param fileName
+     */
+    public static void saveBitmap(Bitmap bitmap, String fileName){
+         dir = new File("image");//设置保存路径
+        try (FileOutputStream out = new FileOutputStream(new File(dir, "bitmap" + fileName+".png"))) {
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
+            // PNG is a lossless format, the compression factor (100) is ignored
+            Log.i("BitmapConverter","save image successfully");
+        } catch (IOException e) {
+            Log.i("BitmapConverter","save image failed");
+            e.printStackTrace();
+        }
+        /*File avaterFile = new File(dir, fileName+".jpg");//设置文件名称
+
+                if(avaterFile.exists()){
+                     avaterFile.delete();
+                }
+                try {
+                 avaterFile.createNewFile();
+                    FileOutputStream fos = new FileOutputStream(avaterFile);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                     fos.flush();
+                    fos.close();
+                    } catch (IOException e) {
+                     e.printStackTrace();
+                     }*/
+
+
+    }
+
+
+    public static Bitmap loadLocalImage(String fileName) {
+
+        try {
+            FileInputStream fis = new FileInputStream(dir + "/" + "bitmap" + fileName + ".png");
+            Log.i("BitmapConverter","load local image successfully");
+            return BitmapFactory.decodeStream(fis);
+
+
+        } catch (Exception e) {
+            Log.i("BitmapConverter","load local image failed   =======null");
+            e.printStackTrace();
+        }
+
+return null;
+    }
+
 }

@@ -9,12 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
+import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.adapters.HistoryAdapter;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.database.DatabaseHelper;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.dto.MovieDTO;
 
 
+import java.util.Comparator;
 import java.util.List;
 
 public class HistoryFragment extends Fragment {
@@ -23,7 +26,7 @@ public class HistoryFragment extends Fragment {
     private ListView historyView;
     private Context mainActivity;
     private HistoryAdapter historyAdapter;
-    private DatabaseHelper DBhelper;
+    private static DatabaseHelper DbHelper;
 
 
     @Override
@@ -31,39 +34,72 @@ public class HistoryFragment extends Fragment {
         super.onAttach(context);
         mainActivity = context;
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        DBhelper= new DatabaseHelper(mainActivity);
-        historyList = DBhelper.getAllMovies();
+        DbHelper = Movie.databaseHelper;
+        historyList = DbHelper.getAllMovies();
 
 
     }
-
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View listLayout = inflater.inflate( R.layout.listview,null);
+        View listLayout = inflater.inflate(R.layout.listview, null);
 
         historyView = listLayout.findViewById(R.id.list_view);
 
 
-        historyAdapter = new HistoryAdapter(mainActivity,R.layout.hitstory_list_item, historyList);
+        historyAdapter = new HistoryAdapter(mainActivity, R.layout.hitstory_list_item, historyList);
         historyView.setAdapter(historyAdapter);
-        if(historyList.size() == 0) historyView.setVisibility(View.INVISIBLE);
-
+        if (historyList.size() == 0) historyView.setVisibility(View.INVISIBLE);
 
         return listLayout;
     }
 
-    public HistoryAdapter getHistoryAdapter(){
-        return this.historyAdapter;
+    /**
+     * when DB update
+     */
+    public void updateView() {
+        historyList.clear();
+        historyList.addAll(DbHelper.getAllMovies());
+        historyAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * statistic by different order
+     *
+     * @param columnName
+     */
+    public void orderBy(String columnName) {
+
+        switch (columnName) {
+            case "runtime":
+                historyList.sort(Comparator.comparing(MovieDTO::getRuntime));
+
+
+                break;
+            case "year":
+                historyList.sort(Comparator.comparing(MovieDTO::getYear));
+
+
+                break;
+            case "rating":
+                historyList.sort(Comparator.comparing(MovieDTO::getRatings_imDb));
+
+
+                break;
+            default:
+                throw new IllegalArgumentException("can not find order by: " + columnName);
+
+        }
+        historyAdapter.notifyDataSetChanged();
+    }
 
 
 }

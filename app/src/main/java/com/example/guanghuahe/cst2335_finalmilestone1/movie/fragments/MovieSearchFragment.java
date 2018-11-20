@@ -2,11 +2,8 @@ package com.example.guanghuahe.cst2335_finalmilestone1.movie.fragments;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,21 +13,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-
+import android.widget.ProgressBar;
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
-import com.example.guanghuahe.cst2335_finalmilestone1.movie.BitmapConverter;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.MovieDetail;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.adapters.MovieAdapter;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.dto.MovieDTO;
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
-
-import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -66,7 +58,7 @@ public class MovieSearchFragment  extends Fragment {
     private List<MovieDTO> searchList;
     private MovieAdapter movieAdapter;
     private Context mainActivity;
-
+    private ProgressBar progressBar;
 
 
 
@@ -74,11 +66,12 @@ public class MovieSearchFragment  extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         mainActivity = context;
+
     }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        progressBar = Movie.getMovieProgressBar();
         searchList = new ArrayList<>();
         movieAdapter = new MovieAdapter(mainActivity, R.layout.list_view_item,searchList );
     }
@@ -93,10 +86,10 @@ public class MovieSearchFragment  extends Fragment {
         Bundle bundle = getArguments();
         String title = bundle.getString("TITLE");
 
-        Log.i(TAG, "get " + title + "from bundle");
+        Log.i(TAG, "get " + title + " from bundle");
 
         // open back system thread to process searching
-        new MyTask().execute(URL+title);
+        new MyTask().execute(URL+this.convertString(title));
         View view = inflater.inflate( R.layout.listview,null);
         searchView = view.findViewById(R.id.list_view);
         searchView.setAdapter(movieAdapter);
@@ -112,11 +105,11 @@ public class MovieSearchFragment  extends Fragment {
 
         searchView.setOnItemClickListener((a,b,c,d)-> {
 
-            //拿到选择对象
+            //get selected item
             MovieDTO MOVIE = movieAdapter.getMovie(c);
-            //调用方法读取电影其余信息，完成后跳转detail 页面
+            //go to detail
             Intent todetail = new Intent(mainActivity, MovieDetail.class);
-            todetail.putExtra("MOVIE", MOVIE);
+            todetail.putExtra("Movie", MOVIE);
             startActivity(todetail);
 
 
@@ -152,11 +145,11 @@ public class MovieSearchFragment  extends Fragment {
             Log.i(TAG, "doInBackground() called");
             try {
                 URL url = new URL(params[0]);
-                Log.i(TAG, "URL  ====="  + params[0]);
+
                 HttpURLConnection hcn = (HttpURLConnection)url.openConnection();
                 hcn.setRequestMethod("GET");
-                hcn.setReadTimeout(5000 /* milliseconds */);
-                hcn.setConnectTimeout(10000 /* milliseconds */);
+                hcn.setReadTimeout(10000 /* milliseconds */);
+                hcn.setConnectTimeout(150000 /* milliseconds */);
 
                 XmlPullParser parser = Xml.newPullParser();
 
@@ -178,16 +171,15 @@ public class MovieSearchFragment  extends Fragment {
                     if(eventType == XmlPullParser.START_TAG) {
                         if (parser.getName().equals("result")) {
                             movie.setMovieName(parser.getAttributeValue(null, "title"));
-
+                            progressBar.setProgress(20);
                             movie.setYear(parser.getAttributeValue(null, "year"));
-
+                            progressBar.setProgress(40);
                             movie.setImDbId(parser.getAttributeValue(null, "imdbID"));
-
-
+                            progressBar.setProgress(60);
                             movie.setType(parser.getAttributeValue(null, "type"));
-
+                            progressBar.setProgress(80);
                             movie.setPosterLink(parser.getAttributeValue(null, "poster"));
-
+                            progressBar.setProgress(90);
 
 
                             searchList.add(movie);
@@ -230,12 +222,7 @@ public class MovieSearchFragment  extends Fragment {
              *
              */
             movieAdapter.notifyDataSetChanged();
-
-        }
-
-
-        private boolean isExist(String file){
-            return mainActivity.getFileStreamPath(file).exists();
+            progressBar.setProgress(100);
         }
 
 
@@ -243,6 +230,9 @@ public class MovieSearchFragment  extends Fragment {
 
 
 
+    }
+    public String convertString(String s){
+        return s.replaceAll(" ", "+");
     }
 
 }
