@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="@android:color/holo_purple"
+    android:background="#996699"
     tools:context=".OCTranspo.activity.OCTranspo">
 
     <RelativeLayout
@@ -14,14 +14,36 @@
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_green_light">
+        android:background="#ccccff">
+
+        <ImageView
+            android:id="@+id/businfo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:src="@drawable/oc_icon" />
+
+        <TextView
+            android:id="@+id/bus_details"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:background="#9999cc"
+            android:gravity="start|center_vertical|center_horizontal"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="20sp"
+            android:text="Route details:"
+            />
 
         <ImageView
             android:id="@+id/destImg"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_column="0"
-            android:layout_row="0"
+            android:layout_row="1"
             android:src="@drawable/dest_icon" />
 
         <TextView
@@ -29,8 +51,8 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_column="1"
-            android:layout_row="0"
-            android:background="#ff000d"
+            android:layout_row="1"
+            android:background="#9999cc"
             android:gravity="start|center_vertical|center_horizontal"
             android:textAlignment="center"
             android:textColor="@android:color/background_light"
@@ -42,7 +64,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_column="0"
-            android:layout_row="1"
+            android:layout_row="2"
             android:src="@drawable/lat_icon" />
 
         <TextView
@@ -50,8 +72,8 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_column="1"
-            android:layout_row="1"
-            android:background="#ff000d"
+            android:layout_row="2"
+            android:background="#9999cc"
             android:gravity="start|center_vertical|center_horizontal"
             android:textAlignment="center"
             android:textColor="@android:color/background_light"
@@ -62,7 +84,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_column="0"
-            android:layout_row="2"
+            android:layout_row="3"
             android:src="@drawable/lon_icon" />
 
         <TextView
@@ -70,8 +92,8 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_column="1"
-            android:layout_row="2"
-            android:background="#ff000d"
+            android:layout_row="3"
+            android:background="#9999cc"
             android:gravity="start|center_vertical|center_horizontal"
             android:textAlignment="center"
             android:textColor="@android:color/background_light"
@@ -82,7 +104,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_column="0"
-            android:layout_row="3"
+            android:layout_row="4"
             android:src="@drawable/speed_icon" />
 
         <TextView
@@ -90,8 +112,8 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_column="1"
-            android:layout_row="3"
-            android:background="#ff000d"
+            android:layout_row="4"
+            android:background="#9999cc"
             android:gravity="start|center_vertical|center_horizontal"
             android:textAlignment="center"
             android:textColor="@android:color/background_light"
@@ -101,7 +123,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_column="0"
-            android:layout_row="4"
+            android:layout_row="5"
             android:src="@drawable/start_icon" />
 
         <TextView
@@ -110,7 +132,7 @@
             android:layout_height="60dp"
             android:layout_column="1"
             android:layout_row="5"
-            android:background="#ff000d"
+            android:background="#9999cc"
             android:gravity="start|center_vertical|center_horizontal"
             android:textAlignment="center"
             android:textColor="@android:color/background_light"
@@ -120,7 +142,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_column="0"
-            android:layout_row="5"
+            android:layout_row="6"
             android:src="@drawable/late_icon" />
 
 
@@ -130,12 +152,15 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_column="1"
-            android:layout_row="4"
-            android:background="#ff000d"
+            android:layout_row="6"
+            android:background="#9999cc"
             android:gravity="start|center_vertical|center_horizontal"
             android:textAlignment="center"
             android:textColor="@android:color/background_light"
             android:textSize="20sp" />
+
+
+
 
     </GridLayout>
 
