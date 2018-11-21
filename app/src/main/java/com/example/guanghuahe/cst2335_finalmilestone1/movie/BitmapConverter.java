@@ -53,6 +53,7 @@ public class BitmapConverter {
 
 
     public static byte[] getByte(Bitmap bitmap){
+        if(bitmap == null) return null;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
 
@@ -61,10 +62,10 @@ public class BitmapConverter {
     }
 
     public static Bitmap bytes2Bimap(byte[] b) {
-        if (b.length != 0) {
-            return BitmapFactory.decodeByteArray(b, 0, b.length);
-        } else {
+        if (b == null || b.length == 0) {
             return null;
+        } else {
+            return BitmapFactory.decodeByteArray(b, 0, b.length);
         }
     }
 

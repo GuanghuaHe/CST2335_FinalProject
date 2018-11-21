@@ -90,8 +90,8 @@ public class MovieSearchFragment  extends Fragment {
 
         // open back system thread to process searching
         new MyTask().execute(URL+this.convertString(title));
-        View view = inflater.inflate( R.layout.listview,null);
-        searchView = view.findViewById(R.id.list_view);
+        View view = inflater.inflate( R.layout.searchlistview,null);
+        searchView = view.findViewById(R.id.search_list_view);
         searchView.setAdapter(movieAdapter);
 
 
@@ -103,7 +103,7 @@ public class MovieSearchFragment  extends Fragment {
 
 
 
-        searchView.setOnItemClickListener((a,b,c,d)-> {
+        searchView.setOnItemClickListener((parent,b,c,d)-> {
 
             //get selected item
             MovieDTO MOVIE = movieAdapter.getMovie(c);

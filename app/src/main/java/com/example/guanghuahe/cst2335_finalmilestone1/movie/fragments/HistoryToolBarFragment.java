@@ -6,10 +6,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
 
@@ -18,19 +22,13 @@ import com.example.guanghuahe.cst2335_finalmilestone1.movie.database.DatabaseHel
 
 
 public class HistoryToolBarFragment extends Fragment {
-        private Button removeAll, byYear, byRuntime, byRating;
+        private Button removeAll, byYear, statistic, byRuntime, byRating;
         private DatabaseHelper DB;
         private HistoryFragment historyFragment;
-        private Context mainActivity;
 
 
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
 
-        mainActivity = context;
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,8 +46,7 @@ public class HistoryToolBarFragment extends Fragment {
         byRuntime = tools.findViewById(R.id.sort_byRuntime);
         byYear = tools.findViewById(R.id.sort_byYear);
         byRating = tools.findViewById(R.id.sort_byRating);
-
-
+        statistic = tools.findViewById(R.id.radio_button);
 
 
         removeAll.setOnClickListener(e-> {
@@ -69,6 +66,11 @@ public class HistoryToolBarFragment extends Fragment {
 
         byRating.setOnClickListener(e->{
             historyFragment.orderBy("rating");
+
+        });
+
+        statistic.setOnClickListener(e->{
+            historyFragment.statistic();
 
         });
         return tools;

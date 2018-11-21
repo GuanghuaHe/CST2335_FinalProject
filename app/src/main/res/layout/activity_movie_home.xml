@@ -85,7 +85,7 @@
             android:layout_marginLeft="0dp"
             android:max="100"
             android:progress="25"
-            android:progressDrawable="@drawable/progressbar_color"/>
+            android:progressDrawable="@drawable/oc_progressbar"/>
 
 
     </FrameLayout>

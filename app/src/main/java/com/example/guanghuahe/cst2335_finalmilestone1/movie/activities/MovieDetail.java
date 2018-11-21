@@ -37,7 +37,7 @@ public class MovieDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
-      //  movieProgressBar = findViewById(R.id.MovieProgressBar);
+
 
         active =  (MovieDTO) getIntent().getParcelableExtra("Movie");
 
@@ -46,20 +46,21 @@ public class MovieDetail extends AppCompatActivity {
         /**
          * check local first
          */
-           String id = active.getImDbId();
-
-        if( databaseHelper.readMovieDetail(id) == null) {
-
+        String id = active.getImDbId();
+        MovieDTO temp = databaseHelper.readMovieDetail(id);
+        /**
+         * if selected movie has not exist in DB, load movie from URL doing in the back process.
+         */
+        if(temp == null) {
             MyTask myTask = new MyTask();
             myTask.execute(URL_ID + id);
-        }
+
+            /**
+             * if selected movie has exist in DB, load movie from database
+             */
+        }else{active = temp; startPostDetail();}
         save = findViewById(R.id.save_movie);
-        save.setOnClickListener(e-> {
-
-            databaseHelper.insertMovie(active);
-
-            finish();
-        });
+        save.setOnClickListener(e-> {databaseHelper.insertMovie(active);finish(); });
 
     }
 

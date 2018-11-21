@@ -2,6 +2,7 @@ package com.example.guanghuahe.cst2335_finalmilestone1.movie.adapters;
 
 import android.content.Context;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,16 +16,20 @@ import android.widget.TextView;
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
 
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
+import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.MovieDetail;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.database.DatabaseHelper;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.dto.MovieDTO;
 
 
 import java.util.List;
 
+import static android.support.v4.content.ContextCompat.startActivity;
+
 public class HistoryAdapter extends ArrayAdapter<MovieDTO> {
     private static final String TAG = "HISTORYADAPTER";
     private DatabaseHelper databaseHelper;
     protected List<MovieDTO> historyList;
+    private Context mainActivity;
     private int resourceID;
 
 
@@ -34,6 +39,7 @@ public class HistoryAdapter extends ArrayAdapter<MovieDTO> {
         historyList = movieDTOList;
         resourceID = listItemViewId;
         databaseHelper = Movie.databaseHelper;
+        mainActivity = context;
     }
 
 
@@ -44,14 +50,14 @@ public class HistoryAdapter extends ArrayAdapter<MovieDTO> {
         View result =LayoutInflater.from(getContext()).inflate(resourceID, null);
 
 
-
-
         TextView title = result.findViewById(R.id.history_list_item_title);
         title.setText(movie.getMovieName());
         TextView year = result.findViewById(R.id.history_movie_year);
         year.setText(movie.getYear());
         ImageView image = result.findViewById(R.id.history_list_item_image);
         image.setImageBitmap(movie.getImage());
+
+
 
 
 
@@ -66,7 +72,9 @@ public class HistoryAdapter extends ArrayAdapter<MovieDTO> {
 
         return result;
     }
-
+    public MovieDTO getMovie(int indx){
+        return historyList.get(indx);
+    }
 
     @Override
     public void notifyDataSetChanged() {

@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
-
     >
 
 
     <Button
         android:id="@+id/removeAll"
         android:text="@string/removeAll"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_width="133dp"
+        android:layout_height="35dp"
+        android:layout_weight="1"
         android:layout_alignParentStart="true"
         android:background="@drawable/check_border"
 
@@ -19,16 +20,27 @@
     <Button
         android:id="@+id/sort_byRuntime"
         android:text="@string/sortByRuntime"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/removeAll"
+        android:layout_width="133dp"
+        android:layout_weight="1"
+        android:layout_height="35dp"
+        android:layout_toRightOf="@id/radio_button"
         android:layout_alignParentEnd="true"
         android:background="@drawable/check_border"/>
+    <Button
+        android:id="@+id/radio_button"
+        android:layout_width="133dp"
+        android:layout_height="35dp"
+        android:layout_weight="1"
+        android:text="@string/radioButton"
+        android:background="@drawable/check_border"
+
+        android:layout_toRightOf="@+id/removeAll"
+        />
     <Button
         android:id="@+id/sort_byYear"
         android:text="@string/sortByYear"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_below="@id/removeAll"
         android:background="@drawable/check_border"/>
     <Button
@@ -38,7 +50,7 @@
         android:layout_below="@id/sort_byRuntime"
         android:layout_alignParentEnd="true"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:background="@drawable/check_border"/>
 
 </RelativeLayout>

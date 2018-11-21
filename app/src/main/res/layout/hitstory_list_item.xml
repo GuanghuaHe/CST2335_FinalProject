@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:id="@+id/history_item_row"
     android:padding="0dp"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:descendantFocusability="blocksDescendants">
     <ImageView
         android:id="@+id/history_list_item_image"
         android:layout_width="110dp"

@@ -21,6 +21,7 @@
 
     <string name="removeAll">Remove All</string>
     <string name="sortByRuntime">By Runtime</string>
+    <string name="radioButton">STATISTIC</string>
     <string name="sortByYear">By Year</string>
     <string name="sortByRating">By Rating</string>
 

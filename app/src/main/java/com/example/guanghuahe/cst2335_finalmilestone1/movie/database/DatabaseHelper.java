@@ -134,29 +134,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @return  data transfer Object of movie
      */
     public MovieDTO readMovieDetail(String id) {
+        MovieDTO Movie = null;
         SQLiteDatabase db = getWritableDatabase();
 
         Cursor cursor = db.query(table_Movies, COLUMNS, Movie_ID+" = ?", new String[]{id}, null, null, null, null);
         if (cursor != null && cursor.getCount()>0){
-           Log.e(TAG,"COLUMN 0: ----"+ cursor.getColumnName(0));
-            Log.e(TAG,"COLUMN 1: ----"+ cursor.getColumnName(1));
-            Log.e(TAG,"COLUMN 2: ----"+ cursor.getColumnName(2));
-            Log.e(TAG,"COLUMN 3: ----"+ cursor.getColumnName(3));
-            Log.e(TAG,"COLUMN 4: ----"+ cursor.getColumnName(4));
-            Log.e(TAG,"COLUMN 5: ----"+ cursor.getColumnName(5));
-            Log.e(TAG,"COLUMN 6: ----"+ cursor.getColumnName(6));
-            Log.e(TAG,"COLUMN 7: ----"+ cursor.getColumnName(7));
-            Log.e(TAG,"COLUMN 8: ----"+ cursor.getColumnName(8));
-            Log.e(TAG,"COLUMN 9: ----"+ cursor.getColumnName(9));
-            Log.e(TAG,"COLUMN 10: ----"+ cursor.getColumnName(10));
-            Log.e(TAG,"COLUMN 11: ----"+ cursor.getColumnName(11));
             cursor.moveToFirst();
-            MovieDTO Movie = loadMovieDTO(cursor);
+           Log.e(TAG,cursor.getColumnName(0) + "==" + cursor.getString(0));
+            Log.e(TAG, cursor.getColumnName(1)+ "==" + cursor.getString(1));
+            Log.e(TAG,cursor.getColumnName(2)+ "==" + cursor.getString(2));
+            Log.e(TAG,cursor.getColumnName(3)+ "==" + cursor.getString(3));
+            Log.e(TAG, cursor.getColumnName(4)+ "==" + cursor.getString(4));
+            Log.e(TAG, cursor.getColumnName(5)+ "==" + cursor.getString(5));
+            Log.e(TAG, cursor.getColumnName(6) + "==" + cursor.getBlob(6));
+            Log.e(TAG, cursor.getColumnName(7)+ "==" + cursor.getString(7));
+            Log.e(TAG, cursor.getColumnName(8)+ "==" + cursor.getString(8));
+            Log.e(TAG, cursor.getColumnName(9)+ "==" + cursor.getString(9));
+            Log.e(TAG,cursor.getColumnName(10)+ "==" + cursor.getString(10));
+            Log.e(TAG, cursor.getColumnName(11)+ "==" + cursor.getString(11));
 
+            Movie = loadMovieDTO(cursor);
+            Log.e(TAG, "MOVIE=ID------------->"+ Movie.getImDbId());
+            Log.e(TAG, "MOVIE=actors------------->"+ Movie.getActors());
+            Log.e(TAG, "MOVIE=plot------------->"+ Movie.getSummary());
              db.close();
-        return Movie;
+
         }
-        return null;
+        return Movie;
     }
 
 
