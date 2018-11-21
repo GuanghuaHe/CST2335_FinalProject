@@ -1,28 +1,30 @@
 package com.example.guanghuahe.cst2335_finalmilestone1;
 
-import android.app.Activity;
-import android.app.AlertDialog;
+
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.TextView;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
+import android.view.Menu;
+import android.view.MenuItem;
 
-import java.util.ArrayList;
+import static android.widget.Toast.LENGTH_LONG;
 
-public class Movie extends Activity {
+
+
+public class Movie extends AppCompatActivity {
     /**
      * get app name which is type of string
      */
@@ -115,7 +117,46 @@ public class Movie extends Activity {
    }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.moive_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        int menuItemID = menuItem.getItemId();
 
+        switch (menuItemID) {
+            case R.id.movieItem1:
+                AlertDialog dialog = new AlertDialog.Builder(Movie.this)
+                        .setTitle("Notice")
+                        .setMessage("go back to home page")
+
+                        /**
+                         * set yes/no button on the alertDialog
+                         */
+                        .setNegativeButton("Cancel", (dg, which) -> dg.dismiss())// cancel current operate
+                        .setPositiveButton("OK", (dg, which) -> {
+                            /**
+                             * go back to the main page of final project
+                             */
+                            Intent intent = new Intent(Movie.this, MainActivity.class);
+                            startActivity(intent);
+                            dg.dismiss();
+                        }).create();
+
+                dialog.show();
+
+                break;
+            case R.id.movieItem2:
+                break;
+            case R.id.movieItem3:
+                break;
+            case R.id.movieItem4:
+                break;
+        }
+        return true;
+    }
 
     private void performSearch() {}
     /**

@@ -2,12 +2,12 @@ package com.example.guanghuahe.cst2335_finalmilestone1;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
+
+import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.activity.OCTranspo;
 
 public class MainActivity extends Activity {
 
