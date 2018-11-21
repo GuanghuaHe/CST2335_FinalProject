@@ -11,6 +11,8 @@ import android.widget.Toast;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.activity.OCRoute;
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
 
+import java.util.List;
+
 /**
  * This class displays the stop data
  */
@@ -61,12 +63,16 @@ public class DisplayRouteInfor extends Activity {
     }
 
     private void setDisplay() {
-        routenoDestination.setText(getString(R.string.oc_route) + route.getRouteno() + " " + route.getDestination());
-        direction.setText(getString(R.string.oc_direction) + route.getDirection());
-        startTime.setText(getString(R.string.oc_starttime) + route.getStartTime());
-        adjustedTime.setText(getString(R.string.oc_adjustedtime) + route.getAdjustedTime());
-        coordinates.setText(getString(R.string.oc_latlong) + route.getCoordinates());
-        speed.setText(getString(R.string.oc_gpsspeed) + route.getSpeed());
+        List<String[]>  list = route.routeList;
+
+        for(int i = 0; i< list.size(); i++) {
+            routenoDestination.setText(getString(R.string.oc_route) + route.getRouteno()+ " " + list.get(i)[i]);
+            direction.setText(getString(R.string.oc_direction) + route.getDirection());
+            startTime.setText(getString(R.string.oc_starttime) + route.getStartTime());
+            adjustedTime.setText(getString(R.string.oc_adjustedtime) + route.getAdjustedTime());
+            coordinates.setText(getString(R.string.oc_latlong) + route.getCoordinates());
+            speed.setText(getString(R.string.oc_gpsspeed) + route.getSpeed());
+        }
     }
 
     /**

@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Guanghua He on 2018-11-20.
@@ -31,7 +33,7 @@ public class OCRoute {
     private String startTime;
     private String adjustedTime;
     private String direction;
-
+    public List<String[]> routeList = new ArrayList<>();
 
 
     public static String getRouteInfo = "https://api.octranspo1.com/v1.2/GetNextTripsForStop?appID=223eb5c3&&apiKey=ab27db5b435b8c8819ffb8095328e775&stopNo=";
@@ -114,7 +116,7 @@ public class OCRoute {
                 factory.setNamespaceAware(false);
 
                 XmlPullParser xpp = factory.newPullParser();
-                xpp.setInput(in, "UTF-8");
+                    xpp.setInput(in, "UTF-8");
 
 
                 int eventType = xpp.getEventType();
@@ -123,7 +125,8 @@ public class OCRoute {
                 //trip we add that trip to our result array, then reset the data object for a new trip. Until we reach the end of our XML
 
                 while ((eventType != XmlPullParser.END_DOCUMENT) && cont) {
-
+                    String[] temp = new String[5];
+                    Log.e(" 读取信息： ", ""+xpp.getName());
                     switch (eventType) {
                         case XmlPullParser.START_TAG:
                             lastTag = xpp.getName();
@@ -135,25 +138,28 @@ public class OCRoute {
                             } else if (foundDirection) {
                                 Log.i("TagValue", xpp.getText());
                                 if (lastTag.equals("TripDestination"))
-                                    destination = xpp.getText();
+                                    temp[0] = xpp.getText();
                                 else if (lastTag.equals("TripStartTime"))
-                                    startTime = xpp.getText();
+                                    temp[1] = xpp.getText();
                                 else if (lastTag.equals("AdjustedScheduleTime"))
-                                    adjustedTime = xpp.getText();
+                                    temp[2] = xpp.getText();
                                 else if (lastTag.equals("Latitude"))
                                     fullCoordinates = (xpp.getText().concat("/"));
                                 else if (lastTag.equals("Longitude"))
-                                    coordinates = fullCoordinates.concat(xpp.getText());
+                                    temp[3] = fullCoordinates.concat(xpp.getText());
                                 else if (lastTag.equals("GPSSpeed")) {
-                                    speed = xpp.getText();
+                                    temp[4]= xpp.getText();
                                 }
                             }
+                            routeList.add(temp);
                             break;
                         case XmlPullParser.END_TAG:
-                            if (xpp.getName().equals("Trip") && foundDirection) {
+
+
+                            /*if (xpp.getName().equals("Trip") && foundDirection) {
                                 cont = false;
                                 Log.i("Route", "breaking from parse");
-                            }
+                            }*/
                             break;
                         default:
                             break;
@@ -169,7 +175,11 @@ public class OCRoute {
             } finally {
                 in.close();
                 Log.i("OCRoute constructor","closed input stream");
+                Log.e("OCRoute LIST DETAIL:",""+ routeList.get(0));
+                Log.e("OCRoute LIST DETAIL:",""+ routeList.get(1));
+                Log.e("OCRoute LIST DETAIL:",""+ routeList.get(2));
             }
+
         }
         /**
          *   after the async task completes
