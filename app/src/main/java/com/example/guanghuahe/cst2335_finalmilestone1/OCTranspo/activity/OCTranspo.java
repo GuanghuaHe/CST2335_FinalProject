@@ -70,9 +70,9 @@ public class OCTranspo extends AppCompatActivity {
         db = dbHelper.getWritableDatabase();
         setContentView(R.layout.activity_octranspo);
 
-        stations = (ListView) findViewById(R.id.stationsView);
-        stationInput = (EditText) findViewById(R.id.stopNoInput);
-        addStation = (Button) findViewById(R.id.addStopNoButton);
+        stations =  findViewById(R.id.stationsView);
+        stationInput = findViewById(R.id.stopNoInput);
+        addStation =  findViewById(R.id.addStopNoButton);
         adapter = new StationAdapter(this);
         stations.setAdapter(adapter);
         ocProgressBar = findViewById(R.id.ocProgressBar);
@@ -208,7 +208,7 @@ public class OCTranspo extends AppCompatActivity {
     protected void onResume() {
         Log.i(ACTIVITY_NAME, "In onResume()");
 
-        if (DisplayStopInfor.getDeleteStation() == true) {
+        if (DisplayStopInfor.getDeleteStation()) {
             Log.i(ACTIVITY_NAME, "Deleting station no " + currentStationIndex);
             String[] params = new String[1];
             params[0] = stationsNumbers.get(currentStationIndex);

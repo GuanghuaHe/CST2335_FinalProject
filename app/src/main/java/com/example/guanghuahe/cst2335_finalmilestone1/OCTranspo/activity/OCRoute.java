@@ -130,10 +130,10 @@ public class OCRoute {
                             break;
                         case XmlPullParser.TEXT:
                             // Starts by looking for the entry tag
-                            if (lastTag.equals("Direction") && xpp.getText().equals(direction)) {
-                                foundDirection = true;
-                            } else if (foundDirection) {
-                                Log.i("TagValue", xpp.getText());
+                           // if (lastTag.equals("Direction") && xpp.getText().equals(direction)) {
+                             //   foundDirection = true;
+                          //  } else if (foundDirection) {
+                             //   Log.i("TagValue", xpp.getText());
                                 if (lastTag.equals("TripDestination"))
                                     destination = xpp.getText();
                                 else if (lastTag.equals("TripStartTime"))
@@ -147,7 +147,7 @@ public class OCRoute {
                                 else if (lastTag.equals("GPSSpeed")) {
                                     speed = xpp.getText();
                                 }
-                            }
+                            //}
                             break;
                         case XmlPullParser.END_TAG:
                             if (xpp.getName().equals("Trip") && foundDirection) {
@@ -161,7 +161,7 @@ public class OCRoute {
                     xpp.next();
                     eventType = xpp.getEventType();
                 }
-                Log.i("FinalValues", destination +" "+
+                Log.i("FinalInfo", destination +" "+
                         startTime +" "+
                         adjustedTime +" "+
                         coordinates +" "+
