@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.guanghuahe.cst2335_finalmilestone1">
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,10 +22,14 @@
         <activity android:name=".OCTranspo.adapters.DisplayStopInfor" />
         <activity android:name=".OCTranspo.adapters.DisplayRouteInfor"></activity>
         <activity android:name=".CBC" />
-        <activity android:name=".Movie" />
-        <activity android:name=".MovieDetail" />
-        <activity android:name=".MovieFragment" />
+        <activity android:name=".movie.activities.Movie">
 
+        </activity>
+        <activity android:name=".movie.activities.MovieDetail" />
+        <activity android:name=".OCT.activity.OCTranspo"></activity>
+        <activity android:name=".OCT.OCDetails"></activity>
+        <activity android:name=".movie.MovieFragment" />
+        <activity android:name=".OCDetails"></activity>
         <activity android:name=".Nutrition"></activity>
 
     </application>
