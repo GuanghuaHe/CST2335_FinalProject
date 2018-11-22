@@ -17,15 +17,15 @@
         android:background="#ccccff">
 
         <ImageView
-            android:id="@+id/businfo"
+            android:id="@+id/businfo_0"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_column="0"
             android:layout_row="0"
-            android:src="@drawable/oc_icon" />
+            android:src="@drawable/oc_icon"/>
 
         <TextView
-            android:id="@+id/bus_details"
+            android:id="@+id/bus_details_0"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_column="1"
@@ -39,7 +39,7 @@
             />
 
         <ImageView
-            android:id="@+id/destImg"
+            android:id="@+id/destImg_0"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_column="0"
@@ -47,7 +47,7 @@
             android:src="@drawable/dest_icon" />
 
         <TextView
-            android:id="@+id/routenoDestinationView"
+            android:id="@+id/routenoDestinationView_0"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_column="1"
@@ -60,7 +60,7 @@
 
 
         <ImageView
-            android:id="@+id/latImg"
+            android:id="@+id/latImg_0"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_column="0"
@@ -68,7 +68,7 @@
             android:src="@drawable/lat_icon" />
 
         <TextView
-            android:id="@+id/directionView"
+            android:id="@+id/directionView_0"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_column="1"
@@ -80,7 +80,7 @@
             android:textSize="20sp" />
 
         <ImageView
-            android:id="@+id/lonImg"
+            android:id="@+id/lonImg_0"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_column="0"
@@ -88,7 +88,7 @@
             android:src="@drawable/lon_icon" />
 
         <TextView
-            android:id="@+id/startTimeView"
+            android:id="@+id/startTimeView_0"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_column="1"
@@ -100,7 +100,7 @@
             android:textSize="20sp" />
 
         <ImageView
-            android:id="@+id/speedImg"
+            android:id="@+id/speedImg_0"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_column="0"
@@ -108,7 +108,7 @@
             android:src="@drawable/speed_icon" />
 
         <TextView
-            android:id="@+id/adjustedTimeView"
+            android:id="@+id/adjustedTimeView_0"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_column="1"
@@ -127,7 +127,7 @@
             android:src="@drawable/start_icon" />
 
         <TextView
-            android:id="@+id/coordinatesView"
+            android:id="@+id/coordinatesView_0"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_column="1"
@@ -148,7 +148,7 @@
 
 
         <TextView
-            android:id="@+id/speedView"
+            android:id="@+id/speedView_0"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_column="1"
@@ -158,13 +158,305 @@
             android:textAlignment="center"
             android:textColor="@android:color/background_light"
             android:textSize="20sp" />
-
-
-
-
     </GridLayout>
 
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ccccff">
 
+            <ImageView
+                android:id="@+id/businfo_1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:src="@drawable/oc_icon" />
+
+            <TextView
+                android:id="@+id/bus_details_1"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_column="1"
+                android:layout_row="0"
+                android:background="#9999cc"
+                android:gravity="start|center_vertical|center_horizontal"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="20sp"
+                android:text="Route details:"
+                />
+
+            <ImageView
+                android:id="@+id/destImg_1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_column="0"
+                android:layout_row="1"
+                android:src="@drawable/dest_icon" />
+
+            <TextView
+                android:id="@+id/routenoDestinationView_1"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_column="1"
+                android:layout_row="1"
+                android:background="#9999cc"
+                android:gravity="start|center_vertical|center_horizontal"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp" />
+
+
+            <ImageView
+                android:id="@+id/latImg_1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_column="0"
+                android:layout_row="2"
+                android:src="@drawable/lat_icon" />
+
+            <TextView
+                android:id="@+id/directionView_1"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_column="1"
+                android:layout_row="2"
+                android:background="#9999cc"
+                android:gravity="start|center_vertical|center_horizontal"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/lonImg_1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_column="0"
+                android:layout_row="3"
+                android:src="@drawable/lon_icon" />
+
+            <TextView
+                android:id="@+id/startTimeView_1"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_column="1"
+                android:layout_row="3"
+                android:background="#9999cc"
+                android:gravity="start|center_vertical|center_horizontal"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/speedImg_1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_column="0"
+                android:layout_row="4"
+                android:src="@drawable/speed_icon" />
+
+            <TextView
+                android:id="@+id/adjustedTimeView_1"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_column="1"
+                android:layout_row="4"
+                android:background="#9999cc"
+                android:gravity="start|center_vertical|center_horizontal"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_column="0"
+                android:layout_row="5"
+                android:src="@drawable/start_icon" />
+
+            <TextView
+                android:id="@+id/coordinatesView_1"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_column="1"
+                android:layout_row="5"
+                android:background="#9999cc"
+                android:gravity="start|center_vertical|center_horizontal"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_column="0"
+                android:layout_row="6"
+                android:src="@drawable/late_icon" />
+
+
+
+            <TextView
+                android:id="@+id/speedView_1"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_column="1"
+                android:layout_row="6"
+                android:background="#9999cc"
+                android:gravity="start|center_vertical|center_horizontal"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp" />
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="#ccccff">
+
+            <ImageView
+                android:id="@+id/businfo_2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:src="@drawable/oc_icon" />
+
+            <TextView
+                android:id="@+id/bus_details_2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:background="#9999cc"
+                android:gravity="start|center_vertical|center_horizontal"
+                android:text="Route details:"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/destImg_2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:src="@drawable/dest_icon" />
+
+            <TextView
+                android:id="@+id/routenoDestinationView_2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_row="1"
+                android:layout_column="1"
+                android:background="#9999cc"
+                android:gravity="start|center_vertical|center_horizontal"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp" />
+
+
+            <ImageView
+                android:id="@+id/latImg_2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_row="2"
+                android:layout_column="0"
+                android:src="@drawable/lat_icon" />
+
+            <TextView
+                android:id="@+id/directionView_2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_row="2"
+                android:layout_column="1"
+                android:background="#9999cc"
+                android:gravity="start|center_vertical|center_horizontal"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/lonImg_2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_row="3"
+                android:layout_column="0"
+                android:src="@drawable/lon_icon" />
+
+            <TextView
+                android:id="@+id/startTimeView_2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_row="3"
+                android:layout_column="1"
+                android:background="#9999cc"
+                android:gravity="start|center_vertical|center_horizontal"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/speedImg_2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_row="4"
+                android:layout_column="0"
+                android:src="@drawable/speed_icon" />
+
+            <TextView
+                android:id="@+id/adjustedTimeView_2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_row="4"
+                android:layout_column="1"
+                android:background="#9999cc"
+                android:gravity="start|center_vertical|center_horizontal"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_row="5"
+                android:layout_column="0"
+                android:src="@drawable/start_icon" />
+
+            <TextView
+                android:id="@+id/coordinatesView_2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_row="5"
+                android:layout_column="1"
+                android:background="#9999cc"
+                android:gravity="start|center_vertical|center_horizontal"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_row="6"
+                android:layout_column="0"
+                android:src="@drawable/late_icon" />
+
+
+            <TextView
+                android:id="@+id/speedView_2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_row="6"
+                android:layout_column="1"
+                android:background="#9999cc"
+                android:gravity="start|center_vertical|center_horizontal"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp" />
+        </GridLayout>
 
         <Button
             android:id="@+id/refreshRouteButton"
