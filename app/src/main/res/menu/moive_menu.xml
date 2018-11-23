@@ -7,9 +7,9 @@
     <item
         android:id="@+id/movieItem1"
         android:icon="@mipmap/ic_launcher"
-        android:orderInCategory="100"
+        android:orderInCategory="500"
         android:title="@string/menuItem1"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
     <item
         android:id="@+id/movieItem2"
 
