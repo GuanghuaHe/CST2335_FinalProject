@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.activity.OCTranspo;
+import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
 
 public class MainActivity extends Activity {
 

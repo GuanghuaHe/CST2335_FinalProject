@@ -1,12 +1,13 @@
 package com.example.guanghuahe.cst2335_finalmilestone1.movie.fragments;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,8 +26,7 @@ import com.example.guanghuahe.cst2335_finalmilestone1.movie.dto.MovieDTO;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
+@RequiresApi(api = Build.VERSION_CODES.N)
 public class HistoryFragment extends Fragment {
     private static final  String TAG = HistoryFragment.class.getSimpleName();
     private List<MovieDTO> historyList;
@@ -59,17 +59,13 @@ public class HistoryFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View listLayout = inflater.inflate(R.layout.historylistview, null);
+        View listLayout = inflater.inflate(R.layout.movielistview, null);
 
-        historyView = listLayout.findViewById(R.id.history_list_view);
+        historyView = listLayout.findViewById(R.id.movie_list_view);
 
 
         historyAdapter = new HistoryAdapter(mainActivity, R.layout.hitstory_list_item, historyList);
         historyView.setAdapter(historyAdapter);
-
-
-
-
 
         if (historyList.size() == 0) historyView.setVisibility(View.INVISIBLE);
         return listLayout;
@@ -89,6 +85,7 @@ public class HistoryFragment extends Fragment {
      *
      * @param columnName
      */
+
     public void orderBy(String columnName) {
 
         switch (columnName) {
@@ -114,6 +111,11 @@ public class HistoryFragment extends Fragment {
         historyAdapter.notifyDataSetChanged();
     }
 
+
+    /**
+     * set item click listener to the history list when fragment has been created.
+     * @param savedInstanceState
+     */
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
@@ -134,6 +136,9 @@ public class HistoryFragment extends Fragment {
     }
 
 
+    /**
+     * create a dialog to show statistic
+     */
     public void statistic() {
         AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity).setTitle("History Statistic")
                 .setMessage(getSatString()).setPositiveButton("Ok", (bd, v)->{
@@ -144,20 +149,27 @@ public class HistoryFragment extends Fragment {
     }
 
 
+    /**
+     * help method to do the business and store the statistic info into String
+     * @return
+     */
     private String getSatString(){
+
+        Log.i(TAG, "START TO CALCULATE STATISTIC.");
+
         StringBuilder staInfo = new StringBuilder();
-        Log.e(TAG, "runtimes ----------->" + historyList.get(2).getRuntime());
+
         List<Integer> runtimes =
                 historyList.stream().map(MovieDTO::getRuntime).map(s->Integer.parseInt(s.trim().split(" ")[0])).collect(Collectors.toList());
 
        List<Integer> years =
                 historyList.stream().map(MovieDTO::getYear).map(s->Integer.parseInt(s)).collect(Collectors.toList());
 
-       runtimes.sort((a,b) -> a -b);
+       runtimes.sort(Integer::compareTo);
        values[0] = runtimes.get(0);
        values[1] = runtimes.get(runtimes.size()-1);
        values[2] = average(runtimes);
-       years.sort((a,b)->a-b);
+       years.sort(Integer::compareTo);
        values[3] = years.get(0);
        values[4] = years.get(years.size()-1);
        values[5] = average(years);

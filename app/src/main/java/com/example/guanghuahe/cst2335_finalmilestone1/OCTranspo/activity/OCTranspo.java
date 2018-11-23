@@ -28,7 +28,7 @@ import android.view.MenuItem;
 import android.support.v7.app.AlertDialog;
 import android.widget.ProgressBar;
 
-import com.example.guanghuahe.cst2335_finalmilestone1.Movie;
+import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
 import com.example.guanghuahe.cst2335_finalmilestone1.Nutrition;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.database.OCDatabaseHelper;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.fragment.DisplayInfoFragment;
