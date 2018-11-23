@@ -1,61 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
-    tools:context=".CBC">
+    android:padding="10dp"
+    android:background="?attr/colorPrimary"
+    tools:context=".CBCNewsActivity">
 
-    //build the image for CBC welcome ICON by using ImageView
-    <ImageView
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/cbc_ToolBar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:src="@drawable/cbc"
-        android:id="@+id/cbc_image_welcome" />
-
-    //listview for titles of the news
-    <ListView
-        android:id="@+id/cbc_titles"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="visible"
         />
 
-    //editText for the search titles
-    <EditText
-        android:id="@+id/cbc_editText"
+    <android.support.v4.widget.DrawerLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:hint="@string/cbc_editText"/>
+        android:layout_height="match_parent"
+        android:id="@+id/activity_toolbar"
+        android:layout_below="@id/cbc_ToolBar">
 
-    //Button for committing the searching
-    <Button
-        android:id="@+id/cbc_search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cbc_search"/>
+        //build the image for CBC welcome ICON by using ImageView
+        <RelativeLayout
+            android:paddingTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
 
-    //Button for quiting the page
-    <Button
-        android:id="@+id/cbc_quit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cbc_button_quit"/>
 
-    //button for save the article
-    <Button
-        android:id="@+id/cbc_save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cbc_button_save"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:src="@drawable/cbc"
+                android:id="@+id/cbc_image_welcome" />
 
-    //ProgressBar for the progress
-    <ProgressBar
-        android:id="@+id/cbc_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"/>
 
-</LinearLayout>
+
+            //listview for titles of the news
+            <ListView
+                android:id="@+id/cbc_titles"
+                android:layout_below="@+id/cbc_image_welcome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            //editText for the search titles
+            <EditText
+                android:id="@+id/cbc_editText"
+                android:layout_below="@id/cbc_titles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="@string/cbc_editText"/>
+
+            //Button for committing the searching
+            <Button
+                android:layout_below="@id/cbc_editText"
+                android:id="@+id/cbc_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cbc_search"/>
+
+            //Button for quiting the page
+            <Button
+                android:layout_below="@id/cbc_search"
+                android:id="@+id/cbc_quit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cbc_button_quit"/>
+
+            //button for save the article
+            <Button
+                android:id="@+id/cbc_save"
+                android:layout_below="@id/cbc_quit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cbc_button_save"/>
+
+            <Button
+                android:id="@+id/cbc_frame"
+                android:layout_below="@id/cbc_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cbc_button_frame"/>
+            <Button
+                android:id="@+id/cbc_asy"
+                android:layout_below="@id/cbc_frame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cbc_asy_button"/>
+
+            //ProgressBar for the progress
+            <ProgressBar
+                android:layout_below="@id/cbc_save"
+                android:id="@+id/cbc_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"/>
+        </RelativeLayout>
+    </android.support.v4.widget.DrawerLayout>
+</RelativeLayout>

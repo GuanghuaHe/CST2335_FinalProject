@@ -31,6 +31,9 @@
         <activity android:name=".movie.MovieFragment" />
         <activity android:name=".OCDetails"></activity>
         <activity android:name=".Nutrition"></activity>
+        <activity android:name=".CBCNewsActivity" />
+        <activity android:name=".CBC_frame" />
+        <activity android:name=".CBCDetail" />
 
     </application>
 

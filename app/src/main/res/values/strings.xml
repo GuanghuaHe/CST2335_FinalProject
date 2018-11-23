@@ -14,10 +14,7 @@
     <string name="searchHistory">History</string>
     <string name="app_name">CST2335 MileStone1</string>
 
-    <string name="menuItem1">HOME</string>
-    <string name="menuItem2">OCTRANSP</string>
-    <string name="menuItem3">NUTRITION</string>
-    <string name="menuItem4">CBCNEWS</string>
+
 
     <string name="removeAll">Remove All</string>
     <string name="sortByRuntime">By Runtime</string>
@@ -76,4 +73,18 @@
     <string name="oc_datasummary">\nThis application stores all of the station numbers entered into a database. </string>
     <string name="routeno"> Route number:  </string>
     <string name="OCT"> OC Transpo </string>
+
+
+
+    <!--CBCNEWS-->
+
+    <string name="cbc_menu_itme">CBC</string>
+    <string name="cbc_helper_message">Author: Xin Zhao \n Version: 2.0  \n The detail of the application: \n
+    You can get the article title and select or save the article in this applicatin</string>
+    <string name="cbc_button_frame">Change to Frame Layout</string>
+    <string name="cbc_frame_change_button">Change FrameLayout</string>
+    <string name="cbc_asy_button">AsyncTask</string>
+    <string name="cbc_item_help">Help</string>
+    <string name="cbc_item_exit">Exit</string>
+    <string name="cancel">Cancel</string>
 </resources>

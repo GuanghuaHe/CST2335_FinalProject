@@ -171,7 +171,8 @@ public class MovieSearchFragment  extends Fragment {
                     if(eventType == XmlPullParser.START_TAG) {
                         if (parser.getName().equals("result")) {
                             movie.setMovieName(parser.getAttributeValue(null, "title"));
-                            progressBar.setProgress(20);
+                            publishProgress(20);
+
                             movie.setYear(parser.getAttributeValue(null, "year"));
                             progressBar.setProgress(40);
                             movie.setImDbId(parser.getAttributeValue(null, "imdbID"));
@@ -211,7 +212,7 @@ public class MovieSearchFragment  extends Fragment {
 
         @Override
         protected  void onProgressUpdate(Integer ... value){
-
+            progressBar.setProgress(value[0]);
         }
 
         @Override

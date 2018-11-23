@@ -30,7 +30,7 @@ import android.widget.Toast;
 import com.example.guanghuahe.cst2335_finalmilestone1.CBC;
 import com.example.guanghuahe.cst2335_finalmilestone1.MainActivity;
 import com.example.guanghuahe.cst2335_finalmilestone1.Nutrition;
-import com.example.guanghuahe.cst2335_finalmilestone1.OCT.activity.OCTranspo;
+import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.activity.OCTranspo;
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.database.DatabaseHelper;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.fragments.HistoryFragment;

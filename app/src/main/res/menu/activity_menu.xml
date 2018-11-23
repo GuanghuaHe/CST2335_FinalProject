@@ -1,0 +1,49 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:id="@+id/cbc_item"
+        android:title="@string/cbc_menu_itme"
+        app:showAsAction="always"
+        android:icon="@drawable/cbcquit"
+        />
+
+    <item
+        android:id="@+id/cbc_n_item"
+        android:title="@string/cbc_menu_itme"
+        app:showAsAction="always"
+        android:icon="@drawable/nutrition"
+        />
+
+    <item
+        android:id="@+id/cbc_movie_item"
+        android:title="@string/cbc_menu_itme"
+        app:showAsAction="always"
+        android:icon="@drawable/movie"
+        />
+
+    <item
+        android:id="@+id/cbc_oc_item"
+        android:title="@string/cbc_menu_itme"
+        app:showAsAction="always"
+        android:icon="@drawable/oc"
+        />
+
+    <item
+        android:id="@+id/cbc_item_help"
+        android:title="@string/cbc_menu_itme"
+        app:showAsAction="never"
+        android:icon="@drawable/help"
+        />
+
+    <item
+        android:id="@+id/cbc_item_quit"
+        android:title="@string/cbc_menu_itme"
+        app:showAsAction="never"
+        android:icon="@drawable/exit"
+        />
+
+
+
+</menu>
