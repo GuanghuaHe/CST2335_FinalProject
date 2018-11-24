@@ -113,7 +113,7 @@ public class DisplayStopInfor extends Activity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-           // startActivity(intent);
+           startActivity(intent);
 
 
         });
