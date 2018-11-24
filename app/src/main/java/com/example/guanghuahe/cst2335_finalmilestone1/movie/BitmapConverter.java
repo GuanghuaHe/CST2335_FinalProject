@@ -26,7 +26,7 @@ public class BitmapConverter {
      */
 
     public static Bitmap getBitmapFromUrl(String urlStr){
-        Log.i("BitmapConverter --------------->","图片地址=========== "+ urlStr);
+
         URL url = null;
         Bitmap bitmap = null;
         HttpURLConnection connection = null;

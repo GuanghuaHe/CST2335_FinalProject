@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,15 +24,15 @@
         <activity android:name=".OCTranspo.adapters.DisplayStopInfor" />
         <activity android:name=".OCTranspo.adapters.DisplayRouteInfor"></activity>
         <activity android:name=".CBC" />
-        <activity android:name=".movie.activities.Movie">
 
-        </activity>
+
+        <activity android:name=".movie.activities.Movie"/>
         <activity android:name=".movie.activities.MovieDetail" />
-        <activity android:name=".OCT.activity.OCTranspo"></activity>
-        <activity android:name=".OCT.OCDetails"></activity>
-        <activity android:name=".movie.MovieFragment" />
-        <activity android:name=".OCDetails"></activity>
-        <activity android:name=".Nutrition"></activity>
+
+
+
+        <activity android:name=".Nutrition"/>
+
 
     </application>
 

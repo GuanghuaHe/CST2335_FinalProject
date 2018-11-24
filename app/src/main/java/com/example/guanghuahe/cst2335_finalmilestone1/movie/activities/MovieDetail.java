@@ -4,6 +4,7 @@ package com.example.guanghuahe.cst2335_finalmilestone1.movie.activities;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.Xml;
@@ -12,6 +13,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.BitmapConverter;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.database.DatabaseHelper;
@@ -30,7 +33,7 @@ import java.net.URL;
 public class MovieDetail extends AppCompatActivity {
 
     protected static final String TAG = "MovieDetail";
-    private static final String URL_ID = "http://www.omdbapi.com/?plot=full&apikey=ce73c386&r=xml&i=";
+    private static final String URL_ID = "https://www.omdbapi.com/?apikey=ce73c386&r=xml&i=";
     private MovieDTO active;
     private Button save;
     private DatabaseHelper databaseHelper;
@@ -65,7 +68,22 @@ public class MovieDetail extends AppCompatActivity {
              */
         }else{active = temp; startPostDetail();}
         save = findViewById(R.id.save_movie);
-        save.setOnClickListener(e-> {databaseHelper.insertMovie(active);finish(); });
+        save.setOnClickListener(e-> {databaseHelper.insertMovie(active);
+
+
+
+                finish();
+
+
+        });
+
+
+        /**
+         * give a hint showing how to save locally
+         *
+         */
+
+        Toast.makeText(this, "click save button to store in DateBase", Toast.LENGTH_LONG).show();
 
     }
 
