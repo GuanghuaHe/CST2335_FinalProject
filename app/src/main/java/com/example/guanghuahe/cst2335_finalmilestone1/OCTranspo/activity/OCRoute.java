@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
+import android.util.Xml;
 import android.view.ViewParent;
 import android.widget.Button;
 import android.widget.TextView;
@@ -154,13 +155,71 @@ public class OCRoute {
                 xpp.setInput(in, "UTF-8");
 
 
-                int eventType = xpp.getEventType();
+                int eventType = 0;
+
 
                 //basically we cycle through the parser, we add data to our data object one piece at a time for each trip, at the end of each
                 //trip we add that trip to our result array, then reset the data object for a new trip. Until we reach the end of our XML
-                String gps = "";
+                String tagName =null;
                 String[] temp = null;
-                while (xpp.next() != XmlPullParser.END_DOCUMENT) {
+
+                while((eventType = xpp.next()) != XmlPullParser.END_DOCUMENT){
+                    Log.e("jinlai","jinlaiba" );
+                    if(eventType == XmlPullParser.START_TAG ){
+                        Log.e("jin de lai ","222222222222" );
+
+                             tagName = xpp.getName();
+
+
+
+
+                                if("TripDestination".equalsIgnoreCase(tagName)) {
+                                    temp = new String[9];
+                                    temp[0] = xpp.nextText();
+                                    Log.e("destination", "" + temp[0]);
+                                }
+                                else if("TripStartTime".equalsIgnoreCase(tagName)) {
+                                    temp[1] = xpp.nextText();
+                                    Log.e("start  time", "" + temp[1]);
+                                }
+                                else if("AdjustedScheduleTime".equalsIgnoreCase(tagName)){
+                                    temp[2] = xpp.nextText();
+                                    Log.e("adjust time", "" + temp[2]);
+                                }
+                                else if("AdjustmentAge".equalsIgnoreCase(tagName)){
+                                    temp[3] = xpp.nextText();
+                                    Log.e("AdjustmentAge ", "" + temp[3]);
+                                }else if("LastTripOfSchedule".equalsIgnoreCase(tagName)){
+                                    temp[4] = xpp.nextText();
+                                    Log.e("LastTripOfSchedule ", "" + temp[4]);
+                                }else if("BusType".equalsIgnoreCase(tagName)){
+                                    temp[5] = xpp.nextText();
+                                    Log.e("BusType ", "" + temp[5]);
+
+                                }
+                                else if("Latitude".equalsIgnoreCase(tagName)) {
+
+                                    temp[6] = xpp.nextText();
+                                    Log.e("latitude   ", "" + temp[6]);
+                                }
+                                else if("Longitude".equalsIgnoreCase(tagName)){
+                                    temp[7] = xpp.nextText();
+                                    Log.e("longitude  ", "" + temp[7]);
+                                }
+                                else if("GPSSpeed".equalsIgnoreCase(tagName)) {
+                                    temp[8] = xpp.nextText();
+                                    Log.e("GPS Speed  ", "" + temp[8]);
+                                    routeList.add(temp);
+                                }else{}
+
+
+
+
+                    }
+
+
+                }
+                /*while (xpp.next() != XmlPullParser.END_DOCUMENT) {
 
                     if (xpp.getEventType() != XmlPullParser.START_TAG) {
 
@@ -224,7 +283,7 @@ public class OCRoute {
                             xpp.next();
                             temp[4] = xpp.getText();
                             Log.i("GPSSpeed", "GPSSpeed " + temp[4]);
-
+                            temp = new String[5];
                         }
                         if (name.equalsIgnoreCase("Latitude")) {
                             xpp.next();
@@ -242,7 +301,7 @@ public class OCRoute {
 
                         routeList.add(temp);
                     }
-                }
+                }*/
 
             } finally {
                 in.close();

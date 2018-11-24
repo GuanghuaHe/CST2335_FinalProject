@@ -46,7 +46,7 @@ public class DisplayRouteInfor extends Activity {
         setContentView(R.layout.activity_ocroute_infor);
 
         routeDetailList = findViewById(R.id.route_detail_list);
-
+        refresh = findViewById(R.id.refreshRouteButton);
 
 
 
@@ -120,7 +120,7 @@ public class DisplayRouteInfor extends Activity {
 
 
     class RouteDetailAdapter extends ArrayAdapter{
-    TextView routeDestination, direction, startTime, adjustTime,coordination, speed;
+    TextView busDetail, routeDestination, direction, startTime, adjustTime,coordination, speed;
         int resourceID;
 
 
@@ -134,14 +134,23 @@ public class DisplayRouteInfor extends Activity {
         @NonNull
         @Override
         public View getView(int position,  @Nullable View convertView,  @NonNull ViewGroup parent) {
-
-            View result = getLayoutInflater().inflate(R.layout.route_detail_item, null);
+            String[] info = (String[])getItem(position);
+            View result = getLayoutInflater().inflate(resourceID, null);
+            busDetail = result.findViewById(R.id.bus_details);
+            busDetail.setText("Route:" + routeNum);
             routeDestination = result.findViewById(R.id.routenoDestinationView);
+            routeDestination.setText("direction: " + info[0]);
             direction = result.findViewById(R.id.directionView);
+            direction.setText("start time: " + info[1]);
             startTime = result.findViewById(R.id.startTimeView);
+            startTime.setText("adjusted time: " + info[2]);
             adjustTime = result.findViewById(R.id.adjustedTimeView);
+            adjustTime.setText("Lantitude: " + info[6]);
+
             coordination = result.findViewById(R.id.coordinatesView);
+            coordination.setText("Longitude: " + info[7]);
             speed = result.findViewById(R.id.speedView);
+            speed.setText("GPS speed: " + info[8]);
             return result;
         }
     }
