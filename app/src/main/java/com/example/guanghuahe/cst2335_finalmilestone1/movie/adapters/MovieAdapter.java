@@ -61,12 +61,7 @@ public  class MovieAdapter extends ArrayAdapter<MovieDTO> {
         image.setImageBitmap(BitmapConverter.getBitmapFromUrl(movie.getPosterLink()));
 
 
-        /**
-         * add movie from search list
-         */
-        addMovie = result.findViewById(R.id.addItem);
 
-        addMovie.setOnClickListener(e->Movie.databaseHelper.insertMovie(movie));
 
         return result;
     }

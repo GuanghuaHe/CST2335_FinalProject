@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="start_welcome">CST2335 FINAL PROJECT Milestone1</string>
+    <string name="start_welcome">CST2335 FINAL PROJECT</string>
 
 
     <string name="about">About OC Transpo App By Guanghua He</string>
@@ -12,7 +12,7 @@
     <string name="search_result">there is no result for now</string>
     <string name="searchButton">Search</string>
     <string name="searchHistory">History</string>
-    <string name="app_name">CST2335 MileStone1</string>
+    <string name="app_name">Final Project</string>
       <!--movie action bar-->
     <string name="menuItem1">HELP</string>
     <string name="menuItem2">OCTRANSP</string>
@@ -34,6 +34,9 @@
 
         <!--movie statistic tool bar-->
     <string name="removeAll">Remove All</string>
+    <string name="dialog_message">Are you sure to delete all saved movies ?</string>
+    <string name="dialog_button_sure">SO SURE</string>
+    <string name="dialog_button_cancel">cancel</string>
     <string name="sortByRuntime">By Runtime</string>
     <string name="radioButton">STATISTIC</string>
     <string name="sortByYear">By Year</string>

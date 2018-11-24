@@ -3,6 +3,7 @@ package com.example.guanghuahe.cst2335_finalmilestone1.movie.activities;
 
 import android.app.AlertDialog;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,10 +19,12 @@ import android.util.Log;
 import android.view.Menu;
 
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 
 import android.view.inputmethod.EditorInfo;
 
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -75,17 +78,9 @@ public class Movie extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_home);
+
+
         databaseHelper = new DatabaseHelper(this);
-        // config security
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new
-                    StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
-
-
-
-
         //subviews
         clearText = findViewById(R.id.clear_txt);
         searchButton = findViewById(R.id.buttonSearchMovie);
@@ -112,13 +107,21 @@ public class Movie extends AppCompatActivity {
         /**
          * editText entry => start search
          */
+
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         editText = (EditText) findViewById(R.id.moviesearch_editText);
         editText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 if (editText.getText() != null && editText.getText().length() > 0)
-
-                    return true;
+                   /* if(imm.isActive()&&getCurrentFocus()!=null) {
+                        if (getCurrentFocus().getWindowToken() != null) {*/
+                            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                  /*      }
+                    }*/
+                        return true;
             }
+
+
             return false;
 
         });
@@ -201,6 +204,8 @@ public class Movie extends AppCompatActivity {
     }
 
 
+
+
     /**
      * load tool bar
      *
@@ -261,6 +266,7 @@ public class Movie extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Toast.makeText(this, "movie saved successfully", Snackbar.LENGTH_LONG).show();
         Log.i(TAG, "In onResume()");
     }
 
