@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.activity.OCRoute;
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,6 +38,9 @@ public class DisplayRouteInfor extends Activity {
     OCRoute route;
     ListView routeDetailList;
     String stationNum,routeNum;
+
+    Button vstat;
+
 
 
 
@@ -73,6 +78,10 @@ public class DisplayRouteInfor extends Activity {
 
 
 
+
+
+
+
         //connects to a action button to get refeshed data
 
         refresh.setOnClickListener((e) -> {
@@ -82,7 +91,34 @@ public class DisplayRouteInfor extends Activity {
 
             setDisplay();
         });
-    }
+
+
+        vstat = findViewById(R.id.viewStatsBtn);
+        vstat.setOnClickListener((e) -> {
+            Toast toast = Toast.makeText(this, getString(R.string.cal_stat), Toast.LENGTH_SHORT);
+            toast.show();
+
+                String average = getStatistic(list);
+
+            final AlertDialog.Builder builder = new AlertDialog.Builder(this).setTitle("STATISTIC FOR AVERAGE ADJUSTED TIME").setCancelable(false);
+
+
+
+            builder.setPositiveButton("Ok", null)
+                    .setIcon(R.drawable.about_icon)
+                    .setMessage("AVERAGE ADJUSTED TIME: " + average)
+                    .create();
+
+            AlertDialog dialog = builder.show();
+
+        });
+
+
+
+}
+
+
+
 
     private void setDisplay() {
 
@@ -153,5 +189,20 @@ public class DisplayRouteInfor extends Activity {
             speed.setText("GPS speed: " + info[8]);
             return result;
         }
+    }
+
+
+    public String getStatistic(List<String[]> detailList){
+        if(detailList == null || detailList.size() == 0) return "satistic is not available yet";
+        List<Double> adjustTimes= new ArrayList<>();
+        detailList.stream().forEach(array->{
+             adjustTimes.add(Double.valueOf(array[2]));
+        });
+
+        double sum = 0;
+        for(Double d : adjustTimes){
+           sum+=d;
+        }
+        return sum/adjustTimes.size()+"";
     }
 }

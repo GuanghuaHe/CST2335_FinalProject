@@ -70,16 +70,16 @@ public class OCTranspo extends AppCompatActivity {
         db = dbHelper.getWritableDatabase();
         setContentView(R.layout.activity_octranspo);
 
-        stations = (ListView) findViewById(R.id.stationsView);
-        stationInput = (EditText) findViewById(R.id.stopNoInput);
-        addStation = (Button) findViewById(R.id.addStopNoButton);
+        stations =  findViewById(R.id.stationsView);
+        stationInput =  findViewById(R.id.stopNoInput);
+        addStation =  findViewById(R.id.addStopNoButton);
         adapter = new StationAdapter(this);
         stations.setAdapter(adapter);
-        ocProgressBar = findViewById(R.id.ocProgressBar);
+        //ocProgressBar = findViewById(R.id.ocProgressBar);
 
         Toast toast = Toast.makeText(this, "Guanghua's OCTranspo Toast", Toast.LENGTH_LONG);
         toast.show();
-        ocProgressBar.setVisibility(View.VISIBLE);
+        //ocProgressBar.setVisibility(View.VISIBLE);
 
         Log.i(ACTIVITY_NAME, "Attempted query:    SELECT " +
                 OCDatabaseHelper.STATION_NAME + ", " +
@@ -208,7 +208,7 @@ public class OCTranspo extends AppCompatActivity {
     protected void onResume() {
         Log.i(ACTIVITY_NAME, "In onResume()");
 
-        if (DisplayStopInfor.getDeleteStation() == true) {
+        if (DisplayStopInfor.getDeleteStation()) {
             Log.i(ACTIVITY_NAME, "Deleting station no " + currentStationIndex);
             String[] params = new String[1];
             params[0] = stationsNumbers.get(currentStationIndex);
@@ -261,6 +261,7 @@ public class OCTranspo extends AppCompatActivity {
 
     // FOLLOWING METHOD ChangeFragment written by 'ProgrammingKnowledge', Mar 5\ 2015.
     // URL: https://www.youtube.com/watch?v=FF-e6CnBwYY
+    /*
     public void ChangeFragment(View view) {
         Log.i(ACTIVITY_NAME, "Changing fragment..");
 
@@ -285,7 +286,7 @@ public class OCTranspo extends AppCompatActivity {
             menuOn = !menuOn;
         }
     }
-
+*/
     /**
      * This adapter updates/generates the list view elements
      * This was Largely based on CST2335 – Graphical Interface Programming Lab 4
@@ -311,7 +312,7 @@ public class OCTranspo extends AppCompatActivity {
 
             View result = inflater.inflate(R.layout.oc_stop, null);
 
-            TextView stationText = (TextView) result.findViewById(R.id.station_text);
+            TextView stationText = result.findViewById(R.id.station_text);
             stationText.setText(getItem(position));
 
             return result;

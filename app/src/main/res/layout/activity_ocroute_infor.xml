@@ -10,18 +10,44 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-<ListView
-    android:id="@+id/route_detail_list"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
 
-        <Button
-            android:id="@+id/refreshRouteButton"
+        <LinearLayout
+            android:id="@+id/listViewAll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ListView
+            android:id="@+id/route_detail_list"
+            android:layout_width="match_parent" android:layout_height="match_parent"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:text="@string/oc_refreshbutton" />
+            android:background="@android:color/holo_green_light"
+            android:weightSum="2">
 
+            <Button
+                android:id="@+id/refreshRouteButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/holo_purple"
+                android:text="@string/oc_refreshbutton" />
+
+            <Button
+                android:id="@+id/viewStatsBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/holo_blue_dark"
+                android:text="@string/view_stats" />
+
+
+        </LinearLayout>
     </RelativeLayout>
 
 

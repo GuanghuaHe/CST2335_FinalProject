@@ -63,4 +63,6 @@
     <string name="oc_datasummary">\nThis application stores all of the station numbers entered into a database. </string>
     <string name="routeno"> Route number:  </string>
     <string name="OCT"> OC Transpo </string>
+    <string name="view_stats"> View Statistics </string>
+    <string name="cal_stat"> Calculating average adjusted schedule time... </string>
 </resources>
