@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -67,11 +68,11 @@ public class OCTranspo extends AppCompatActivity {
         setContentView(R.layout.activity_octranspo);
 
         stations =  findViewById(R.id.stationsView);
-<<<<<<< HEAD
+
         stationInput =  findViewById(R.id.stopNoInput);
-=======
+
         stationInput = findViewById(R.id.stopNoInput);
->>>>>>> cd1887a45293d8ec243da025fd11f13ee2e7adcd
+
         addStation =  findViewById(R.id.addStopNoButton);
         adapter = new StationAdapter(this);
         stations.setAdapter(adapter);
@@ -307,12 +308,13 @@ public class OCTranspo extends AppCompatActivity {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public @NonNull View getView(int position, View convertView, @NonNull ViewGroup parent) {
             LayoutInflater inflater = OCTranspo.this.getLayoutInflater();
 
             View result = inflater.inflate(R.layout.oc_stop, null);
 
             TextView stationText = result.findViewById(R.id.station_text);
+
             stationText.setText(getItem(position));
 
             return result;

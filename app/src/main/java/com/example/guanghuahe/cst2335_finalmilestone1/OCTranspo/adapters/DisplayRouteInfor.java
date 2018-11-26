@@ -32,13 +32,11 @@ public class DisplayRouteInfor extends Activity {
     public static String getRouteInfoTrailer = "&routeNo=";
     public static final String ACTIVITY_NAME = "DisplayRouteInfor";
     List<String[]> list;
-
+    Button vstat;
     Button refresh;
-    OCRoute route;
     ListView routeDetailList;
     String stationNum,routeNum;
 
-    Button vstat;
 
 
 

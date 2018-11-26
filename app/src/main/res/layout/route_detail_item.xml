@@ -10,6 +10,7 @@
         android:background="#ccccff">
 
         <ImageView
+            android:importantForAccessibility="no"
             android:id="@+id/businfo"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -32,6 +33,7 @@
             />
 
         <ImageView
+            android:importantForAccessibility="no"
             android:id="@+id/destImg"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -53,6 +55,7 @@
 
 
         <ImageView
+            android:importantForAccessibility="no"
             android:id="@+id/latImg"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -73,6 +76,7 @@
             android:textSize="20sp" />
 
         <ImageView
+            android:importantForAccessibility="no"
             android:id="@+id/lonImg"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -113,6 +117,7 @@
             android:textSize="20sp" />
 
         <ImageView
+            android:importantForAccessibility="no"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_column="0"
@@ -132,6 +137,7 @@
             android:textSize="20sp" />
 
         <ImageView
+            android:importantForAccessibility="no"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_column="0"

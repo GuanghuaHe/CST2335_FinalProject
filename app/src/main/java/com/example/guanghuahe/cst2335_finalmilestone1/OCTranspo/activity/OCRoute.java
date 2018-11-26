@@ -34,7 +34,7 @@ public class OCRoute {
     public static final List<String[]> routeList = new ArrayList<>();
 
 
-    public OCRoute() {
+    private OCRoute() {
     }
 
     public OCRoute(String routeno, String destination, String direction, String stationNum) {
@@ -46,17 +46,6 @@ public class OCRoute {
 
     }
 
-    protected OCRoute(Parcel in) {
-        ready = in.readByte() != 0;
-        stationNum = in.readString();
-        routeno = in.readString();
-        destination = in.readString();
-        coordinates = in.readString();
-        speed = in.readString();
-        startTime = in.readString();
-        adjustedTime = in.readString();
-        direction = in.readString();
-    }
 
 
     public String getRouteno() {
@@ -75,21 +64,6 @@ public class OCRoute {
         return coordinates;
     }
 
-    public String getSpeed() {
-        return speed;
-    }
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public String getAdjustedTime() {
-        return adjustedTime;
-    }
-
-    public String getDirection() {
-        return direction;
-    }
 
     public static void updateData(String s) {
         new OCRoute().new OCRouteQuery().execute(s);
@@ -162,155 +136,99 @@ public class OCRoute {
                     if(eventType == XmlPullParser.START_TAG ){
                         Log.e("jin de lai ","222222222222" );
 
-                             tagName = xpp.getName();
-
-<<<<<<< HEAD
-
-
-
-                                if("TripDestination".equalsIgnoreCase(tagName)) {
-                                    temp = new String[9];
-                                    temp[0] = xpp.nextText();
-                                    Log.e("destination", "" + temp[0]);
-                                }
-                                else if("TripStartTime".equalsIgnoreCase(tagName)) {
-                                    temp[1] = xpp.nextText();
-                                    Log.e("start  time", "" + temp[1]);
-                                }
-                                else if("AdjustedScheduleTime".equalsIgnoreCase(tagName)){
-                                    temp[2] = xpp.nextText();
-                                    Log.e("adjust time", "" + temp[2]);
-                                }
-                                else if("AdjustmentAge".equalsIgnoreCase(tagName)){
-                                    temp[3] = xpp.nextText();
-                                    Log.e("AdjustmentAge ", "" + temp[3]);
-                                }else if("LastTripOfSchedule".equalsIgnoreCase(tagName)){
-                                    temp[4] = xpp.nextText();
-                                    Log.e("LastTripOfSchedule ", "" + temp[4]);
-                                }else if("BusType".equalsIgnoreCase(tagName)){
-                                    temp[5] = xpp.nextText();
-                                    Log.e("BusType ", "" + temp[5]);
-
-                                }
-                                else if("Latitude".equalsIgnoreCase(tagName)) {
-
-                                    temp[6] = xpp.nextText();
-                                    Log.e("latitude   ", "" + temp[6]);
-                                }
-                                else if("Longitude".equalsIgnoreCase(tagName)){
-                                    temp[7] = xpp.nextText();
-                                    Log.e("longitude  ", "" + temp[7]);
-                                }
-                                else if("GPSSpeed".equalsIgnoreCase(tagName)) {
-                                    temp[8] = xpp.nextText();
-                                    Log.e("GPS Speed  ", "" + temp[8]);
-                                    routeList.add(temp);
-                                }else{}
+                        tagName = xpp.getName();
 
 
 
 
-=======
-                while ((eventType != XmlPullParser.END_DOCUMENT) && cont) {
+                        if("TripDestination".equalsIgnoreCase(tagName)) {
+                            temp = new String[9];
+                            temp[0] = xpp.nextText();
+                            Log.e("destination", "" + temp[0]);
+                        }
+                        else if("TripStartTime".equalsIgnoreCase(tagName)) {
+                            temp[1] = xpp.nextText();
+                            Log.e("start  time", "" + temp[1]);
+                        }
+                        else if("AdjustedScheduleTime".equalsIgnoreCase(tagName)){
+                            temp[2] = xpp.nextText();
+                            Log.e("adjust time", "" + temp[2]);
+                        }
+                        else if("AdjustmentAge".equalsIgnoreCase(tagName)){
+                            temp[3] = xpp.nextText();
+                            Log.e("AdjustmentAge ", "" + temp[3]);
+                        }else if("LastTripOfSchedule".equalsIgnoreCase(tagName)){
+                            temp[4] = xpp.nextText();
+                            Log.e("LastTripOfSchedule ", "" + temp[4]);
+                        }else if("BusType".equalsIgnoreCase(tagName)){
+                            temp[5] = xpp.nextText();
+                            Log.e("BusType ", "" + temp[5]);
 
-                    switch (eventType) {
-                        case XmlPullParser.START_TAG:
-                            lastTag = xpp.getName();
-                            break;
-                        case XmlPullParser.TEXT:
-                            // Starts by looking for the entry tag
-                           // if (lastTag.equals("Direction") && xpp.getText().equals(direction)) {
-                             //   foundDirection = true;
-                          //  } else if (foundDirection) {
-                             //   Log.i("TagValue", xpp.getText());
-                                if (lastTag.equals("TripDestination"))
-                                    destination = xpp.getText();
-                                else if (lastTag.equals("TripStartTime"))
-                                    startTime = xpp.getText();
-                                else if (lastTag.equals("AdjustedScheduleTime"))
-                                    adjustedTime = xpp.getText();
-                                else if (lastTag.equals("Latitude"))
-                                    fullCoordinates = (xpp.getText().concat("/"));
-                                else if (lastTag.equals("Longitude"))
-                                    coordinates = fullCoordinates.concat(xpp.getText());
-                                else if (lastTag.equals("GPSSpeed")) {
-                                    speed = xpp.getText();
-                                }
-                            //}
-                            break;
-                        case XmlPullParser.END_TAG:
-                            if (xpp.getName().equals("Trip") && foundDirection) {
-                                cont = false;
-                                Log.i("Route", "breaking from parse");
-                            }
-                            break;
-                        default:
-                            break;
->>>>>>> cd1887a45293d8ec243da025fd11f13ee2e7adcd
+                        }
+                        else if("Latitude".equalsIgnoreCase(tagName)) {
+
+                            temp[6] = xpp.nextText();
+                            Log.e("latitude   ", "" + temp[6]);
+                        }
+                        else if("Longitude".equalsIgnoreCase(tagName)){
+                            temp[7] = xpp.nextText();
+                            Log.e("longitude  ", "" + temp[7]);
+                        }
+                        else if("GPSSpeed".equalsIgnoreCase(tagName)) {
+                            temp[8] = xpp.nextText();
+                            Log.e("GPS Speed  ", "" + temp[8]);
+                            routeList.add(temp);
+                        }else{}
+
+
+
+
                     }
 
 
                 }
-<<<<<<< HEAD
                 /*while (xpp.next() != XmlPullParser.END_DOCUMENT) {
-
                     if (xpp.getEventType() != XmlPullParser.START_TAG) {
-
-
                         if (xpp.getEventType() == XmlPullParser.END_TAG) {
                             // if we are in an end tag, and that tag is called trip, then add the trip to our result array
                             if (xpp.getName().equalsIgnoreCase("trip")) {
-
                                 Log.e("dada", " " + temp);
-
-
                             }
                         }
-
                         continue;
                     } else if (xpp.getName().equalsIgnoreCase("trip")) {
                         temp = new String[5];
                         String name = xpp.getName();
                         // Starts by looking for the entry tag
-
                         if (name.equalsIgnoreCase("TripDestination")) {
-
                             xpp.next();
                             temp[0] = xpp.getText();
                             Log.i("TripDestination", "Route " + temp[0]);
-
                         }
                         if (name.equalsIgnoreCase("TripStartTime")) {
                             xpp.next();
                             temp[1] = xpp.getText();
                             Log.i("TripStartTime", "TripStartTime " + temp[1]);
-
                         }
-
                         if (name.equalsIgnoreCase("AdjustedScheduleTime")) {
                             xpp.next();
                             temp[2] = xpp.getText();
                             Log.i("AdjustedScheduleTime", "AdjustedScheduleTime " + temp[2]);
-
                         }
                         if (name.equalsIgnoreCase("AdjustmentAge")) {
                             xpp.next();
                             String tempText = xpp.getText();
                             Log.i("AdjustmentAge", "AdjustmentAge " + tempText);
-
                         }
                         if (name.equalsIgnoreCase("LastTripOfSchedule")) {
                             xpp.next();
                             String tempText = xpp.getText();
                             Log.i("LastTripOfSchedule", "LastTripOfSchedule " + tempText);
-
                         }
-
                         if (name.equalsIgnoreCase("BusType")) {
                             xpp.next();
                             String tempText = xpp.getText();
                             Log.i("BusType", "BusType " + tempText);
-
                         }
                         if (name.equalsIgnoreCase("GPSSpeed")) {
                             xpp.next();
@@ -322,27 +240,17 @@ public class OCRoute {
                             xpp.next();
                             gps += xpp.getText();
                             Log.i("Latitude", "Latitude " + gps);
-
                         }
                         if (name.equalsIgnoreCase("Longitude")) {
                             xpp.next();
                             gps += " /" + xpp.getText();
                             Log.i("Longitude", "Longitude " + gps);
-
                         }
                         temp[3] = gps;
-
                         routeList.add(temp);
                     }
                 }*/
 
-=======
-                Log.i("FinalInfo", destination +" "+
-                        startTime +" "+
-                        adjustedTime +" "+
-                        coordinates +" "+
-                        speed);
->>>>>>> cd1887a45293d8ec243da025fd11f13ee2e7adcd
             } finally {
                 in.close();
                 Log.i("OCRoute constructor", "closed input stream");

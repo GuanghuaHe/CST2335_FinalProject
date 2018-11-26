@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:cacheColorHint="#FFF4F4F4"
-        android:hint="Please input bus stop number:"
+        android:hint="@string/pibstn"
         android:inputType="text" />
 
     <!--<ProgressBar-->

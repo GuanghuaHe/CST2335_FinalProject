@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
 <!--
 
     Author: mkyong
@@ -11,28 +10,31 @@
 
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
     <ImageView
+        android:importantForAccessibility="no"
         android:id="@+id/image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="5dp" />
+        android:layout_marginEnd="5dp" />
 
     <TextView
         android:id="@+id/textDialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/image"/>
+        android:layout_toEndOf="@+id/image" />
 
     <Button
         android:id="@+id/dialogButtonOK"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" Ok "
+        android:layout_marginEnd="5dp"
         android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
+        android:text="@string/OK"
         android:layout_below="@+id/image"
         />
 

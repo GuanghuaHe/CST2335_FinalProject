@@ -166,7 +166,7 @@ public class DisplayStopInfor extends Activity {
                 url: https://www.mkyong.com/android/android-custom-dialog-example/
         */
         Dialog dialog = new Dialog(ctx);
-        dialog.setContentView(R.layout.oc_custom_dialog);
+        dialog.setContentView(R.layout.oc_dialog);
         dialog.setTitle("Bus Stop not found");
 
 
@@ -320,7 +320,7 @@ public class DisplayStopInfor extends Activity {
         protected void onPostExecute(String result) {
 
             RouteAdapter adapter = new RouteAdapter(ctx);
-            ListView routesview = (ListView)findViewById(R.id.routesView);
+            ListView routesview = findViewById(R.id.routesView);
             routesview.setAdapter(adapter);
 
             stationNameView.setText("Bus stop: " + stationName);
