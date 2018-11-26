@@ -6,35 +6,31 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
-import java.util.ArrayList;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.widget.Toast;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.support.v7.app.AlertDialog;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.guanghuahe.cst2335_finalmilestone1.Movie;
 import com.example.guanghuahe.cst2335_finalmilestone1.Nutrition;
-import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.database.OCDatabaseHelper;
-import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.fragment.DisplayInfoFragment;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.adapters.DisplayStopInfor;
-import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.fragment.DisplayStopsFragment;
+import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.database.OCDatabaseHelper;
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
+
+import java.util.ArrayList;
 
 /**
  * Start Activity for Guanghua's OCtranspo app

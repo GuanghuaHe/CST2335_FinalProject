@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:background="#996699"
+    android:scrollbars="vertical"
     tools:context=".OCTranspo.activity.OCTranspo">
 
     <RelativeLayout
@@ -19,7 +20,8 @@
 
             <ListView
             android:id="@+id/route_detail_list"
-            android:layout_width="match_parent" android:layout_height="match_parent"/>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <LinearLayout

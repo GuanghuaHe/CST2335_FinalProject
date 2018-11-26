@@ -3,7 +3,20 @@
     <string name="start_welcome">CST2335 FINAL PROJECT Milestone1</string>
 
 
-    <string name="about">About OC Transpo App By Guanghua He</string>
+    <string name="about">Author: Guanghua He \nVersion 1.1 \nHelp
+\n- To view buses for a bus stop, click an item in the Bus Stops list.
+
+\n- To view bus information for a particular route, click an item in the Buses list.
+
+\n- To add a bus stop to the list, click the "Add Station Number" button.
+
+\n- To delete a bus stop, go inside the routepage and choose to delete this stop.
+
+\n- To refresh bus data, click the "Refresh Bus Data" button.
+
+\n- To view bus statistics, click the "View Statistics" button.
+
+\n- To navigate to another application, click the appropriate icon in the toolbar.</string>
 
 
     <!--movie search-->
@@ -54,7 +67,7 @@
     <string name="oc_latlong">Latitude/Longitude:</string>
     <string name="oc_gpsspeed">GPS Speed: </string>
     <string name="oc_infounavailable">Information unavailable</string>
-    <string name="oc_deletestationbutton">Delete Station</string>
+    <string name="oc_deletestationbutton">Delete This Station</string>
     <string name="oc_refreshbutton">Refresh</string>
     <string name="oc_addstationbutton">Add Station Number</string>
     <string name="oc_help">Help</string>

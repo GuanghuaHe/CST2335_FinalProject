@@ -1,14 +1,8 @@
 package com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.activity;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Parcel;
-import android.os.Parcelable;
 import android.util.Log;
-import android.util.Xml;
-import android.view.ViewParent;
-import android.widget.Button;
-import android.widget.TextView;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;

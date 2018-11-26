@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -173,20 +172,24 @@ public class DisplayRouteInfor extends Activity {
             String[] info = (String[])getItem(position);
             View result = getLayoutInflater().inflate(resourceID, null);
             busDetail = result.findViewById(R.id.bus_details);
-            busDetail.setText("Route:" + routeNum);
+            busDetail.setText("Route: " + routeNum);
             routeDestination = result.findViewById(R.id.routenoDestinationView);
-            routeDestination.setText("direction: " + info[0]);
+            routeDestination.setText("Direction: " + info[0]);
             direction = result.findViewById(R.id.directionView);
-            direction.setText("start time: " + info[1]);
+            direction.setText("Start time: " + info[1]);
             startTime = result.findViewById(R.id.startTimeView);
-            startTime.setText("adjusted time: " + info[2]);
+            //startTime.setText("adjusted time: " + info[2]);
+            startTime.setText("Adjusted time: " + ((info[2].length() != 0) ? info[2] : "Info NA"));
+
             adjustTime = result.findViewById(R.id.adjustedTimeView);
-            adjustTime.setText("Lantitude: " + info[6]);
+            //adjustTime.setText("Lantitude: " + info[6]);
+            adjustTime.setText("Lantitude: " + ((info[6].length() != 0) ? info[6] : "Info NA"));
 
             coordination = result.findViewById(R.id.coordinatesView);
-            coordination.setText("Longitude: " + info[7]);
+            //coordination.setText("Longitude: " + info[7]);
+            coordination.setText("Longitude: " + ((info[7].length() != 0) ? info[7] : "Info NA"));
             speed = result.findViewById(R.id.speedView);
-            speed.setText("GPS speed: " + info[8]);
+            speed.setText("GPS speed: " + ((info[8].length() != 0) ? info[8] : "Info NA"));
             return result;
         }
     }
