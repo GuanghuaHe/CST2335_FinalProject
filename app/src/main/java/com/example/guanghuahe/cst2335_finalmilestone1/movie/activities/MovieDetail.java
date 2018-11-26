@@ -27,8 +27,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * just show the template for mileStone 1.
- * logic business will update later
+ * a instance of this class will reveive a movie from search page
+ *
+ * use AsyncTask to load Url second time to assemble info totally.
+ *
+ * then setText to de page showing detail of movie
+ *
  */
 public class MovieDetail extends AppCompatActivity {
 
@@ -204,6 +208,9 @@ public class MovieDetail extends AppCompatActivity {
         }
     }
 
+    /**
+     * display movie details.
+     */
     private void startPostDetail(){
         TextView movieName = (TextView) findViewById(R.id.movie_name_value);
         movieName.setText(active.getMovieName());
