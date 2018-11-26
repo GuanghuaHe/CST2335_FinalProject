@@ -275,4 +275,13 @@ public class MovieSearchFragment  extends Fragment {
         return s.replaceAll(" ", "+");
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        /**
+         * when ListView changed, notify related Adapter.
+         */
+        movieAdapter.notifyDataSetChanged();
+    }
 }

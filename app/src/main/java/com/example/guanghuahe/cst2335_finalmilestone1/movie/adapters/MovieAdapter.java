@@ -17,11 +17,21 @@ import com.example.guanghuahe.cst2335_finalmilestone1.movie.dto.MovieDTO;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * this Adapter just for searching.
+ *
+ * loading the movies from url to List view locally
+ *
+ * click item to see detail page and then ready to save.
+ *
+ *
+ * a movie as long as saved will be stored in SQLiteDatabse for later user
+ */
 public  class MovieAdapter extends ArrayAdapter<MovieDTO> {
     private static final String TAG = MovieAdapter.class.getSimpleName();
     protected List<MovieDTO> movieList;
     private int resourceId;
-    private Button addMovie;
+
 
     public MovieAdapter( Context context, int listItemViewId, List<MovieDTO> movieDTOList) {
         super(context, listItemViewId, movieDTOList);
@@ -30,17 +40,13 @@ public  class MovieAdapter extends ArrayAdapter<MovieDTO> {
 
     }
 
-    public void setMoviesList(List<MovieDTO> list){
-        movieList = (ArrayList<MovieDTO>) list;
-    }
+
 
     public MovieDTO getMovie(int indx){
         return movieList.get(indx);
     }
 
-    public void setMovie(int indx, MovieDTO m){
-        movieList.set(indx,m);
-    }
+
 
 
 

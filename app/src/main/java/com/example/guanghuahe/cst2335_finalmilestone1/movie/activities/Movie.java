@@ -266,6 +266,7 @@ public class Movie extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
         Toast.makeText(this, "movie saved successfully", Snackbar.LENGTH_LONG).show();
         Log.i(TAG, "In onResume()");
     }
