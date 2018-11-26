@@ -7,26 +7,28 @@
     <item
         android:id="@+id/movieItem1"
         android:icon="@mipmap/ic_launcher"
-        android:orderInCategory="100"
+        android:orderInCategory="500"
         android:title="@string/menuItem1"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
     <item
         android:id="@+id/movieItem2"
 
         android:icon="@drawable/bus_icon"
-        android:orderInCategory="101"
+
+        android:orderInCategory="200"
+
         android:title="@string/menuItem2"
         app:showAsAction="always" />
     <item
         android:id="@+id/movieItem3"
         android:icon="@drawable/food"
-        android:orderInCategory="100"
+        android:orderInCategory="300"
         android:title="@string/menuItem3"
         app:showAsAction="always" />
     <item
         android:id="@+id/movieItem4"
         android:icon="@drawable/cbcquit"
-        android:orderInCategory="101"
-        android:title="@string/menuItem4"
+        android:orderInCategory="400"
+       android:title="@string/menuItem4"
         app:showAsAction="always" />
 </menu>

@@ -12,6 +12,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+/**
+ * main page of nutrition search
+ */
 public class Nutrition extends Activity {
 
     private static final String ACTIVITY_NAME = "Nutrition";
@@ -19,13 +22,15 @@ public class Nutrition extends Activity {
 
         private Button foodNutrition, goHome;
         private EditText searchText;
-    private ProgressBar progressBar;
+        private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nutrition);
-
+        /**
+         * retrieve object related to layout
+         */
         foodNutrition = findViewById(R.id.nutritionButton);
         goHome = findViewById(R.id.goHomeButton);
         progressBar = findViewById(R.id.FoodProgressBar);
@@ -35,12 +40,17 @@ public class Nutrition extends Activity {
 
         Toast.makeText(Nutrition.this,"Nutrition is the best!", Toast.LENGTH_LONG).show();
 
-
+        /**
+         * button to jump back to home page of project
+         * register intent for button action
+         */
         goHome.setOnClickListener(e->{
             AlertDialog dialog = new AlertDialog.Builder(Nutrition.this)
                     .setTitle("Notice!")
                     .setMessage("You are leaving the page!")
-
+                    /**
+                     * cancel the action, stay at the current page
+                     */
                     .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -48,6 +58,9 @@ public class Nutrition extends Activity {
                             dialog.dismiss();
                         }
                     })
+                    /**
+                     * confirmed action, get back to home-page
+                     */
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -58,6 +71,11 @@ public class Nutrition extends Activity {
                     }).create();
             dialog.show();
         });
+
+        /**
+         * start to search the DB of food nutrition
+         * just show a message for now
+         */
         foodNutrition.setOnClickListener((v)-> {
                 Snackbar.make( v, "show nutrition List", Snackbar.LENGTH_LONG).show();
 

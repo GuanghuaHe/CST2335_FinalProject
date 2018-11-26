@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="start_welcome">CST2335 FINAL PROJECT Milestone1</string>
+    <string name="start_welcome">CST2335 FINAL PROJECT</string>
 
 
     <string name="about">Author: Guanghua He \nVersion 1.1 \nHelp
@@ -21,11 +21,54 @@
 
     <!--movie search-->
     <string name="MovieGreeting">MOVIE SEARCH</string>
-    <string name="search_movie">enter title</string>
-    <string name="homeButton">home page</string>
+    <string name="edit_hint">enter title</string>
+    <string name="search_result">there is no result for now</string>
     <string name="searchButton">Search</string>
     <string name="searchHistory">History</string>
-    <string name="app_name">CST2335 MileStone1</string>
+    <string name="app_name">Final Project</string>
+      <!--movie action bar-->
+    <string name="menuItem1">HELP</string>
+    <string name="menuItem2">OCTRANSP</string>
+    <string name="menuItem3">NUTRITION</string>
+    <string name="menuItem4">CBCNEWS</string>
+            <!--movie help-->
+    <string name="movie_about">ABOUT APP</string>
+    <string name="help">Enter key words or movie title to start searching
+            \nClick item to see the movie detail,after the searching list shows up
+            \nClick SAVE Button to save to local Database for later use.
+            \nClick HISTORY button to show history list
+            \nClick STATISTIC Button to show the dialog of statistic
+            \nClick Buttons to sort list as specific order
+            \n********************************************\n
+            \n Author:  Zhenyu Yin
+            \n Student Number: 040888832
+            \n Email: yin00031@algonquinlive.com</string>
+
+
+        <!--movie statistic tool bar-->
+    <string name="removeAll">Remove All</string>
+    <string name="dialog_message">Are you sure to delete all saved movies ?</string>
+    <string name="dialog_button_sure">SO SURE</string>
+    <string name="dialog_button_cancel">cancel</string>
+    <string name="sortByRuntime">By Runtime</string>
+    <string name="radioButton">STATISTIC</string>
+    <string name="sortByYear">By Year</string>
+    <string name="sortByRating">By Rating</string>
+    <string name="remove_item">delete</string>
+    <string name="add_item">add movie</string>
+
+    <!--movie detail page-->
+    <string name="save_movie">SAVE</string>
+    <string name="movie_rating">Rating:</string>
+    <string name="movie_type">Type:</string>
+    <string name="movie_actors">Actors:</string>
+    <string name="movie_genre" >Genre:</string>
+    <string name="movie_summary">Summary:</string>
+    <string name="movie_release_date">Release Date:</string>
+    <string name="movie_year">Year:</string>
+    <string name="movie_director">Director:</string>
+    <string name="movie_title">Title:</string>
+
 
     <!--OC_Transport-->
     <string name="desc">Image</string>
@@ -49,10 +92,7 @@
     <string name="cbc_button_quit">Quit</string>
     <string name="cbc_button_search">Search</string>
 
-    <string name="menuItem1">HOME</string>
-    <string name="menuItem2">OCTRANSP</string>
-    <string name="menuItem3">NUTRITION</string>
-    <string name="menuItem4">CBCNEWS</string>
+
 
 
     <!--  OC TRANSPO STRING VARIABLES-->
@@ -76,6 +116,12 @@
     <string name="oc_datasummary">\nThis application stores all of the station numbers entered into a database. </string>
     <string name="routeno"> Route number:  </string>
     <string name="OCT"> OC Transpo </string>
+<<<<<<< HEAD
     <string name="view_stats"> View Statistics </string>
     <string name="cal_stat"> Calculating average adjusted schedule time... </string>
+=======
+
+
+
+>>>>>>> cd1887a45293d8ec243da025fd11f13ee2e7adcd
 </resources>

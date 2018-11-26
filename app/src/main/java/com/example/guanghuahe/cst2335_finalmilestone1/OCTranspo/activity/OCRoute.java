@@ -164,6 +164,7 @@ public class OCRoute {
 
                              tagName = xpp.getName();
 
+<<<<<<< HEAD
 
 
 
@@ -209,10 +210,48 @@ public class OCRoute {
 
 
 
+=======
+                while ((eventType != XmlPullParser.END_DOCUMENT) && cont) {
+
+                    switch (eventType) {
+                        case XmlPullParser.START_TAG:
+                            lastTag = xpp.getName();
+                            break;
+                        case XmlPullParser.TEXT:
+                            // Starts by looking for the entry tag
+                           // if (lastTag.equals("Direction") && xpp.getText().equals(direction)) {
+                             //   foundDirection = true;
+                          //  } else if (foundDirection) {
+                             //   Log.i("TagValue", xpp.getText());
+                                if (lastTag.equals("TripDestination"))
+                                    destination = xpp.getText();
+                                else if (lastTag.equals("TripStartTime"))
+                                    startTime = xpp.getText();
+                                else if (lastTag.equals("AdjustedScheduleTime"))
+                                    adjustedTime = xpp.getText();
+                                else if (lastTag.equals("Latitude"))
+                                    fullCoordinates = (xpp.getText().concat("/"));
+                                else if (lastTag.equals("Longitude"))
+                                    coordinates = fullCoordinates.concat(xpp.getText());
+                                else if (lastTag.equals("GPSSpeed")) {
+                                    speed = xpp.getText();
+                                }
+                            //}
+                            break;
+                        case XmlPullParser.END_TAG:
+                            if (xpp.getName().equals("Trip") && foundDirection) {
+                                cont = false;
+                                Log.i("Route", "breaking from parse");
+                            }
+                            break;
+                        default:
+                            break;
+>>>>>>> cd1887a45293d8ec243da025fd11f13ee2e7adcd
                     }
 
 
                 }
+<<<<<<< HEAD
                 /*while (xpp.next() != XmlPullParser.END_DOCUMENT) {
 
                     if (xpp.getEventType() != XmlPullParser.START_TAG) {
@@ -297,6 +336,13 @@ public class OCRoute {
                     }
                 }*/
 
+=======
+                Log.i("FinalInfo", destination +" "+
+                        startTime +" "+
+                        adjustedTime +" "+
+                        coordinates +" "+
+                        speed);
+>>>>>>> cd1887a45293d8ec243da025fd11f13ee2e7adcd
             } finally {
                 in.close();
                 Log.i("OCRoute constructor", "closed input stream");

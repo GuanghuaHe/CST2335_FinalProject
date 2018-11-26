@@ -24,7 +24,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.guanghuahe.cst2335_finalmilestone1.Movie;
+import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
 import com.example.guanghuahe.cst2335_finalmilestone1.Nutrition;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.adapters.DisplayStopInfor;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.database.OCDatabaseHelper;
@@ -67,7 +67,11 @@ public class OCTranspo extends AppCompatActivity {
         setContentView(R.layout.activity_octranspo);
 
         stations =  findViewById(R.id.stationsView);
+<<<<<<< HEAD
         stationInput =  findViewById(R.id.stopNoInput);
+=======
+        stationInput = findViewById(R.id.stopNoInput);
+>>>>>>> cd1887a45293d8ec243da025fd11f13ee2e7adcd
         addStation =  findViewById(R.id.addStopNoButton);
         adapter = new StationAdapter(this);
         stations.setAdapter(adapter);
