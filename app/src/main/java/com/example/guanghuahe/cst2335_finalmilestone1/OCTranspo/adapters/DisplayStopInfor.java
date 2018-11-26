@@ -41,6 +41,9 @@ public class DisplayStopInfor extends Activity {
     TextView stationNameView;
     Button delete;
 
+    public static String getRouteInfo = "https://api.octranspo1.com/v1.2/GetNextTripsForStop?appID=223eb5c3&&apiKey=ab27db5b435b8c8819ffb8095328e775&stopNo=";
+    public static String getRouteInfoTrailer = "&routeNo=";
+
     int progress;
     int stationNumber;
 
@@ -98,11 +101,21 @@ public class DisplayStopInfor extends Activity {
             String s = routesInfo.get(position);
             Log.i(ACTIVITY_NAME, "Message: " + s);
             Intent intent = new Intent(DisplayStopInfor.this, DisplayRouteInfor.class);
-            intent.putExtra("routeno", allRoutes.get(position).getRouteno());
-            intent.putExtra("destination", allRoutes.get(position).getDestination());
-            intent.putExtra("stationNum", allRoutes.get(position).getStationNum());
-            intent.putExtra("direction", allRoutes.get(position).getDirection());
-            startActivity(intent);
+            Bundle bundle = new Bundle();
+
+            OCRoute.updateData(getRouteInfo+allRoutes.get(position).getStationNum()+getRouteInfoTrailer+allRoutes.get(position).getRouteno());
+            bundle.putString("routeno", allRoutes.get(position).getRouteno());
+            bundle.putString("stationno", allRoutes.get(position).getStationNum());
+            intent.putExtra("bundle", bundle);
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+           startActivity(intent);
+
+
         });
 
 
