@@ -6,35 +6,32 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
-import java.util.ArrayList;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.widget.Toast;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.support.v7.app.AlertDialog;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
 import com.example.guanghuahe.cst2335_finalmilestone1.Nutrition;
-import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.database.OCDatabaseHelper;
-import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.fragment.DisplayInfoFragment;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.adapters.DisplayStopInfor;
-import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.fragment.DisplayStopsFragment;
+import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.database.OCDatabaseHelper;
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
+
+import java.util.ArrayList;
 
 /**
  * Start Activity for Guanghua's OCtranspo app
@@ -71,15 +68,19 @@ public class OCTranspo extends AppCompatActivity {
         setContentView(R.layout.activity_octranspo);
 
         stations =  findViewById(R.id.stationsView);
+
+        stationInput =  findViewById(R.id.stopNoInput);
+
         stationInput = findViewById(R.id.stopNoInput);
+
         addStation =  findViewById(R.id.addStopNoButton);
         adapter = new StationAdapter(this);
         stations.setAdapter(adapter);
-        ocProgressBar = findViewById(R.id.ocProgressBar);
+        //ocProgressBar = findViewById(R.id.ocProgressBar);
 
         Toast toast = Toast.makeText(this, "Guanghua's OCTranspo Toast", Toast.LENGTH_LONG);
         toast.show();
-        ocProgressBar.setVisibility(View.VISIBLE);
+        //ocProgressBar.setVisibility(View.VISIBLE);
 
         Log.i(ACTIVITY_NAME, "Attempted query:    SELECT " +
                 OCDatabaseHelper.STATION_NAME + ", " +
@@ -261,6 +262,7 @@ public class OCTranspo extends AppCompatActivity {
 
     // FOLLOWING METHOD ChangeFragment written by 'ProgrammingKnowledge', Mar 5\ 2015.
     // URL: https://www.youtube.com/watch?v=FF-e6CnBwYY
+    /*
     public void ChangeFragment(View view) {
         Log.i(ACTIVITY_NAME, "Changing fragment..");
 
@@ -285,7 +287,7 @@ public class OCTranspo extends AppCompatActivity {
             menuOn = !menuOn;
         }
     }
-
+*/
     /**
      * This adapter updates/generates the list view elements
      * This was Largely based on CST2335 – Graphical Interface Programming Lab 4
@@ -306,12 +308,13 @@ public class OCTranspo extends AppCompatActivity {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public @NonNull View getView(int position, View convertView, @NonNull ViewGroup parent) {
             LayoutInflater inflater = OCTranspo.this.getLayoutInflater();
 
             View result = inflater.inflate(R.layout.oc_stop, null);
 
-            TextView stationText = (TextView) result.findViewById(R.id.station_text);
+            TextView stationText = result.findViewById(R.id.station_text);
+
             stationText.setText(getItem(position));
 
             return result;
