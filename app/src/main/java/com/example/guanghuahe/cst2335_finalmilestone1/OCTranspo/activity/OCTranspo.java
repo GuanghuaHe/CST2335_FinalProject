@@ -34,7 +34,7 @@ import com.example.guanghuahe.cst2335_finalmilestone1.R;
 import java.util.ArrayList;
 
 /**
- * Start Activity for Guanghua's OCtranspo app
+ * Start Activity for Guanghua He's OCtranspo app
  */
 
 public class OCTranspo extends AppCompatActivity {
@@ -45,14 +45,13 @@ public class OCTranspo extends AppCompatActivity {
     private Context ctx;
     private SQLiteDatabase db;
     private Cursor cursor;
-    private int currentStationIndex = 0;
-    boolean menuOn = false;
+    private int currentStopIndex = 0;
     StationAdapter adapter;
-    ListView stations;
+    ListView stops;
     EditText stationInput;
     Button addStation;
-    ArrayList<String> stationsList = new ArrayList<>();
-    ArrayList<String> stationsNumbers = new ArrayList<>();
+    ArrayList<String> stopsList = new ArrayList<>();
+    ArrayList<String> stopsNumbers = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,22 +66,18 @@ public class OCTranspo extends AppCompatActivity {
         db = dbHelper.getWritableDatabase();
         setContentView(R.layout.activity_octranspo);
 
-        stations =  findViewById(R.id.stationsView);
-
+        stops =  findViewById(R.id.stationsView);
         stationInput =  findViewById(R.id.stopNoInput);
-
-        stationInput = findViewById(R.id.stopNoInput);
-
         addStation =  findViewById(R.id.addStopNoButton);
         adapter = new StationAdapter(this);
-        stations.setAdapter(adapter);
+        stops.setAdapter(adapter);
         //ocProgressBar = findViewById(R.id.ocProgressBar);
 
         Toast toast = Toast.makeText(this, "Guanghua's OCTranspo Toast", Toast.LENGTH_LONG);
         toast.show();
         //ocProgressBar.setVisibility(View.VISIBLE);
 
-        Log.i(ACTIVITY_NAME, "Attempted query:    SELECT " +
+        Log.e(ACTIVITY_NAME, "尝试查询 query:    SELECT " +
                 OCDatabaseHelper.STATION_NAME + ", " +
                 OCDatabaseHelper.STATION_NO + " FROM " +
                 OCDatabaseHelper.TABLE_NAME);
@@ -95,41 +90,40 @@ public class OCTranspo extends AppCompatActivity {
         //The data has been loaded into the cursor
         //Look through the cursor and add data from the database to the array - to show the data in the listview
         while (!cursor.isAfterLast()) {
-            Log.i(ACTIVITY_NAME, "Current cursor position: " + cursor.getPosition());
-            String newStation = "Bus Stop number: ";
-            newStation = newStation.concat(cursor.getString(1));
+            Log.e(ACTIVITY_NAME, " 当前光标位置 Current cursor position: " + cursor.getPosition());
+            String newStop = "Bus Stop number: ";
+            newStop = newStop.concat(cursor.getString(1));
 
-            stationsList.add(newStation);
-            stationsNumbers.add(cursor.getString(1));
+            stopsList.add(newStop);
+            stopsNumbers.add(cursor.getString(1));
             cursor.moveToNext();
         }
 
         //When you click the floating action button it adds a bus number - CST2335 – Graphical Interface Programming Lab 3
 
         addStation.setOnClickListener((e) -> {
-            String s = stationInput.getText().toString();
-            boolean valid = false;
+            String string = stationInput.getText().toString();
+            boolean valid;
             try {
-                int a = Integer.parseInt(s);
                 valid = true;
             } catch (Exception ex) {
                 valid = false;
             }
-            if (s.length() == 0)
+            if (string.length() == 0)
                 valid = false;
 
             if (valid) {
-                ContentValues newData = new ContentValues();
+                ContentValues newValues = new ContentValues();
 
-                newData.put(OCDatabaseHelper.STATION_NAME, "NAME_NOT_FOUND");
-                newData.put(OCDatabaseHelper.STATION_NO, s);
+                newValues.put(OCDatabaseHelper.STATION_NAME, "NAME_NOT_FOUND");
+                newValues.put(OCDatabaseHelper.STATION_NO, string);
 
-                db.insert(OCDatabaseHelper.TABLE_NAME, OCDatabaseHelper.STATION_NAME, newData);
+                db.insert(OCDatabaseHelper.TABLE_NAME, OCDatabaseHelper.STATION_NAME, newValues);
 
-                String newStation = "Bus Stop number: ";
-                newStation = newStation.concat(s);
-                stationsList.add(newStation);
-                stationsNumbers.add(s);
+                String newStop = "Bus Stop number: ";
+                newStop = newStop.concat(string);
+                stopsList.add(newStop);
+                stopsNumbers.add(string);
                 stationInput.setText("");
                 adapter.notifyDataSetChanged();
             } else {
@@ -140,14 +134,14 @@ public class OCTranspo extends AppCompatActivity {
         });
 
         //Saves the text to the database, then loads the OCTranspoStop activit with the Stop number added
-        stations.setOnItemClickListener((parent, view, position, id) -> {
-            String s = stationsList.get(position);
-            Log.i(ACTIVITY_NAME, "Message: " + s);
-            String stationNumber = stationsNumbers.get(position);
+        stops.setOnItemClickListener((parent, view, position, id) -> {
+            String s = stopsList.get(position);
+            Log.i(ACTIVITY_NAME, "站点名称 Message: " + s);
+            String stationNumber = stopsNumbers.get(position);
             //Passes the input text to new activity when starting the activity
             Intent i = new Intent(OCTranspo.this, DisplayStopInfor.class);
             i.putExtra("stationNumber", stationNumber);
-            currentStationIndex = position;
+            currentStopIndex = position;
             startActivity(i);
         });
 
@@ -209,17 +203,17 @@ public class OCTranspo extends AppCompatActivity {
     protected void onResume() {
         Log.i(ACTIVITY_NAME, "In onResume()");
 
-        if (DisplayStopInfor.getDeleteStation()) {
-            Log.i(ACTIVITY_NAME, "Deleting station no " + currentStationIndex);
+        if (DisplayStopInfor.getDeleteStops()) {
+            Log.i(ACTIVITY_NAME, "删除站点 Deleting station no " + currentStopIndex);
             String[] params = new String[1];
-            params[0] = stationsNumbers.get(currentStationIndex);
+            params[0] = stopsNumbers.get(currentStopIndex);
             db.delete(OCDatabaseHelper.TABLE_NAME, OCDatabaseHelper.STATION_NO + "=?", params);
 
             adapter = new StationAdapter(this);
-            stations.setAdapter(adapter);
+            stops.setAdapter(adapter);
 
-            stationsList.remove(currentStationIndex);
-            stationsNumbers.remove(currentStationIndex);
+            stopsList.remove(currentStopIndex);
+            stopsNumbers.remove(currentStopIndex);
             adapter.notifyDataSetChanged();
 
 
@@ -299,12 +293,12 @@ public class OCTranspo extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return (stationsList.size());
+            return (stopsList.size());
         }
 
         @Override
         public String getItem(int position) {
-            return stationsList.get(position);
+            return stopsList.get(position);
         }
 
         @Override

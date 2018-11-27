@@ -52,12 +52,9 @@ public class DisplayRouteInfor extends Activity {
 
 
 
-      Bundle b =  getIntent().getParcelableExtra("bundle");
-            stationNum = b.getString("stationno");
-           routeNum = b.getString("routeno");
-
-
-
+      Bundle bundles =  getIntent().getParcelableExtra("bundle");
+            stationNum = bundles.getString("stationno");
+           routeNum = bundles.getString("routeno");
 
 
 
@@ -153,13 +150,13 @@ public class DisplayRouteInfor extends Activity {
 
 
     class RouteDetailAdapter extends ArrayAdapter{
-    TextView busDetail, routeDestination, direction, startTime, adjustTime,coordination, speed;
-        int resourceID;
+    TextView busDetail, routeDestination, direction, startTime, adjustTime, longlat, speed;
+        int detailID;
 
 
         public RouteDetailAdapter( Context context, int resource, List objects) {
             super(context, resource, objects);
-            resourceID = resource;
+            detailID = resource;
 
         }
 
@@ -168,7 +165,7 @@ public class DisplayRouteInfor extends Activity {
         @Override
         public View getView(int position,  @Nullable View convertView,  @NonNull ViewGroup parent) {
             String[] info = (String[])getItem(position);
-            View result = getLayoutInflater().inflate(resourceID, null);
+            View result = getLayoutInflater().inflate(detailID, null);
             busDetail = result.findViewById(R.id.bus_details);
             busDetail.setText("Route: " + routeNum);
             routeDestination = result.findViewById(R.id.routenoDestinationView);
@@ -183,9 +180,9 @@ public class DisplayRouteInfor extends Activity {
             //adjustTime.setText("Lantitude: " + info[6]);
             adjustTime.setText("Lantitude: " + ((info[6].length() != 0) ? info[6] : "Info NA"));
 
-            coordination = result.findViewById(R.id.coordinatesView);
-            //coordination.setText("Longitude: " + info[7]);
-            coordination.setText("Longitude: " + ((info[7].length() != 0) ? info[7] : "Info NA"));
+            longlat = result.findViewById(R.id.coordinatesView);
+            //longlat.setText("Longitude: " + info[7]);
+            longlat.setText("Longitude: " + ((info[7].length() != 0) ? info[7] : "Info NA"));
             speed = result.findViewById(R.id.speedView);
             speed.setText("GPS speed: " + ((info[8].length() != 0) ? info[8] : "Info NA"));
             return result;

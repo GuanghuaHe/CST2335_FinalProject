@@ -9,6 +9,11 @@ import android.view.ViewGroup;
 
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
 
+/*
+
+Each Activity must use a fragment somewhere in its graphical interface.
+ */
+
 public class DisplayStopsFragment extends Fragment {
 
     @Override
