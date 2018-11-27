@@ -1,6 +1,7 @@
 package com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.activity;
 
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,7 +42,7 @@ import java.util.ArrayList;
 public class OCTranspo extends AppCompatActivity {
 
     final Context ctxt = this;
-    private ProgressBar ocProgressBar;
+    //private ProgressBar ocProgressBar;
     protected static final String ACTIVITY_NAME = "OCTranspoActivity";
     private Context ctx;
     private SQLiteDatabase db;
@@ -122,7 +124,7 @@ public class OCTranspo extends AppCompatActivity {
 
                 String newStop = "Bus Stop number: ";
                 newStop = newStop.concat(string);
-                stopsList.add(newStop);
+                boolean add = stopsList.add(newStop);
                 stopsNumbers.add(string);
                 stationInput.setText("");
                 adapter.notifyDataSetChanged();
@@ -131,9 +133,15 @@ public class OCTranspo extends AppCompatActivity {
                 wronginput.show();
                 stationInput.setText("");
             }
+
+
+
         });
 
-        //Saves the text to the database, then loads the OCTranspoStop activit with the Stop number added
+
+
+
+        //Saves the text to the database, then loads the OCTranspoStop activity with the Stop number added
         stops.setOnItemClickListener((parent, view, position, id) -> {
             String s = stopsList.get(position);
             Log.i(ACTIVITY_NAME, "站点名称 Message: " + s);
@@ -189,7 +197,7 @@ public class OCTranspo extends AppCompatActivity {
 
                 AlertDialog dialog = builder.show();
 
-                TextView messageView = dialog.findViewById(android.R.id.message);
+                //TextView messageView = dialog.findViewById(android.R.id.message);
                 //TextView titleView = dialog.findViewById(android.R.id.title);
                 break;
         }

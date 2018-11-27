@@ -92,7 +92,7 @@ public class DisplayStopInfor extends Activity {
 
 
         delete.setOnClickListener((e) -> {
-            Log.i(ACTIVITY_NAME, "删除按钮之行 click Delete button");
+            Log.i(ACTIVITY_NAME, "删除按钮 click Delete button");
             deleteStops = true;
             lastStop = Integer.toString(stationNumber);
             finish();

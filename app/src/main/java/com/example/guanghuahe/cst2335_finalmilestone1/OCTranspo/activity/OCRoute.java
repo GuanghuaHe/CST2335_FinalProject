@@ -1,7 +1,6 @@
 package com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.activity;
 
 import android.os.AsyncTask;
-import android.os.Parcel;
 import android.util.Log;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -66,9 +65,9 @@ public class OCRoute {
     }
 
 
-    public static void updateData(String s) {
-        new OCRoute().new OCRouteQuery().execute(s);
-        Log.e("网址是什么 URL ==", s);
+    public static void updateData(String ss) {
+        new OCRoute().new OCRouteQuery().execute(ss);
+        Log.e("网址是什么 URL ==", ss);
     }
 
 
@@ -124,7 +123,7 @@ public class OCRoute {
 
                 //basically we cycle through the parser, we add data to our data object one piece at a time for each trip, at the end of each
                 //trip we add that trip to our result array, then reset the data object for a new trip. Until we reach the end of our XML
-                String tagName =null;
+                String tagName;
                 String[] temp = null;
 
                 while((eventType = xpp.next()) != XmlPullParser.END_DOCUMENT){
@@ -249,7 +248,7 @@ public class OCRoute {
 
             } finally {
                 in.close();
-                Log.i("OCRoute constructor", "closed input stream");
+                Log.i("OCRoute constructor", "关闭连接 input stream is closed");
                 Log.e("OCRoute LIST DETAIL:", "" + routeList.get(0)[0] + "\t" + routeList.get(0)[1] + "\t" + routeList.get(0)[2] + "\t" + routeList.get(0)[3] + "\t" + routeList.get(0)[4]);
                 // Log.e("OCRoute LIST DETAIL:",""+ routeList.get(1)[0]+ "\t" + routeList.get(1)[1]+"\t"+routeList.get(1)[2]+"\t"+routeList.get(1)[3]+"\t" + routeList.get(1)[4]);
                 // Log.e("OCRoute LIST DETAIL:",""+ routeList.get(2));
