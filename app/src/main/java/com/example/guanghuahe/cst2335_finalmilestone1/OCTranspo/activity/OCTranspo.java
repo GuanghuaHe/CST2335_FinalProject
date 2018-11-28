@@ -27,8 +27,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.guanghuahe.cst2335_finalmilestone1.Food.FoodActivity;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
-import com.example.guanghuahe.cst2335_finalmilestone1.Nutrition;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.adapters.DisplayStopInfor;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.database.OCDatabaseHelper;
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
@@ -174,7 +174,7 @@ public class OCTranspo extends AppCompatActivity {
 
         switch (menuItemId) {
             case R.id.menuItemFood:
-                Intent intent2 = new Intent(OCTranspo.this, Nutrition.class);
+                Intent intent2 = new Intent(OCTranspo.this, FoodActivity.class);
                 startActivity(intent2);
                 break;
             case R.id.menuItemMovie:

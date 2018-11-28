@@ -36,6 +36,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -44,7 +45,7 @@ public class FoodActivity extends AppCompatActivity {
     protected static final String ACTIVITY_NAME = "FoodActivity";
 
     FoodQuery query;
-
+    ListAdapter adapter;
     Button searchItem;
     EditText itemText;
     ListView list;
@@ -86,9 +87,12 @@ public class FoodActivity extends AppCompatActivity {
             itemText.setText("");
         });
 
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+
+
+
+        list.setOnItemClickListener(( parent,  view,  position,  id)-> {
 
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(FoodActivity.this)
                         .setMessage("Do you want to add this to favourites").setTitle("Save")
@@ -97,17 +101,17 @@ public class FoodActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-                                HashMap<String, String> m = foodItemList.get(0);//it will get the first HashMap Stored in array list
+                                HashMap<String, String> m = foodItemList.get(position);//it will get selected HashMap Stored in array list
 
-                                String[] strArr = new String[m.size()];
+                                String[] strArr = new String[m.values().size()];
                                 int i = 0;
-                                for (HashMap<String, String> hash : foodItemList) {
+                              //  for (HashMap<String, String> hash : foodItemList) {
 
-                                    for (String current : hash.values()) {
+                                    for (String current : m.values()) {
                                         strArr[i] = current;
                                         i++;
                                     }
-                                }
+                               // }
 
                                 ContentValues cValues = new ContentValues();
                                 cValues.put(FoodDatabaseHelper.KEY_LABEL,strArr[0]);
@@ -125,7 +129,7 @@ public class FoodActivity extends AppCompatActivity {
                         });
 
                 dialogBuilder.show();
-            }
+
         });
     }
 
@@ -187,7 +191,8 @@ public class FoodActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
-
+            //whenever new search, clear list first
+            foodItemList.clear();
 
             try {
                 URL url = new URL("https://api.edamam.com/api/food-database/parser?app_id=e5bc806d&app_key=5f7521ffeefe491b936cea6271e13d3d&ingr=" + search);
@@ -203,10 +208,12 @@ public class FoodActivity extends AppCompatActivity {
                 }
                 String result = jsonResults.toString();
 
+
+
                 JSONObject jsonObj = new JSONObject(result);
                 publishProgress(20);
 
-                jArray = jsonObj.getJSONArray("parsed");
+                jArray = jsonObj.getJSONArray("hints");
 
                 for (int index = 0; index < jArray.length(); index++)
                     try {
@@ -214,23 +221,30 @@ public class FoodActivity extends AppCompatActivity {
                         JSONObject foodObject = indexObject.getJSONObject("food");
                         // Pulling items from the array
                         String  label = foodObject.getString("label");
-                        publishProgress(40);
+                        //打印 LABEL
+                        Log.e("label ========", label);
+                        publishProgress(20);
                         JSONObject nutriObject = foodObject.getJSONObject("nutrients");
                         Log.i(ACTIVITY_NAME, nutriObject.toString());
                         publishProgress(60);
                         String calorieValue = nutriObject.getString("ENERC_KCAL");
+                        Log.e("ENERC_KCAL ========", calorieValue);
                         publishProgress(80);
                         String  fatValue = nutriObject.getString("FAT");
+                        Log.e("FAT ========", fatValue);
                         publishProgress(90);
                         String  carbValue = nutriObject.getString("CHOCDF");
+                        Log.e("CHOCDF ========", carbValue);
                         publishProgress(100);
 
                         HashMap<String, String> food = new HashMap<>();
                         food.put("Label", label);
-                        food.put("Calories", "Calories: "+ calorieValue );
-                        food.put("Fat", "Fat: " + fatValue + "g");
-                        food.put("Carbs", "Carb: " + carbValue+ "g");
-
+                        food.put("Calories", "Calories: "+ formatDecimal(calorieValue) );
+                        Log.e("Calories ===转换后=====", formatDecimal(calorieValue));
+                        food.put("Fat", "Fat: " + formatDecimal(fatValue) + "g");
+                        Log.e("Fat ===转换后=====", formatDecimal(fatValue));
+                        food.put("Carbs", "Carb: " + formatDecimal(carbValue)+ "g");
+                        Log.e("Carbs ====转换后====", formatDecimal(carbValue));
                         foodItemList.add(food);
 
                     } catch (JSONException e) {
@@ -260,13 +274,33 @@ public class FoodActivity extends AppCompatActivity {
                 view.setBackgroundColor(Color.RED);
                 toast.show();
             }else{
-                ListAdapter adapter = new SimpleAdapter(FoodActivity.this, foodItemList,
+
+                adapter = new SimpleAdapter(FoodActivity.this, foodItemList,
                         R.layout.food_info, new String[]{ "Label","Calories", "Fat", "Carbs"},
                         new int[]{R.id.foodLabel, R.id.caloriesV, R.id.fatV, R.id.carbsV});
                 list.setAdapter(adapter);
+
+
             }
             progress.setVisibility(View.INVISIBLE);
         }
 
+    }
+
+
+    private String formatDecimal(String s){
+        Double dec = Double.parseDouble(s);
+
+        DecimalFormat df = new DecimalFormat("##.00");
+        return ""+df.format(dec);
+       // return s.split(".",2)[0];
+       /* int posDot = s.indexOf(".");
+        if (posDot <= 0) return s;
+        if (s.length() - posDot - 1 > 2)
+        {
+            s.substring(0, posDot + 4);
+        }*/
+
+       // return s;
     }
 }

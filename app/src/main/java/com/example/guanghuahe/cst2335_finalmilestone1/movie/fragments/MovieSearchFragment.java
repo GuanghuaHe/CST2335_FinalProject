@@ -256,6 +256,9 @@ public class MovieSearchFragment  extends Fragment {
              *
              */
             movieAdapter.notifyDataSetChanged();
+            if(searchList.size() == 0)
+            Toast.makeText(mainActivity,"sorry, there no result searched by this key words", Toast.LENGTH_SHORT ).show();
+            else
             Toast.makeText(mainActivity,"click item to see detail and save", Toast.LENGTH_SHORT ).show();
         }
 

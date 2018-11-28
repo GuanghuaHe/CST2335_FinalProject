@@ -120,7 +120,7 @@ public class HistoryFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
         historyView.setOnItemClickListener((a,b,c,d)-> {
-            Log.e(TAG, "HISTORYFRAGMENT =====> MovieDetail Activity");
+            Log.e(TAG, "transfer into MovieDetail Activity");
             //get selected item
             MovieDTO MOVIE = historyAdapter.getMovie(c);
             //go to detail
