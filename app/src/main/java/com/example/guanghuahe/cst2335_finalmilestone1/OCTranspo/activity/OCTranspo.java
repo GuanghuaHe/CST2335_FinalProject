@@ -1,7 +1,6 @@
 package com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.activity;
 
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -18,17 +17,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.guanghuahe.cst2335_finalmilestone1.Food.FoodActivity;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
-import com.example.guanghuahe.cst2335_finalmilestone1.Nutrition;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.adapters.DisplayStopInfor;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.database.OCDatabaseHelper;
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
@@ -129,7 +126,7 @@ public class OCTranspo extends AppCompatActivity {
                 stationInput.setText("");
                 adapter.notifyDataSetChanged();
             } else {
-                Snackbar wronginput = Snackbar.make(findViewById(android.R.id.content), getString(R.string.oc_badinput), Snackbar.LENGTH_SHORT);
+                Snackbar wronginput = Snackbar.make(findViewById(android.R.id.content), getString(R.string.oc_wronginput), Snackbar.LENGTH_SHORT);
                 wronginput.show();
                 stationInput.setText("");
             }
@@ -143,12 +140,12 @@ public class OCTranspo extends AppCompatActivity {
 
         //Saves the text to the database, then loads the OCTranspoStop activity with the Stop number added
         stops.setOnItemClickListener((parent, view, position, id) -> {
-            String s = stopsList.get(position);
-            Log.i(ACTIVITY_NAME, "站点名称 Message: " + s);
-            String stationNumber = stopsNumbers.get(position);
+            String ostring = stopsList.get(position);
+            Log.i(ACTIVITY_NAME, "站点名称 Message: " + ostring);
+            String stopNumber = stopsNumbers.get(position);
             //Passes the input text to new activity when starting the activity
             Intent i = new Intent(OCTranspo.this, DisplayStopInfor.class);
-            i.putExtra("stationNumber", stationNumber);
+            i.putExtra("stationNumber", stopNumber);
             currentStopIndex = position;
             startActivity(i);
         });
@@ -174,7 +171,7 @@ public class OCTranspo extends AppCompatActivity {
 
         switch (menuItemId) {
             case R.id.menuItemFood:
-                Intent intent2 = new Intent(OCTranspo.this, Nutrition.class);
+                Intent intent2 = new Intent(OCTranspo.this, FoodActivity.class);
                 startActivity(intent2);
                 break;
             case R.id.menuItemMovie:
@@ -188,7 +185,7 @@ public class OCTranspo extends AppCompatActivity {
             case R.id.menuItemAbout:
                 final AlertDialog.Builder builder = new AlertDialog.Builder(ctxt).setTitle("OC Transpo App").setCancelable(false);
 
-                String displayAboutString = getString(R.string.about);
+                String displayAboutString = getString(R.string.oc_about);
 
                 builder.setPositiveButton("Ok", null)
                         .setIcon(R.drawable.about_icon)
@@ -200,6 +197,24 @@ public class OCTranspo extends AppCompatActivity {
                 //TextView messageView = dialog.findViewById(android.R.id.message);
                 //TextView titleView = dialog.findViewById(android.R.id.title);
                 break;
+
+            case R.id.menuItemHelp:
+                final AlertDialog.Builder builder_help = new AlertDialog.Builder(ctxt).setTitle("OC Transpo App").setCancelable(false);
+
+                String displayHelpString = getString(R.string.oc_help);
+
+                builder_help.setPositiveButton("Ok", null)
+                        .setIcon(R.drawable.about_icon)
+                        .setMessage(displayHelpString)
+                        .create();
+
+                AlertDialog dialog_help = builder_help.show();
+
+                //TextView messageView = dialog.findViewById(android.R.id.message);
+                //TextView titleView = dialog.findViewById(android.R.id.title);
+                break;
+
+
         }
 
         return true;

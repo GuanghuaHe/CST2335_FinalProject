@@ -10,7 +10,7 @@
         android:layout_height="60dp"
         android:layout_column="0"
         android:layout_row="4"
-        android:background="@drawable/bus" />
+        android:background="@drawable/oc_bus" />
 
     <TextView
         android:id="@+id/route_text"

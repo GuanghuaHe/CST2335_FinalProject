@@ -1,6 +1,7 @@
 package com.example.guanghuahe.cst2335_finalmilestone1.Food;
 
 import android.app.AlertDialog;
+
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,7 +9,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
+
+
 
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -35,6 +37,11 @@ public class FoodFragment extends Fragment {
     Toolbar toolbar;
 
 
+   public FoodFragment(){
+
+    }
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +59,8 @@ public class FoodFragment extends Fragment {
         parent = new FoodActivity();
         View view = inflater.inflate(R.layout.fragment_food,container,false);
 
-        toolbar = (Toolbar) view.findViewById(R.id.toolbar); //set up toolbar
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+       // toolbar = (Toolbar) view.findViewById(R.id.toolbar); //set up toolbar
+      //  ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 //        if (this.getActivity().getActionBar() != null) this.getActivity().getActionBar().setDisplayShowTitleEnabled(false);
 //        setHasOptionsMenu(false); //needed to make option menus to appear
 
