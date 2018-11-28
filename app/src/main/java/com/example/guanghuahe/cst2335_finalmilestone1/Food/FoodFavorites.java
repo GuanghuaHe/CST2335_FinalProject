@@ -20,11 +20,10 @@ public class FoodFavorites extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.food_favorites);
 
-        FoodFragment newFragment = new FoodFragment();
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ftrans = fm.beginTransaction();
-        ftrans.replace(R.id.favorites,newFragment); //load a fragment into the framelayout
+        ftrans.replace(R.id.favorites,new FoodFragment()); //load a fragment into the framelayout
         ftrans.commit(); //actually load it
     }
 }
