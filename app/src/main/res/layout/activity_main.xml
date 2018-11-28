@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/Nutrition"
+        android:id="@+id/FoodButton"
         android:contentDescription="@string/desc"
         android:layout_width="160dp"
         android:layout_height="160dp"

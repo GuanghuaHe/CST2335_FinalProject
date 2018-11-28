@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/foodLabel"/>
+
+    <TextView
+        android:id="@+id/caloriesV"
+        android:layout_width="143dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@id/foodLabel"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/fatV"
+        android:layout_width="143dp"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/foodLabel"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="121dp" />
+
+    <TextView
+        android:id="@+id/carbsV"
+        android:layout_width="143dp"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/foodLabel"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="241dp" />
+
+</RelativeLayout>
