@@ -143,12 +143,12 @@ public class OCTranspo extends AppCompatActivity {
 
         //Saves the text to the database, then loads the OCTranspoStop activity with the Stop number added
         stops.setOnItemClickListener((parent, view, position, id) -> {
-            String s = stopsList.get(position);
-            Log.i(ACTIVITY_NAME, "站点名称 Message: " + s);
-            String stationNumber = stopsNumbers.get(position);
+            String ostring = stopsList.get(position);
+            Log.i(ACTIVITY_NAME, "站点名称 Message: " + ostring);
+            String stopNumber = stopsNumbers.get(position);
             //Passes the input text to new activity when starting the activity
             Intent i = new Intent(OCTranspo.this, DisplayStopInfor.class);
-            i.putExtra("stationNumber", stationNumber);
+            i.putExtra("stationNumber", stopNumber);
             currentStopIndex = position;
             startActivity(i);
         });
@@ -200,6 +200,24 @@ public class OCTranspo extends AppCompatActivity {
                 //TextView messageView = dialog.findViewById(android.R.id.message);
                 //TextView titleView = dialog.findViewById(android.R.id.title);
                 break;
+
+            case R.id.menuItemHelp:
+                final AlertDialog.Builder builder_help = new AlertDialog.Builder(ctxt).setTitle("OC Transpo App").setCancelable(false);
+
+                String displayHelpString = getString(R.string.oc_help);
+
+                builder_help.setPositiveButton("Ok", null)
+                        .setIcon(R.drawable.about_icon)
+                        .setMessage(displayHelpString)
+                        .create();
+
+                AlertDialog dialog_help = builder_help.show();
+
+                //TextView messageView = dialog.findViewById(android.R.id.message);
+                //TextView titleView = dialog.findViewById(android.R.id.title);
+                break;
+
+
         }
 
         return true;
