@@ -22,8 +22,6 @@ public class OCDatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME_ROUTES = "routes";
     public static final String ROUTE_NO = "route_number";
 
-
-
     public OCDatabaseHelper(Context ctx) {
         super(ctx, DATABASE_NAME, null, VERSION_NUM);
     }
@@ -43,7 +41,7 @@ public class OCDatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVer, int newVer) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_ROUTES);
-        Log.i("OCDatabaseHelper", "Calling onUpgrade(), oldVersion="
+        Log.i("OCDatabaseHelper", "看看版本号是啥 Execusing onUpgrade(), oldVersion="
                 + oldVer + ". newVersion=" + newVer + ".");
         onCreate(db);
     }

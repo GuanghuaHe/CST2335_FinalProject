@@ -22,8 +22,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:cacheColorHint="#FFF4F4F4"
+        android:imeOptions="actionDone"
+        android:inputType="textImeMultiLine"
         android:hint="@string/pibstn"
-        android:inputType="text" />
+        />
 
     <!--<ProgressBar-->
         <!--android:id="@+id/ocProgressBar"-->
@@ -58,4 +60,7 @@
 
 
     </LinearLayout>
+
+
+
 </LinearLayout>

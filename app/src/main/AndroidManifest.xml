@@ -20,7 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OCTranspo.activity.OCTranspo" />
+        <activity android:name=".OCTranspo.activity.OCTranspo"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".OCTranspo.adapters.DisplayStopInfor" />
         <activity android:name=".OCTranspo.adapters.DisplayRouteInfor"></activity>
         <activity android:name=".CBC" />
@@ -31,7 +32,9 @@
 
 
 
-        <activity android:name=".Nutrition"/>
+        <activity android:name=".Food.FoodActivity"></activity>
+        <activity android:name=".Food.FoodFavorites"></activity>
+
 
 
     </application>

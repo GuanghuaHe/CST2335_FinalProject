@@ -1,7 +1,6 @@
 package com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.activity;
 
 import android.os.AsyncTask;
-import android.os.Parcel;
 import android.util.Log;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -23,7 +22,7 @@ import java.util.List;
 public class OCRoute {
 
     private boolean ready = false;
-    private String stationNum;
+    private String stopsNum;
     private String routeno;
     private String destination;
     private String coordinates;
@@ -40,11 +39,12 @@ public class OCRoute {
     public OCRoute(String routeno, String destination, String direction, String stationNum) {
 
         this.direction = direction;
-        this.stationNum = stationNum;
+        this.stopsNum = stationNum;
         this.routeno = routeno;
         this.destination = destination;
 
     }
+
 
 
 
@@ -56,8 +56,8 @@ public class OCRoute {
         return destination;
     }
 
-    public String getStationNum() {
-        return stationNum;
+    public String getStopNum() {
+        return stopsNum;
     }
 
     public String getCoordinates() {
@@ -65,9 +65,9 @@ public class OCRoute {
     }
 
 
-    public static void updateData(String s) {
-        new OCRoute().new OCRouteQuery().execute(s);
-        Log.e("URL ==", s);
+    public static void updateData(String ss) {
+        new OCRoute().new OCRouteQuery().execute(ss);
+        Log.e("网址是什么 URL ==", ss);
     }
 
 
@@ -84,12 +84,11 @@ public class OCRoute {
 
         @Override
         protected String doInBackground(String... array) {
-            Log.i("OCRoute constructor", "background activity start..");
+            Log.i("OCRoute constructor", "开始查询 background activity start..");
 
             try {
 
                 URL url = new URL(array[0]);
-
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setReadTimeout(10000 /* milliseconds */);
                 conn.setConnectTimeout(15000 /* milliseconds */);
@@ -97,22 +96,18 @@ public class OCRoute {
                 conn.setDoInput(true);
                 conn.connect();
 
-                Log.i("OCRoute constructor", "attempting parse..");
+                Log.i("OCRoute constructor", "开始搜寻关键字attempting parse..");
                 parse(conn.getInputStream());
-                Log.i("OCRoute constructor", "parse complete");
+                Log.i("OCRoute constructor", "搜寻完成parse complete");
             } catch (Exception e) {
-                Log.i("OCRoute constructor", "Error: " + e.toString());
+                Log.i("OCRoute constructor", "发生错误Error: " + e.toString());
                 return ("Error: " + e.toString());
             }
             return null;
         }
 
         protected void parse(InputStream in) throws XmlPullParserException, IOException {
-            String lastTag = "";
-            boolean cont = true;
-            boolean foundDirection = false;
 
-            String fullCoordinates = "";
             try {
 
                 //Use xml parser to load the data
@@ -123,12 +118,12 @@ public class OCRoute {
                 xpp.setInput(in, "UTF-8");
 
 
-                int eventType = 0;
+                int eventType;
 
 
                 //basically we cycle through the parser, we add data to our data object one piece at a time for each trip, at the end of each
                 //trip we add that trip to our result array, then reset the data object for a new trip. Until we reach the end of our XML
-                String tagName =null;
+                String tagName;
                 String[] temp = null;
 
                 while((eventType = xpp.next()) != XmlPullParser.END_DOCUMENT){
@@ -253,7 +248,7 @@ public class OCRoute {
 
             } finally {
                 in.close();
-                Log.i("OCRoute constructor", "closed input stream");
+                Log.i("OCRoute constructor", "关闭连接 input stream is closed");
                 Log.e("OCRoute LIST DETAIL:", "" + routeList.get(0)[0] + "\t" + routeList.get(0)[1] + "\t" + routeList.get(0)[2] + "\t" + routeList.get(0)[3] + "\t" + routeList.get(0)[4]);
                 // Log.e("OCRoute LIST DETAIL:",""+ routeList.get(1)[0]+ "\t" + routeList.get(1)[1]+"\t"+routeList.get(1)[2]+"\t"+routeList.get(1)[3]+"\t" + routeList.get(1)[4]);
                 // Log.e("OCRoute LIST DETAIL:",""+ routeList.get(2));
@@ -267,7 +262,7 @@ public class OCRoute {
          */
         @Override
         protected void onPostExecute(String result) {
-            stationNum = ((stationNum != null) ? stationNum : "Info NA");
+            stopsNum = ((stopsNum != null) ? stopsNum : "Info NA");
             routeno = ((routeno != null) ? routeno : "Info NA");
             destination = ((destination != null) ? destination : "Info NA");
             coordinates = ((coordinates != null) ? coordinates : "Info NA");
