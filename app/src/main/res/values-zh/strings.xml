@@ -94,9 +94,9 @@
 
 
     <!--  OC TRANSPO STRING VARIABLES-->
-    <string name="oc_badinput">站台编号必须是数字</string>
-    <string name="oc_station_w_number">站台编号 </string>
-    <string name="oc_station_not_found"> 数据库查询无结果，请删除编号</string>
+    <string name="oc_wronginput">站台编号必须是数字</string>
+    <string name="oc_stop_w_no">站台编号 </string>
+    <string name="oc_stop_not_found"> 数据库查询无结果，请删除编号</string>
     <string name="oc_refresh">更新中...</string>
     <string name="oc_route">线路 </string>
     <string name="oc_direction">方向:</string>
@@ -117,6 +117,6 @@
     <string name="pibstn"> 请输入公交站点: </string>
     <string name="view_stats"> 查看统计信息 </string>
     <string name="cal_stat"> 正在计算平均调整时间... </string>
-    <string name="about">作者: 何光华e \n版本 1.1 \邮箱:he000068@algonquinlive.com</string>
+    <string name="oc_about">作者: 何光华e \n版本 1.1 \邮箱:he000068@algonquinlive.com</string>
     <string name="oc_help">帮助</string>
 </resources>

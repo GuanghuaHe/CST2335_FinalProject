@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -173,7 +172,7 @@ public class DisplayStopInfor extends Activity {
 
 
         TextView text =  dialog.findViewById(R.id.textDialog);
-        text.setText(getString(R.string.oc_station_w_number) + " " + stationNumber + " "+ getString(R.string.oc_station_not_found));
+        text.setText(getString(R.string.oc_stop_w_no) + " " + stationNumber + " "+ getString(R.string.oc_stop_not_found));
 
         ImageView image =  dialog.findViewById(R.id.image);
         image.setImageResource(R.drawable.missing);

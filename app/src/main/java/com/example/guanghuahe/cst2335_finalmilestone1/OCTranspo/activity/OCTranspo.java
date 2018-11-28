@@ -1,7 +1,6 @@
 package com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.activity;
 
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -18,12 +17,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -129,7 +126,7 @@ public class OCTranspo extends AppCompatActivity {
                 stationInput.setText("");
                 adapter.notifyDataSetChanged();
             } else {
-                Snackbar wronginput = Snackbar.make(findViewById(android.R.id.content), getString(R.string.oc_badinput), Snackbar.LENGTH_SHORT);
+                Snackbar wronginput = Snackbar.make(findViewById(android.R.id.content), getString(R.string.oc_wronginput), Snackbar.LENGTH_SHORT);
                 wronginput.show();
                 stationInput.setText("");
             }
@@ -188,7 +185,7 @@ public class OCTranspo extends AppCompatActivity {
             case R.id.menuItemAbout:
                 final AlertDialog.Builder builder = new AlertDialog.Builder(ctxt).setTitle("OC Transpo App").setCancelable(false);
 
-                String displayAboutString = getString(R.string.about);
+                String displayAboutString = getString(R.string.oc_about);
 
                 builder.setPositiveButton("Ok", null)
                         .setIcon(R.drawable.about_icon)
