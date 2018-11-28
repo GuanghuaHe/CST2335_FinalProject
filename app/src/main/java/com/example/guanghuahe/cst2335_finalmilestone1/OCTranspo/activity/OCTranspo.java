@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.guanghuahe.cst2335_finalmilestone1.Food.FoodActivity;
+import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.adapters.StationAdapter;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.adapters.DisplayStopInfor;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.database.OCDatabaseHelper;
@@ -49,6 +50,10 @@ public class OCTranspo extends AppCompatActivity {
     ListView stops;
     EditText stationInput;
     Button addStation;
+    Button delStation;
+
+
+
     ArrayList<String> stopsList = new ArrayList<>();
     ArrayList<String> stopsNumbers = new ArrayList<>();
 
@@ -98,7 +103,7 @@ public class OCTranspo extends AppCompatActivity {
             cursor.moveToNext();
         }
 
-        //When you click the floating action button it adds a bus number - CST2335 – Graphical Interface Programming Lab 3
+        //When you click the floating action button it adds a bus stop number - CST2335 – Graphical Interface Programming Lab 3
 
         addStation.setOnClickListener((e) -> {
             String string = stationInput.getText().toString();
@@ -137,6 +142,18 @@ public class OCTranspo extends AppCompatActivity {
 
 
 
+        //When you click the delete action button it deletes all the  bus stop numbers - CST2335 – Graphical Interface Programming Lab 3
+
+        delStation = findViewById(R.id.delAllStopNoButton);
+        delStation.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                stopsList.clear();
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+
+
 
         //Saves the text to the database, then loads the OCTranspoStop activity with the Stop number added
         stops.setOnItemClickListener((parent, view, position, id) -> {
@@ -152,6 +169,10 @@ public class OCTranspo extends AppCompatActivity {
 
 
     }
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -309,7 +330,7 @@ public class OCTranspo extends AppCompatActivity {
      * This adapter updates/generates the list view elements
      * This was Largely based on CST2335 – Graphical Interface Programming Lab 4
      */
-    public class StationAdapter extends ArrayAdapter<String> {
+    /*public class StationAdapter extends ArrayAdapter<String> {
         public StationAdapter(Context ctx) {
             super(ctx, 0);
         }
@@ -342,6 +363,10 @@ public class OCTranspo extends AppCompatActivity {
             return position;
         }
 
+    }*/
+
+    public ArrayList<String> getStopsList() {
+        return stopsList;
     }
 }
 

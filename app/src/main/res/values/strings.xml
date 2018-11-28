@@ -109,7 +109,7 @@
     <string name="desc">Image</string>
     <string name="welcome">OC Transpo Search</string>
     <string name="select">Please select only one route below!</string>
-    <string name="deleteALL">Delete All?</string>
+    <string name="deleteALL">Delete all stop numbers</string>
     <string name="hint">Please enter the stop number</string>
 
     <!--  OC TRANSPO STRING VARIABLES-->
@@ -123,7 +123,7 @@
     <string name="oc_adjustedtime">Adjusted time: </string>
     <string name="oc_latlong">Latitude/Longitude:</string>
     <string name="oc_gpsspeed">GPS Speed: </string>
-    <string name="oc_deletestationbutton">Delete This Station</string>
+    <string name="oc_deletestationbutton">Delete This Stop</string>
     <string name="oc_refreshbutton">Refresh</string>
     <string name="oc_addstationbutton">Add Stop Number</string>
     <string name="oc_authorinfo">Author:  Guanghua He\nVersion num:  1.0</string>
