@@ -24,6 +24,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.guanghuahe.cst2335_finalmilestone1.Food.FoodActivity;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
 import com.example.guanghuahe.cst2335_finalmilestone1.Nutrition;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.adapters.DisplayStopInfor;
@@ -51,6 +52,7 @@ public class OCTranspo extends AppCompatActivity {
     Button addStation;
     ArrayList<String> stopsList = new ArrayList<>();
     ArrayList<String> stopsNumbers = new ArrayList<>();
+    Button delStation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,11 +133,17 @@ public class OCTranspo extends AppCompatActivity {
                 stationInput.setText("");
             }
 
-
-
         });
 
+        //When you click the delete action button it deletes all the  bus stop numbers - CST2335 – Graphical Interface Programming Lab 3
 
+        delStation = findViewById(R.id.delAllStopNoButton);
+        delStation.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                stopsList.clear();
+                adapter.notifyDataSetChanged();
+            }
+        });
 
 
         //Saves the text to the database, then loads the OCTranspoStop activity with the Stop number added
@@ -171,7 +179,7 @@ public class OCTranspo extends AppCompatActivity {
 
         switch (menuItemId) {
             case R.id.menuItemFood:
-                Intent intent2 = new Intent(OCTranspo.this, Nutrition.class);
+                Intent intent2 = new Intent(OCTranspo.this, FoodActivity.class);
                 startActivity(intent2);
                 break;
             case R.id.menuItemMovie:
