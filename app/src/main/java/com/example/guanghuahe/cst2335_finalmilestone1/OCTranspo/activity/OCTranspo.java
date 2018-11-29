@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.guanghuahe.cst2335_finalmilestone1.Food.FoodActivity;
+import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.adapters.StationAdapter;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
 import com.example.guanghuahe.cst2335_finalmilestone1.Nutrition;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.adapters.DisplayStopInfor;
@@ -317,39 +318,43 @@ public class OCTranspo extends AppCompatActivity {
      * This adapter updates/generates the list view elements
      * This was Largely based on CST2335 – Graphical Interface Programming Lab 4
      */
-    public class StationAdapter extends ArrayAdapter<String> {
-        public StationAdapter(Context ctx) {
-            super(ctx, 0);
-        }
+//    public class StationAdapter extends ArrayAdapter<String> {
+//        public StationAdapter(Context ctx) {
+//            super(ctx, 0);
+//        }
+//
+//        @Override
+//        public int getCount() {
+//            return (stopsList.size());
+//        }
+//
+//        @Override
+//        public String getItem(int position) {
+//            return stopsList.get(position);
+//        }
+//
+//        @Override
+//        public @NonNull View getView(int position, View convertView, @NonNull ViewGroup parent) {
+//            LayoutInflater inflater = OCTranspo.this.getLayoutInflater();
+//
+//            View result = inflater.inflate(R.layout.oc_stop, null);
+//
+//            TextView stationText = result.findViewById(R.id.station_text);
+//
+//            stationText.setText(getItem(position));
+//
+//            return result;
+//        }
+//
+//        @Override
+//        public long getItemId(int position) {
+//            return position;
+//        }
+//
+//    }
 
-        @Override
-        public int getCount() {
-            return (stopsList.size());
-        }
-
-        @Override
-        public String getItem(int position) {
-            return stopsList.get(position);
-        }
-
-        @Override
-        public @NonNull View getView(int position, View convertView, @NonNull ViewGroup parent) {
-            LayoutInflater inflater = OCTranspo.this.getLayoutInflater();
-
-            View result = inflater.inflate(R.layout.oc_stop, null);
-
-            TextView stationText = result.findViewById(R.id.station_text);
-
-            stationText.setText(getItem(position));
-
-            return result;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
+    public ArrayList<String> getStopsList() {
+        return stopsList;
     }
 }
 
