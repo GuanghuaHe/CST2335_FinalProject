@@ -81,7 +81,7 @@ public class OCRoute {
          * Load the data from the OCTranspo URL
          * based on CST2335 – Graphical Interface Programming Lab 6
          */
-
+        List<String[]> tempList = new ArrayList<>();
         @Override
         protected String doInBackground(String... array) {
             Log.i("OCRoute constructor", "开始查询 background activity start..");
@@ -172,7 +172,7 @@ public class OCRoute {
                         else if("GPSSpeed".equalsIgnoreCase(tagName)) {
                             temp[8] = xpp.nextText();
                             Log.e("GPS Speed  ", "" + temp[8]);
-                            routeList.add(temp);
+                            tempList.add(temp);
                         }else{}
 
 
@@ -262,6 +262,7 @@ public class OCRoute {
          */
         @Override
         protected void onPostExecute(String result) {
+
             stopsNum = ((stopsNum != null) ? stopsNum : "Info NA");
             routeno = ((routeno != null) ? routeno : "Info NA");
             destination = ((destination != null) ? destination : "Info NA");
@@ -272,6 +273,8 @@ public class OCRoute {
             direction = ((direction != null) ? direction : "Info NA");
             ready = true;
 
+            routeList.clear();
+            routeList.addAll(tempList);
 
         }
     }
