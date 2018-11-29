@@ -1,34 +1,29 @@
 package com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.activity;
 
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
-import com.example.guanghuahe.cst2335_finalmilestone1.Nutrition;
+import com.example.guanghuahe.cst2335_finalmilestone1.Food.FoodActivity;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.adapters.DisplayStopInfor;
+import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.adapters.StationAdapter;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.database.OCDatabaseHelper;
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
+import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
 
 import java.util.ArrayList;
 
@@ -51,6 +46,7 @@ public class OCTranspo extends AppCompatActivity {
     Button addStation;
     ArrayList<String> stopsList = new ArrayList<>();
     ArrayList<String> stopsNumbers = new ArrayList<>();
+    Button delStation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,11 +127,17 @@ public class OCTranspo extends AppCompatActivity {
                 stationInput.setText("");
             }
 
-
-
         });
 
+        //When you click the delete action button it deletes all the  bus stop numbers - CST2335 – Graphical Interface Programming Lab 3
 
+        delStation = findViewById(R.id.delAllStopNoButton);
+        delStation.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                stopsList.clear();
+                adapter.notifyDataSetChanged();
+            }
+        });
 
 
         //Saves the text to the database, then loads the OCTranspoStop activity with the Stop number added
@@ -171,7 +173,7 @@ public class OCTranspo extends AppCompatActivity {
 
         switch (menuItemId) {
             case R.id.menuItemFood:
-                Intent intent2 = new Intent(OCTranspo.this, Nutrition.class);
+                Intent intent2 = new Intent(OCTranspo.this, FoodActivity.class);
                 startActivity(intent2);
                 break;
             case R.id.menuItemMovie:
@@ -309,39 +311,43 @@ public class OCTranspo extends AppCompatActivity {
      * This adapter updates/generates the list view elements
      * This was Largely based on CST2335 – Graphical Interface Programming Lab 4
      */
-    public class StationAdapter extends ArrayAdapter<String> {
-        public StationAdapter(Context ctx) {
-            super(ctx, 0);
-        }
+//    public class StationAdapter extends ArrayAdapter<String> {
+//        public StationAdapter(Context ctx) {
+//            super(ctx, 0);
+//        }
+//
+//        @Override
+//        public int getCount() {
+//            return (stopsList.size());
+//        }
+//
+//        @Override
+//        public String getItem(int position) {
+//            return stopsList.get(position);
+//        }
+//
+//        @Override
+//        public @NonNull View getView(int position, View convertView, @NonNull ViewGroup parent) {
+//            LayoutInflater inflater = OCTranspo.this.getLayoutInflater();
+//
+//            View result = inflater.inflate(R.layout.oc_stop, null);
+//
+//            TextView stationText = result.findViewById(R.id.station_text);
+//
+//            stationText.setText(getItem(position));
+//
+//            return result;
+//        }
+//
+//        @Override
+//        public long getItemId(int position) {
+//            return position;
+//        }
+//
+//    }
 
-        @Override
-        public int getCount() {
-            return (stopsList.size());
-        }
-
-        @Override
-        public String getItem(int position) {
-            return stopsList.get(position);
-        }
-
-        @Override
-        public @NonNull View getView(int position, View convertView, @NonNull ViewGroup parent) {
-            LayoutInflater inflater = OCTranspo.this.getLayoutInflater();
-
-            View result = inflater.inflate(R.layout.oc_stop, null);
-
-            TextView stationText = result.findViewById(R.id.station_text);
-
-            stationText.setText(getItem(position));
-
-            return result;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
+    public ArrayList<String> getStopsList() {
+        return stopsList;
     }
 }
 
