@@ -107,12 +107,11 @@ public class DisplayRouteInfor extends Activity {
     private void setDisplay() {
 
         list = OCRoute.routeList;
-     //   Log.e("OCRoute LIST DETAIL:",""+ list.get(0)[0]+ "\t" + list.get(0)[1]+"\t"+list.get(0)[2]+"\t"+list.get(0)[3]+"\t" + list.get(0)[4]);
+
+   
          adapter = new RouteDetailAdapter(this, R.layout.route_detail_item, list);
+
         routeDetailList.setAdapter(adapter);
-
-
-
 
     }
 
