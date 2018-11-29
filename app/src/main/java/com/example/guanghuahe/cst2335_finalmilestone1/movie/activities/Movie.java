@@ -28,16 +28,15 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.guanghuahe.cst2335_finalmilestone1.CBC;
 
-
-import com.example.guanghuahe.cst2335_finalmilestone1.Food.FoodActivity;
+import com.example.guanghuahe.cst2335_finalmilestone1.Nutrition;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.activity.OCTranspo;
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
-
+import com.example.guanghuahe.cst2335_finalmilestone1.movie.adapters.HistoryAdapter;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.database.DatabaseHelper;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.fragments.HistoryFragment;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.fragments.HistoryToolBarFragment;
@@ -114,9 +113,11 @@ public class Movie extends AppCompatActivity {
         editText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 if (editText.getText() != null && editText.getText().length() > 0)
-
-                            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.RESULT_HIDDEN);
-
+                   /* if(imm.isActive()&&getCurrentFocus()!=null) {
+                        if (getCurrentFocus().getWindowToken() != null) {*/
+                            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                  /*      }
+                    }*/
                         return true;
             }
 
@@ -247,7 +248,7 @@ public class Movie extends AppCompatActivity {
                 startActivity(intent2);
                 break;
             case R.id.movieItem3:
-                Intent intent3 = new Intent(Movie.this, FoodActivity.class);
+                Intent intent3 = new Intent(Movie.this, Nutrition.class);
                 startActivity(intent3);
                 break;
             case R.id.movieItem4:

@@ -20,9 +20,9 @@
         android:layout_column="1"
         android:background="#6200ee"
         android:gravity="start|center_vertical|center_horizontal"
-        android:textAlignment="center"
+
         android:textColor="@android:color/background_light"
-        android:textSize="22sp"
+        android:textSize="20sp"
 
          />
     </GridLayout>
