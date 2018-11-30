@@ -1,3 +1,11 @@
+/**
+ * The activity for display route information, when use clicked a route number will invoke this activity
+ * @Author: Guanghua He
+ * @Version: 1.1
+ * @Since:1.0
+ */
+
+
 package com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.adapters;
 
 import android.app.Activity;

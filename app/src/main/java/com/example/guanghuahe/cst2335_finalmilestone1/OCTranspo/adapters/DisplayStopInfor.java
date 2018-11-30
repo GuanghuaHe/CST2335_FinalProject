@@ -1,3 +1,10 @@
+/**
+ * The activity for display stop information, when use clicked a stop number will invoke this activity
+ * @Author: Guanghua He
+ * @Version: 1.1
+ * @Since:1.0
+ */
+
 package com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.adapters;
 
 import android.app.Activity;

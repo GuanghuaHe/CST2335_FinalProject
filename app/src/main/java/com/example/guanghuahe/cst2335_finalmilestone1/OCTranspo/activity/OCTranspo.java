@@ -1,3 +1,13 @@
+/**
+ * The start activity for Oc transpo application
+ * @Author: Guanghua He
+ * @Version: 1.1
+ * @Since:1.0
+ */
+
+
+
+
 package com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.activity;
 
 import android.content.ContentValues;
