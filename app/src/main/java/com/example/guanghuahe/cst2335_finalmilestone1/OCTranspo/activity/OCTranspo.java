@@ -53,7 +53,7 @@ public class OCTranspo extends AppCompatActivity {
 
     ArrayList<String> stopsList = new ArrayList<>();
     ArrayList<String> stopsNumbers = new ArrayList<>();
-    Button delStation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
