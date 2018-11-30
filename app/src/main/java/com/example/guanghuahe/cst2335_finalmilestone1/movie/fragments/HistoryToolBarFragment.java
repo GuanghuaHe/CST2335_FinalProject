@@ -21,7 +21,9 @@ import com.example.guanghuahe.cst2335_finalmilestone1.R;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.database.DatabaseHelper;
 
-
+/**
+ * this fragment will replace search bar. providing ordering method and give statistic
+ */
 public class HistoryToolBarFragment extends Fragment {
         private Button removeAll, byYear, statistic, byRuntime, byRating;
         private DatabaseHelper DB;
@@ -53,6 +55,10 @@ public class HistoryToolBarFragment extends Fragment {
         byRating = tools.findViewById(R.id.sort_byRating);
         statistic = tools.findViewById(R.id.radio_button);
 
+
+        /**
+         * set event handlers for buttons, which will call methods built in HistoryFragment class
+         */
 
         removeAll.setOnClickListener(e-> {
             AlertDialog dialog = new AlertDialog.Builder(mainActivity)

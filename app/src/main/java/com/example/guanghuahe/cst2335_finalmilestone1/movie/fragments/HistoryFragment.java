@@ -19,6 +19,7 @@ import com.example.guanghuahe.cst2335_finalmilestone1.R;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.MovieDetail;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.adapters.HistoryAdapter;
+import com.example.guanghuahe.cst2335_finalmilestone1.movie.adapters.MovieAdapter;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.database.DatabaseHelper;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.dto.MovieDTO;
 
@@ -186,4 +187,6 @@ public class HistoryFragment extends Fragment {
     private Integer average(List<Integer> years) {
         return  years.stream().reduce(0,(a,b) ->a+b)/years.size();
     }
+
+
 }

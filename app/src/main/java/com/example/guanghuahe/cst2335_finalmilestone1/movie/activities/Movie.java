@@ -2,12 +2,10 @@ package com.example.guanghuahe.cst2335_finalmilestone1.movie.activities;
 
 
 import android.app.AlertDialog;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -15,34 +13,27 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
 import android.view.Menu;
-
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-
 import android.view.inputmethod.EditorInfo;
-
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.guanghuahe.cst2335_finalmilestone1.CBC;
-
 import com.example.guanghuahe.cst2335_finalmilestone1.Nutrition;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.activity.OCTranspo;
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
-import com.example.guanghuahe.cst2335_finalmilestone1.movie.adapters.HistoryAdapter;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.database.DatabaseHelper;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.fragments.HistoryFragment;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.fragments.HistoryToolBarFragment;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.fragments.MovieSearchFragment;
 
-
+/**
+ *  home page of movie search
+ */
 public class Movie extends AppCompatActivity {
 
     /**
@@ -108,16 +99,12 @@ public class Movie extends AppCompatActivity {
          * editText entry => start search
          */
 
-        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+
         editText = (EditText) findViewById(R.id.moviesearch_editText);
         editText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 if (editText.getText() != null && editText.getText().length() > 0)
-                   /* if(imm.isActive()&&getCurrentFocus()!=null) {
-                        if (getCurrentFocus().getWindowToken() != null) {*/
-                            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-                  /*      }
-                    }*/
+
                         return true;
             }
 

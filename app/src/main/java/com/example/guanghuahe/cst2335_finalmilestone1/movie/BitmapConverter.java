@@ -16,11 +16,14 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * help class
+ */
 public class BitmapConverter {
     private static File dir;
 
     /**
-     * get bitmap from urlpath (String)
+     * get bitmap from urlpath (String) (from API)
      * @param urlStr
      * @return
      */
@@ -51,7 +54,11 @@ public class BitmapConverter {
         return bitmap;
     }
 
-
+    /**
+     * convert bitmap into byte[]  used to save in database
+     * @param bitmap
+     * @return
+     */
     public static byte[] getByte(Bitmap bitmap){
         if(bitmap == null) return null;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -72,54 +79,7 @@ public class BitmapConverter {
 
 
 
-    /**
-     * save bitmap locally
-     * @param bitmap
-     * @param fileName
-     */
-    public static void saveBitmap(Bitmap bitmap, String fileName){
-         dir = new File("image");//设置保存路径
-        try (FileOutputStream out = new FileOutputStream(new File(dir, "bitmap" + fileName+".png"))) {
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
-            // PNG is a lossless format, the compression factor (100) is ignored
-            Log.i("BitmapConverter","save image successfully");
-        } catch (IOException e) {
-            Log.i("BitmapConverter","save image failed");
-            e.printStackTrace();
-        }
-        /*File avaterFile = new File(dir, fileName+".jpg");//设置文件名称
-
-                if(avaterFile.exists()){
-                     avaterFile.delete();
-                }
-                try {
-                 avaterFile.createNewFile();
-                    FileOutputStream fos = new FileOutputStream(avaterFile);
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-                     fos.flush();
-                    fos.close();
-                    } catch (IOException e) {
-                     e.printStackTrace();
-                     }*/
 
 
-    }
-
-
-    public static Bitmap loadLocalImage(String fileName) {
-
-        try {
-            FileInputStream fis = new FileInputStream(dir + "/" + "bitmap" + fileName + ".png");
-            Log.i("BitmapConverter","load local image successfully");
-            return BitmapFactory.decodeStream(fis);
-
-
-        } catch (Exception e) {
-            Log.i("BitmapConverter","load local image failed   =======null");
-            e.printStackTrace();
-        }
-
-return null;
-    }
 
 }
