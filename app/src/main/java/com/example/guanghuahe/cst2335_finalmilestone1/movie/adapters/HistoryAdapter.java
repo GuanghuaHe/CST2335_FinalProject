@@ -32,7 +32,12 @@ public class HistoryAdapter extends ArrayAdapter<MovieDTO> {
     private Context mainActivity;
     private int resourceID;
 
-
+    /**
+     * constructor to initial Objects in need.
+     * @param context
+     * @param listItemViewId
+     * @param movieDTOList
+     */
     public HistoryAdapter(Context context, int listItemViewId, List<MovieDTO> movieDTOList) {
 
         super(context, listItemViewId, movieDTOList);
@@ -43,7 +48,13 @@ public class HistoryAdapter extends ArrayAdapter<MovieDTO> {
     }
 
 
-
+    /**
+     * load history list view item which hold the brief info of a movie
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     public View getView(int position, View convertView, ViewGroup parent){
         MovieDTO movie = getItem(position);
 
@@ -58,9 +69,9 @@ public class HistoryAdapter extends ArrayAdapter<MovieDTO> {
         image.setImageBitmap(movie.getImage());
 
 
-
-
-
+        /**
+         * remove a item: a, from list; b. from Database; c. notify history Adapter.
+         */
         Button remove = result.findViewById(R.id.removeItem);
         remove.setOnClickListener(e->{
             historyList.remove(movie);
@@ -68,10 +79,13 @@ public class HistoryAdapter extends ArrayAdapter<MovieDTO> {
             databaseHelper.deleteMovie(movie);
             Log.i(TAG, "AFTER  :  movie id:  -->" + movie.getImDbId());
             notifyDataSetChanged();
+
         });
 
         return result;
     }
+
+
     public MovieDTO getMovie(int indx){
         return historyList.get(indx);
     }

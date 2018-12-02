@@ -22,10 +22,20 @@
         android:layout_centerHorizontal="true"
         android:paddingTop="20dp"
         />
+    <ProgressBar
+        android:id="@+id/history_ProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginLeft="0dp"
+        android:max="100"
+        android:progress="1"
+        android:indeterminate="false"
+        android:progressDrawable="@drawable/oc_progressbar"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name:"
+        android:text="@string/movie_title"
         android:textStyle="bold"
         android:id="@+id/movie_name"
         android:layout_below="@+id/movie_detail_image_View"
@@ -44,7 +54,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Director:"
+        android:text="@string/movie_director"
         android:textStyle="bold"
         android:id="@+id/movie_director"
         android:layout_below="@+id/movie_name_value"
@@ -61,7 +71,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Year:"
+        android:text="@string/movie_year"
         android:textStyle="bold"
         android:id="@+id/year_label"
         android:layout_below="@+id/movie_director_value"
@@ -78,7 +88,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Release Date:"
+        android:text="@string/movie_release_date"
         android:textStyle="bold"
         android:id="@+id/release_name"
         android:layout_below="@+id/year_value"
@@ -95,7 +105,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Summary:"
+        android:text="@string/movie_summary"
         android:textStyle="bold"
         android:id="@+id/summary_label"
         android:layout_below="@+id/rating_label"
@@ -112,7 +122,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Genre:"
+        android:text="@string/movie_genre"
         android:textStyle="bold"
         android:id="@+id/genre_label"
         android:layout_below="@+id/release_name"
@@ -129,7 +139,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Actors:"
+        android:text="@string/movie_actors"
         android:textStyle="bold"
         android:id="@+id/actors_label"
         android:layout_below="@+id/genre_value"
@@ -146,7 +156,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Movie Type:"
+        android:text="@string/movie_type"
         android:textStyle="bold"
         android:id="@+id/type_label"
         android:layout_below="@+id/actors_value"
@@ -163,7 +173,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rating:"
+        android:text="@string/movie_rating"
         android:textStyle="bold"
         android:id="@+id/rating_label"
         android:layout_below="@+id/type_value"
@@ -181,11 +191,11 @@
         android:id="@+id/save_movie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:layout_below="@+id/summary_label"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
 
-        android:text="save" />
+
+        android:text="@string/save_movie" />
 </RelativeLayout>
     </ScrollView>
 </FrameLayout>

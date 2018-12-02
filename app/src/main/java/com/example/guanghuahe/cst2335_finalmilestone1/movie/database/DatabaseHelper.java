@@ -7,16 +7,14 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
-
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.BitmapConverter;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.dto.MovieDTO;
-
 import java.util.ArrayList;
-
-
 import java.util.List;
 
+/**
+ * SQLiteOpenHelper to create a database to store movies saved
+ */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     /**
@@ -31,6 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * table name
      */
     private static final String table_Movies = "Movies";
+
     /**
      * columns
      */
@@ -47,17 +46,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String Movie_Type = "type";
     private static final String Movie_Gener = "gener";
 
-
-
-
-
-
-
-
-
     private static final String[] COLUMNS =
             {Movie_ID, Movie_Title, Movie_Year,Movie_Runtime,Movie_Rate,Movie_Poster, Movie_Image,
                     Movie_Direcotr,Movie_Plot,Movie_Actors,Movie_Type,Movie_Gener};
+
+
     /**
      * current context name for log track
      */
@@ -71,6 +64,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public DatabaseHelper(Context context) {
         super(context, database_NAME, null, database_VERSION);
     }
+
+
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
@@ -117,9 +112,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             values.put(Movie_Type,Movie.getType());
             values.put(Movie_Gener,Movie.getGener());
 
-
-
-
             db.insert(table_Movies, null, values);
             db.close();
         }
@@ -140,25 +132,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query(table_Movies, COLUMNS, Movie_ID+" = ?", new String[]{id}, null, null, null, null);
         if (cursor != null && cursor.getCount()>0){
             cursor.moveToFirst();
-           Log.e(TAG,cursor.getColumnName(0) + "==" + cursor.getString(0));
-            Log.e(TAG, cursor.getColumnName(1)+ "==" + cursor.getString(1));
-            Log.e(TAG,cursor.getColumnName(2)+ "==" + cursor.getString(2));
-            Log.e(TAG,cursor.getColumnName(3)+ "==" + cursor.getString(3));
-            Log.e(TAG, cursor.getColumnName(4)+ "==" + cursor.getString(4));
-            Log.e(TAG, cursor.getColumnName(5)+ "==" + cursor.getString(5));
-            Log.e(TAG, cursor.getColumnName(6) + "==" + cursor.getBlob(6));
-            Log.e(TAG, cursor.getColumnName(7)+ "==" + cursor.getString(7));
-            Log.e(TAG, cursor.getColumnName(8)+ "==" + cursor.getString(8));
-            Log.e(TAG, cursor.getColumnName(9)+ "==" + cursor.getString(9));
-            Log.e(TAG,cursor.getColumnName(10)+ "==" + cursor.getString(10));
-            Log.e(TAG, cursor.getColumnName(11)+ "==" + cursor.getString(11));
-
             Movie = loadMovieDTO(cursor);
-            Log.e(TAG, "MOVIE=ID------------->"+ Movie.getImDbId());
-            Log.e(TAG, "MOVIE=actors------------->"+ Movie.getActors());
-            Log.e(TAG, "MOVIE=plot------------->"+ Movie.getSummary());
              db.close();
-
         }
         return Movie;
     }
@@ -168,8 +143,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      *  read all of movies in the current databse, put into items of ListView
      * @return
      */
-    public List getAllMovies() {
-        List Movies = new ArrayList();
+    public List<MovieDTO> getAllMovies() {
+        List<MovieDTO> Movies = new ArrayList<>();
         String query = "SELECT  * FROM " + table_Movies;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
@@ -182,30 +157,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         db.close();
         return Movies;
-    }
-
-
-
-    public void updateAllMovies(List movies){
-        ArrayList<MovieDTO> movieList = (ArrayList<MovieDTO>) movies;
-        SQLiteDatabase db = getWritableDatabase();
-        for(MovieDTO Movie: movieList){
-            ContentValues values = new ContentValues();
-            values.put(Movie_ID, Movie.getImDbId());
-            values.put(Movie_Title, Movie.getMovieName());
-            values.put(Movie_Year, Movie.getYear());
-            values.put(Movie_Poster, Movie.getPosterLink());
-            values.put(Movie_Runtime, Movie.getRuntime());
-            values.put(Movie_Rate, Movie.getRatings_imDb());
-            values.put(Movie_Image, BitmapConverter.getByte(Movie.getImage()));
-            try{
-                int i = db.update(table_Movies, values, Movie_ID + " = ?", new String[]{Movie.getImDbId()});
-            }catch (Exception e){
-                Log.d(TAG, "--->updateAllMovies  Movie Name"+Movie.getMovieName()+" Exception:"+e.getMessage() );
-            }
-
-        }
-        db.close();
     }
 
 
@@ -233,6 +184,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return 1;
     }
 
+
+    /**
+     * delete all movies stored in database
+     */
     public void removeAll() {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(table_Movies, "1", null);

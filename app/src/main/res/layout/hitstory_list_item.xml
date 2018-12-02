@@ -65,11 +65,12 @@
         android:paddingBottom="10dp"
         android:paddingRight="2dp" />
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:text="Remove"
+        android:text="@string/remove_item"
+        android:background="@drawable/check_border"
         android:id="@+id/removeItem"/>
 
 

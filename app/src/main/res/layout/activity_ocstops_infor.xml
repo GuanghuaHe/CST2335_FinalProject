@@ -1,36 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@android:color/holo_purple"
     tools:context=".OCTranspo.activity.OCTranspo">
-
-
-    <TextView
-        android:id="@+id/stopName"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="10dp"
-        android:singleLine="true"
-        android:textColor="#000000"
-        android:textSize="20sp" />
+        android:id="@+id/stopNames">
+    <TextView
+        android:id="@+id/stopName"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gold"
+        android:textStyle="bold|italic"
 
-    <ListView
-        android:id="@+id/routesView"
-        android:layout_width="match_parent"
-        android:layout_height="400dp" />
+        />
 
-    <RelativeLayout
+</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ocstopss"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+
 
         <Button
             android:id="@+id/deleteStopButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:text="@string/oc_deletestationbutton"
 
             />
@@ -44,7 +47,20 @@
             android:max="100"
             android:progress="0"
             android:progressDrawable="@drawable/my_progressbar" />
-    </RelativeLayout>
+    </LinearLayout>
 
 
-</LinearLayout>
+
+
+    <ListView
+        android:layout_above="@id/ocstopss"
+        android:layout_below="@id/stopNames"
+        android:id="@+id/routesView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        />
+
+
+
+</RelativeLayout>

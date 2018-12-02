@@ -2,33 +2,27 @@ package com.example.guanghuahe.cst2335_finalmilestone1.movie.activities;
 
 
 import android.app.AlertDialog;
-
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.StrictMode;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
 import android.view.Menu;
-
 import android.view.MenuItem;
 import android.view.View;
-
 import android.view.inputmethod.EditorInfo;
-
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.guanghuahe.cst2335_finalmilestone1.CBC;
-import com.example.guanghuahe.cst2335_finalmilestone1.MainActivity;
 import com.example.guanghuahe.cst2335_finalmilestone1.Nutrition;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.activity.OCTranspo;
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
@@ -37,10 +31,13 @@ import com.example.guanghuahe.cst2335_finalmilestone1.movie.fragments.HistoryFra
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.fragments.HistoryToolBarFragment;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.fragments.MovieSearchFragment;
 
-
+/**
+ *  home page of movie search
+ */
 public class Movie extends AppCompatActivity {
+
     /**
-     * get app name which is type of string
+     * get activity name for debugging use
      */
     protected static final String TAG = Movie.class.getSimpleName();
 
@@ -55,13 +52,9 @@ public class Movie extends AppCompatActivity {
 
     private Button clearText, searchButton, historyButton;
     private EditText editText;
-    private TextView textView;
     private  static  ProgressBar movieProgressBar;
 
-    /**
-     * search bar including buttons
-     */
-    private FrameLayout searchBar;
+
 
 
     /**
@@ -71,45 +64,51 @@ public class Movie extends AppCompatActivity {
     private FragmentTransaction ft;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_home);
+
+
         databaseHelper = new DatabaseHelper(this);
-        // config security
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new
-                    StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
-
-
         //subviews
         clearText = findViewById(R.id.clear_txt);
         searchButton = findViewById(R.id.buttonSearchMovie);
         historyButton = findViewById(R.id.buttonSearchHistory);
-        editText = findViewById(R.id.editText);
-        textView = findViewById(R.id.startSearchText);
-        searchBar = findViewById(R.id.movie_button_layout);
+        editText = findViewById(R.id.moviesearch_editText);
         movieProgressBar = findViewById(R.id.MovieProgressBar);
+
+
 
 
         /**
          * Fragment Manager
          */
         fm = getSupportFragmentManager();
-
-
+        /**
+         * show history list as long as activity shows up if history is not empty
+         */
+        if(databaseHelper.getAllMovies().size() > 0) {
+            ft = fm.beginTransaction();
+            ft.addToBackStack(null);
+            ft.replace(R.id.movie_list_view_layout, new HistoryFragment());
+            ft.commit();
+        }
         /**
          * editText entry => start search
          */
-        editText = (EditText) findViewById(R.id.editText);
+
+
+        editText = (EditText) findViewById(R.id.moviesearch_editText);
         editText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 if (editText.getText() != null && editText.getText().length() > 0)
 
-                    return true;
+                        return true;
             }
+
+
             return false;
 
         });
@@ -141,6 +140,7 @@ public class Movie extends AppCompatActivity {
                 ft.addToBackStack(null);
                 ft.replace(R.id.movie_list_view_layout, searchFragment);
                 ft.commit();
+
                 editText.setText("");
             } else {
                 Snackbar.make(e, "please enter movie title", Snackbar.LENGTH_LONG).show();
@@ -180,6 +180,8 @@ public class Movie extends AppCompatActivity {
          */
         Toast.makeText(this, "enter movie title to search", Toast.LENGTH_SHORT).show();
     }
+
+
     /**
      * share progressBar with fragments
      *
@@ -187,6 +189,10 @@ public class Movie extends AppCompatActivity {
     public static ProgressBar getMovieProgressBar(){
         return movieProgressBar;
     }
+
+
+
+
     /**
      * load tool bar
      *
@@ -212,21 +218,14 @@ public class Movie extends AppCompatActivity {
         switch (menuItemID) {
             case R.id.movieItem1:
                 AlertDialog dialog = new AlertDialog.Builder(Movie.this)
-                        .setTitle("Notice")
-                        .setMessage("go back to home page")
+                        .setTitle(getApplicationContext().getString(R.string.movie_about))
+                        .setMessage(getApplicationContext().getString(R.string.help))
 
                         /**
                          * set yes/no button on the alertDialog
                          */
-                        .setNegativeButton("Cancel", (dg, which) -> dg.dismiss())// cancel current operate
-                        .setPositiveButton("OK", (dg, which) -> {
-                            /**
-                             * go back to the main page of final project
-                             */
-                            Intent intent = new Intent(Movie.this, MainActivity.class);
-                            startActivity(intent);
-                            dg.dismiss();
-                        }).create();
+                        .setNegativeButton("OK", (dg, which) -> dg.dismiss())// cancel current operate
+                        .create();
 
                 dialog.show();
 
@@ -254,6 +253,8 @@ public class Movie extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        Toast.makeText(this, "movie saved successfully", Snackbar.LENGTH_LONG).show();
         Log.i(TAG, "In onResume()");
     }
 
