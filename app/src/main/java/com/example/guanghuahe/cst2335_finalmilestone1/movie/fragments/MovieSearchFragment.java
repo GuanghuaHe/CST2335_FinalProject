@@ -204,7 +204,9 @@ public class MovieSearchFragment  extends Fragment {
                     if(eventType == XmlPullParser.START_TAG) {
                         if (parser.getName().equals("result")) {
                             movie.setMovieName(parser.getAttributeValue(null, "title"));
+
                             progressBar.setProgress(progressValue ++);
+
                             movie.setYear(parser.getAttributeValue(null, "year"));
                             progressBar.setProgress(progressValue ++);
                             movie.setImDbId(parser.getAttributeValue(null, "imdbID"));

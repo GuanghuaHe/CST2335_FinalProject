@@ -33,9 +33,9 @@
 
 
 
+
         <activity android:name=".Food.FoodActivity"></activity>
         <activity android:name=".Food.FoodFavorites"></activity>
-
 
 
     </application>
