@@ -206,7 +206,6 @@ public class MovieSearchFragment  extends Fragment {
                             movie.setMovieName(parser.getAttributeValue(null, "title"));
 
 
-
                             progressBar.setProgress(progressValue ++);
 
                             movie.setYear(parser.getAttributeValue(null, "year"));

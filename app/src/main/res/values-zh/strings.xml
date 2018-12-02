@@ -82,6 +82,19 @@
     <string name="cbc_button_save">保存</string>
     <string name="cbc_button_quit">退出</string>
     <string name="cbc_button_search">开始查询</string>
+    <string name="author">Aisha Ali</string>
+    <string name="instructions">说明</string>
+    <string name="ok">好的</string>
+    <string name="cbc_menu_itme">CBC</string>
+    <string name="cbc_helper_message">Author: Aisha \n Version: 2.0  \n The detail of the application: \n
+    You can get the article title and select or save the article in this applicatin</string>
+    <string name="cbc_button_frame">Change to Frame Layout</string>
+    <string name="cbc_frame_change_button">Change FrameLayout</string>
+    <string name="cbc_asy_button">AsyncTask</string>
+    <string name="cbc_item_help">Help</string>
+    <string name="cbc_item_exit">Exit</string>
+    <string name="cancel">Cancel</string>
+
 
     <!--OC_Transport-->
     <string name="desc">图片</string>

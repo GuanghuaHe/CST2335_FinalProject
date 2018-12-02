@@ -24,19 +24,13 @@
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".OCTranspo.adapters.DisplayStopInfor" />
         <activity android:name=".OCTranspo.adapters.DisplayRouteInfor"></activity>
-        <activity android:name=".CBC" />
-
+        <activity android:name=".CBCNews.CBCActivity"/>
+        <activity android:name=".CBCNews.DetailActivity" />
+        <activity android:name=".CBCNews.StatisticsActivity" />
 
         <activity android:name=".movie.activities.Movie"/>
         <activity android:name=".movie.activities.MovieDetail" />
 
-
-
-
-        <activity android:name=".Nutrition"/>
-        <activity android:name=".CBCNewsActivity" />
-        <activity android:name=".CBC_frame" />
-        <activity android:name=".CBCDetail" />
 
 
 
