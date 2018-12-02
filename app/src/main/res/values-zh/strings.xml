@@ -82,6 +82,10 @@
     <string name="cbc_button_save">保存</string>
     <string name="cbc_button_quit">退出</string>
     <string name="cbc_button_search">开始查询</string>
+    <string name="author">Aisha Ali</string>
+    <string name="instructions">说明</string>
+    <string name="ok">好的</string>
+
 
     <!--OC_Transport-->
     <string name="desc">图片</string>
