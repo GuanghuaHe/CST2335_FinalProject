@@ -1,5 +1,6 @@
 package com.example.guanghuahe.cst2335_finalmilestone1.movie.fragments;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -20,15 +21,21 @@ import com.example.guanghuahe.cst2335_finalmilestone1.R;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.database.DatabaseHelper;
 
-
+/**
+ * this fragment will replace search bar. providing ordering method and give statistic
+ */
 public class HistoryToolBarFragment extends Fragment {
         private Button removeAll, byYear, statistic, byRuntime, byRating;
         private DatabaseHelper DB;
         private HistoryFragment historyFragment;
+        private Context mainActivity;
 
 
-
-
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mainActivity = context;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,10 +56,23 @@ public class HistoryToolBarFragment extends Fragment {
         statistic = tools.findViewById(R.id.radio_button);
 
 
-        removeAll.setOnClickListener(e-> {
-                    DB.removeAll();
-            historyFragment.updateView();
+        /**
+         * set event handlers for buttons, which will call methods built in HistoryFragment class
+         */
 
+        removeAll.setOnClickListener(e-> {
+            AlertDialog dialog = new AlertDialog.Builder(mainActivity)
+                    .setTitle("DELETE ALL")
+                    .setMessage(R.string.dialog_message)
+                    .setPositiveButton("Sure", (dialog1, which) ->{
+                        DB.removeAll();
+                        historyFragment.updateView();
+                    })
+                    .setNegativeButton(R.string.dialog_button_cancel,(dialog1,which)->{
+                        dialog1.dismiss();
+                    }).create();
+
+                    dialog.show();
                 });
         byRuntime.setOnClickListener(e->{
             historyFragment.orderBy("runtime");

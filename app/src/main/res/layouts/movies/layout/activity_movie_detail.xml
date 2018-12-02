@@ -5,51 +5,56 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OCT.OCDetails">
+    tools:context=".MovieDetail">
 
 
     <ImageView
-        android:id="@+id/OCTranspo"
+        android:id="@+id/imageMoveDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@drawable/bus_icon" />
+        android:src="@drawable/movie_info" />
 
     <TextView
-        android:id="@+id/ocDestination"
+        android:id="@+id/MoveDetailTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Destination" />
+        android:text="Title" />
 
     <TextView
-        android:id="@+id/ocLatitude"
+        android:id="@+id/MoveDetailYear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Latitude " />
+        android:text="Year" />
 
     <TextView
-        android:id="@+id/ocLongitude"
+        android:id="@+id/MoveDetailRating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Longitude" />
+        android:text="Rating" />
 
     <TextView
-        android:id="@+id/ocGPSSpeed"
+        android:id="@+id/MoveDetailRuntime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="GPS Speed" />
-
-
+        android:text="Runtime" />
 
     <TextView
-        android:id="@+id/ocStartTime"
+        android:id="@+id/MoveDetailMainActors"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start Time" />
+        android:text="main actors" />
 
     <TextView
-        android:id="@+id/ocAdjustedScheduleTime"
+        android:id="@+id/MoveDetailPlot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Adjusted Schedule Time" />
+        android:text="plot" />
+
+    <TextView
+        android:id="@+id/MoveDetailURL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="URL" />
+
 </LinearLayout>

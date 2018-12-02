@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.guanghuahe.cst2335_finalmilestone1.CBCNews.CBCActivity;
+import com.example.guanghuahe.cst2335_finalmilestone1.Food.FoodActivity;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.activity.OCTranspo;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
 
@@ -25,7 +27,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         Log.i(ACTIVITY_NAME, "In onCreate()");
 
-        nutrition = findViewById(R.id.Nutrition);
+        nutrition = findViewById(R.id.FoodButton);
         cbc = findViewById(R.id.CBC);
         movie = findViewById(R.id.Movie);
         octranspo = findViewById(R.id.OCTranspo);
@@ -34,7 +36,7 @@ public class MainActivity extends Activity {
         cbc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CBC.class);
+                Intent intent = new Intent(MainActivity.this, CBCActivity.class);
                 startActivity(intent);
                 Log.i(ACTIVITY_NAME, "In onClick()");
             }
@@ -64,7 +66,7 @@ public class MainActivity extends Activity {
         nutrition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Nutrition.class);
+                Intent intent = new Intent(MainActivity.this, FoodActivity.class);
                 startActivity(intent);
                 Log.i(ACTIVITY_NAME, "In onClick()");
             }

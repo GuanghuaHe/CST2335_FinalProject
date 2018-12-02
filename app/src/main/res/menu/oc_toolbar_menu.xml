@@ -24,4 +24,10 @@
         android:title="About"
         android:orderInCategory="100"
         app:showAsAction="never" />
+
+    <item android:id="@+id/menuItemHelp"
+        android:title="Help"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
 </menu>

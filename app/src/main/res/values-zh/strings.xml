@@ -1,0 +1,126 @@
+<resources tools:ignore="ExtraTranslation" xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="start_welcome">CST2335 课程项目</string>
+
+
+    <!--电影主界面-->
+    <string name="MovieGreeting">电影 杀手</string>
+    <string name="edit_hint">输入电影名称或关键字</string>
+    <string name="search_result">暂时没有搜索结果</string>
+    <string name="searchButton">开始搜索</string>
+    <string name="searchHistory">本地收藏</string>
+    <string name="app_name">电影搜索</string>
+        <!--APP 导航键-->
+    <string name="menuItem1">帮助</string>
+    <string name="menuItem2">交通查询</string>
+    <string name="menuItem3">食品营养</string>
+    <string name="menuItem4">CBC新闻</string>
+        <!--电影帮助页面-->
+    <string name="movie_about">使用指南</string>
+    <string name="help">输入电影关键字或名称， 点击“开始搜索” ，
+            点击清单内电影条目，查看详细介绍，
+            进入电影详单界面，点击“收藏” 保存到本地数据库并返回，
+            点击“收藏” 进入收藏清单， 并附有统计按钮。
+
+             ********************************************
+              作者:  殷振宇
+                 学号：     040888832
+              邮箱: yin00031@algonquinlive.com</string>
+        <!--APP 统计 操作键-->
+    <string name="removeAll">删除全部</string>
+    <string name="dialog_message">您确定吗？ 这些岛片蛮珍贵的啊 ！</string>
+    <string name="dialog_button_sure">戒了！ 戒了！</string>
+    <string name="dialog_button_cancel">我还看会！</string>
+    <string name="sortByRuntime">按时长排序</string>
+    <string name="radioButton">统计</string>
+    <string name="sortByYear">按年份排序</string>
+    <string name="sortByRating">按评分排序</string>
+    <string name="remove_item">删除</string>
+    <string name="add_item">收藏</string>
+
+        <!--电影详细介绍页面-->
+    <string name="save_movie">收藏</string>
+    <string name="movie_rating">评分:</string>
+    <string name="movie_type">类型:</string>
+    <string name="movie_actors">演员表:</string>
+    <string name="movie_genre" >Genre:</string>
+    <string name="movie_summary">简介:</string>
+    <string name="movie_release_date">发布日期:</string>
+    <string name="movie_year">年份:</string>
+    <string name="movie_director">导演:</string>
+    <string name="movie_title">名称:</string>
+
+
+
+
+    <!--Food Nutrition-->
+    <string name="NutritionButton">食品营养</string>
+    <string name="ExitButton">返回主页</string>
+    <string name="Hint">请输入查询关键字</string>
+    <string name="food">Type a Food Item</string>
+    <string name="FoodButton">Food Nutrition Database</string>
+    <string name="search">Search</string>
+    <string name="SearchItem">Search</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="SaveItem">Save this Item?</string>
+    <string name="Save">Save</string>
+    <string name="Saved">Saved!</string>
+    <string name="Author">Khalid Hafid</string>
+    <string name="HowTo">Search a food item in the text field and hit the Search Button</string>
+    <string name="Help">Help</string>
+    <string name="Error">Enter a valid food item ie: Apple</string>
+    <string name="Delete">Delete</string>
+    <string name="DeleteMenu">Do you want to delete this food item</string>
+    <string name="versionNum">Version: 2.0</string>
+    <string name="foodSearch">Food Search</string>
+    <string name="favoritesList">Favorites List</string>
+    <string name="jsonDL">Json Data is downloading</string>
+
+
+    <string name="cbc_search">查询</string>
+    <string name="cbc_editText">请输入查询关键字</string>
+    <string name="cbc_button_save">保存</string>
+    <string name="cbc_button_quit">退出</string>
+    <string name="cbc_button_search">开始查询</string>
+    <string name="author">Aisha Ali</string>
+    <string name="instructions">说明</string>
+    <string name="ok">好的</string>
+
+
+    <!--OC_Transport-->
+    <string name="desc">图片</string>
+    <string name="welcome">交通信息查询</string>
+    <string name="select">请选择一条线路!</string>
+    <string name="deleteALL">删除全部?</string>
+    <string name="byStop">查询</string>
+    <string name="goHome">返回主页</string>
+    <string name="hint">请输入站台编号</string>
+
+
+    <!--  OC TRANSPO STRING VARIABLES-->
+    <string name="oc_wronginput">站台编号必须是数字</string>
+    <string name="oc_stop_w_no">站台编号 </string>
+    <string name="oc_stop_not_found"> 数据库查询无结果，请删除编号</string>
+    <string name="oc_refresh">更新中...</string>
+    <string name="oc_route">线路 </string>
+    <string name="oc_direction">方向:</string>
+    <string name="oc_starttime">开车时间: </string>
+    <string name="oc_adjustedtime">延时: </string>
+    <string name="oc_latlong">经度/纬度:</string>
+    <string name="oc_gpsspeed">GPS 速度: </string>
+    <string name="oc_infounavailable">无信息</string>
+    <string name="oc_deletestationbutton">删除站台编号</string>
+    <string name="oc_refreshbutton">更新</string>
+    <string name="oc_addstationbutton">添加站台编号</string>
+    <string name="oc_authorinfo">Author:  Guanghua He\nVersion num:  1.0</string>
+    <string name="oc_instructions">\nThe main page shows a list of stations.</string>
+    <string name="oc_datasummary">\nThis application stores all of the station numbers entered into a database. </string>
+    <string name="routeno"> 线路编号:  </string>
+    <string name="OCT"> OC 交通信息 </string>
+    <string name="OK"> 好的 </string>
+    <string name="pibstn"> 请输入公交站点: </string>
+    <string name="view_stats"> 查看统计信息 </string>
+    <string name="cal_stat"> 正在计算平均调整时间... </string>
+    <string name="oc_about">作者: 何光华e \n版本 1.1 \邮箱:he000068@algonquinlive.com</string>
+    <string name="oc_help">帮助</string>
+</resources>

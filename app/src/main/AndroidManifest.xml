@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,22 +20,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OCTranspo.activity.OCTranspo" />
+        <activity android:name=".OCTranspo.activity.OCTranspo"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".OCTranspo.adapters.DisplayStopInfor" />
         <activity android:name=".OCTranspo.adapters.DisplayRouteInfor"></activity>
-        <activity android:name=".CBC" />
-        <activity android:name=".movie.activities.Movie">
+        <activity android:name=".CBCNews.CBCActivity"/>
+        <activity android:name=".CBCNews.DetailActivity" />
+        <activity android:name=".CBCNews.StatisticsActivity" />
 
-        </activity>
+        <activity android:name=".movie.activities.Movie"/>
         <activity android:name=".movie.activities.MovieDetail" />
-        <activity android:name=".OCT.activity.OCTranspo"></activity>
-        <activity android:name=".OCT.OCDetails"></activity>
-        <activity android:name=".movie.MovieFragment" />
-        <activity android:name=".OCDetails"></activity>
-        <activity android:name=".Nutrition"></activity>
-        <activity android:name=".CBCNewsActivity" />
-        <activity android:name=".CBC_frame" />
-        <activity android:name=".CBCDetail" />
+
+
+
+
+        <activity android:name=".Food.FoodActivity"></activity>
+        <activity android:name=".Food.FoodFavorites"></activity>
+
 
     </application>
 

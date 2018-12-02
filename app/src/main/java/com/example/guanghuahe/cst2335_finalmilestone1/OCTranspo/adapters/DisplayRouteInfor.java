@@ -1,92 +1,199 @@
+/**
+ * The activity for display route information, when use clicked a route number will invoke this activity
+ * @Author: Guanghua He
+ * @Version: 1.1
+ * @Since:1.0
+ */
+
+
 package com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.adapters;
 
 import android.app.Activity;
-import android.os.AsyncTask;
+import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.activity.OCRoute;
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
 
+import java.util.List;
+
 /**
  * This class displays the stop data
  */
 
 public class DisplayRouteInfor extends Activity {
+
+    public static String getRouteInfo = "https://api.octranspo1.com/v1.2/GetNextTripsForStop?appID=223eb5c3&&apiKey=ab27db5b435b8c8819ffb8095328e775&stopNo=";
+    public static String getRouteInfoTrailer = "&routeNo=";
     public static final String ACTIVITY_NAME = "DisplayRouteInfor";
-
-
+    List<String[]> list;
+    Button vstat;
     Button refresh;
-    OCRoute route;
-    TextView routenoDestination;
-    TextView direction;
-    TextView startTime;
-    TextView adjustedTime;
-    TextView coordinates;
-    TextView speed;
+    ListView routeDetailList;
+    String stationNum,routeNum;
+    RouteDetailAdapter adapter = null;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ocroute_infor);
 
-
-        speed = findViewById(R.id.speedView);
+        routeDetailList = findViewById(R.id.route_detail_list);
         refresh = findViewById(R.id.refreshRouteButton);
-        routenoDestination = findViewById(R.id.routenoDestinationView);
-        direction = findViewById(R.id.directionView);
-        startTime = findViewById(R.id.startTimeView);
-        adjustedTime = findViewById(R.id.adjustedTimeView);
-        coordinates =  findViewById(R.id.coordinatesView);
-        Bundle extras = getIntent().getExtras();
 
 
-        route = new OCRoute(extras.getString("routeno"), extras.getString("destination"),
-                extras.getString("direction"), extras.getString("stationNum")
-        );
 
-        new Update().executeOnExecutor( ((r) -> {r.run();}),"");
+      Bundle bundles =  getIntent().getParcelableExtra("bundle");
+            stationNum = bundles.getString("stationno");
+           routeNum = bundles.getString("routeno");
+
+
+        OCRoute.updateData(getRouteInfo+stationNum+getRouteInfoTrailer+routeNum );
+       /* new Update().execute();
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
+
+
+        setDisplay();
+
 
         //connects to a action button to get refeshed data
 
         refresh.setOnClickListener((e) -> {
             Toast toast = Toast.makeText(this, getString(R.string.oc_refresh), Toast.LENGTH_SHORT);
             toast.show();
-            route.updateData();
+            OCRoute.updateData(getRouteInfo+stationNum+getRouteInfoTrailer+routeNum);
+
             setDisplay();
         });
-    }
+
+
+        vstat = findViewById(R.id.viewStatsBtn);
+        vstat.setOnClickListener((e) -> {
+            Toast toast = Toast.makeText(this, getString(R.string.cal_stat), Toast.LENGTH_SHORT);
+            toast.show();
+
+                String average = getStatistic(list);
+
+            final AlertDialog.Builder builder = new AlertDialog.Builder(this).setTitle("STATISTIC FOR AVERAGE ADJUSTED TIME").setCancelable(false);
+
+
+
+            builder.setPositiveButton("Ok", null)
+                    .setIcon(R.drawable.about_icon)
+                    .setMessage("AVERAGE ADJUSTED TIME: " + average)
+                    .create();
+
+            AlertDialog dialog = builder.show();
+
+        });
+
+
+
+}
+
+
+
 
     private void setDisplay() {
-        routenoDestination.setText(getString(R.string.oc_route) + route.getRouteno() + " " + route.getDestination());
-        direction.setText(getString(R.string.oc_direction) + route.getDirection());
-        startTime.setText(getString(R.string.oc_starttime) + route.getStartTime());
-        adjustedTime.setText(getString(R.string.oc_adjustedtime) + route.getAdjustedTime());
-        coordinates.setText(getString(R.string.oc_latlong) + route.getCoordinates());
-        speed.setText(getString(R.string.oc_gpsspeed) + route.getSpeed());
+
+        list = OCRoute.routeList;
+
+   
+         adapter = new RouteDetailAdapter(this, R.layout.route_detail_item, list);
+
+        routeDetailList.setAdapter(adapter);
+
     }
 
     /**
      * uses Async to get updated bus details from server
      *
-     */
     public class Update extends AsyncTask<String, Integer, String> {
         @Override
         protected String doInBackground(String... strings) {
-            route.updateData();
-            if (route.getStartTime() == null || route.getSpeed() == null || route.getCoordinates() == null || route.getAdjustedTime() == null) {
+            OCRoute.updateData(getRouteInfo+stationNum+getRouteInfoTrailer+routeNum);
+
                 try {
                     Thread.sleep(1000);
                 } catch (Exception e) {
                     Log.i(ACTIVITY_NAME, e.toString());
                 }
-                route.updateData();
-            }
-            setDisplay();
+                OCRoute.updateData(getRouteInfo+stationNum+getRouteInfoTrailer+routeNum);
+
+
             return null;
         }
+
+        @Override
+        protected void onPostExecute(String s) {
+            adapter.notifyDataSetChanged();
+        }
+    }
+*/
+
+    class RouteDetailAdapter extends ArrayAdapter{
+    TextView busDetail, routeDestination, direction, startTime, adjustTime, longlat, speed;
+        int detailID;
+
+
+        public RouteDetailAdapter( Context context, int resource, List objects) {
+            super(context, resource, objects);
+            detailID = resource;
+
+        }
+
+
+        @NonNull
+        @Override
+        public View getView(int position,  @Nullable View convertView,  @NonNull ViewGroup parent) {
+            String[] info = (String[])getItem(position);
+            View result = getLayoutInflater().inflate(detailID, null);
+            busDetail = result.findViewById(R.id.bus_details);
+            busDetail.setText("Route: " + routeNum);
+            routeDestination = result.findViewById(R.id.routenoDestinationView);
+            routeDestination.setText("Trip destination: " + info[0]);
+            direction = result.findViewById(R.id.directionView);
+            direction.setText("Start time: " + info[1]);
+            startTime = result.findViewById(R.id.startTimeView);
+            //startTime.setText("adjusted time: " + info[2]);
+            startTime.setText("Adjusted time: " + ((info[2].length() != 0) ? info[2] : "Info NA"));
+
+            adjustTime = result.findViewById(R.id.adjustedTimeView);
+            //adjustTime.setText("Lantitude: " + info[6]);
+            adjustTime.setText("Lantitude: " + ((info[6].length() != 0) ? info[6] : "Info NA"));
+
+            longlat = result.findViewById(R.id.coordinatesView);
+            //longlat.setText("Longitude: " + info[7]);
+            longlat.setText("Longitude: " + ((info[7].length() != 0) ? info[7] : "Info NA"));
+            speed = result.findViewById(R.id.speedView);
+            speed.setText("GPS speed: " + ((info[8].length() != 0) ? info[8] : "Info NA"));
+            return result;
+        }
+    }
+
+    double sum = 0;
+    public String getStatistic(List<String[]> detailList){
+        if(detailList == null || detailList.size() == 0) return "satistic is not available yet";
+        sum = 0;
+        detailList.forEach(array->  sum += Double.valueOf(array[2]));
+        return sum/detailList.size()+"";
     }
 }

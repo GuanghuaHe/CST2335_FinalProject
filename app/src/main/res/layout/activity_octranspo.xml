@@ -9,7 +9,7 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="150dp"
+        android:layout_height="200dp"
         android:background="@drawable/ocstoplist" />
     <fragment
         android:id="@+id/fragmentSpace"
@@ -22,19 +22,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:cacheColorHint="#FFF4F4F4"
-        android:hint="Please input bus stop number:"
-        android:inputType="text" />
-
-    <ProgressBar
-        android:id="@+id/ocProgressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:max="100"
-        android:progress="50"
-        android:progressDrawable="@drawable/my_progressbar"
+        android:imeOptions="actionDone"
+        android:inputType="textImeMultiLine"
+        android:hint="@string/pibstn"
         />
+
+    <!--<ProgressBar-->
+        <!--android:id="@+id/ocProgressBar"-->
+        <!--style="?android:attr/progressBarStyleHorizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:max="100"-->
+        <!--android:progress="50"-->
+        <!--android:progressDrawable="@drawable/my_progressbar"-->
+        <!--/>-->
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -48,14 +50,23 @@
             android:layout_height="wrap_content"
             android:text="@string/oc_addstationbutton" />
 
-
         <Button
-            android:id="@+id/helpButton"
+            android:id="@+id/delAllStopNoButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="ChangeFragment"
-            android:text="@string/oc_help" />
+            android:text="@string/deleteALL" />
+
+
+        <!--<Button-->
+            <!--android:id="@+id/helpButton"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:onClick="ChangeFragment"-->
+            <!--android:text="@string/oc_help" />-->
 
 
     </LinearLayout>
+
+
+
 </LinearLayout>

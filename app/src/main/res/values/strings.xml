@@ -1,43 +1,86 @@
-<resources>
+<resources tools:ignore="ExtraTranslation" xmlns:tools="http://schemas.android.com/tools">
 
-    <string name="start_welcome">CST2335 FINAL PROJECT Milestone1</string>
-
-
-    <string name="about">About OC Transpo App By Guanghua He</string>
-
-
+    <string name="start_welcome">CST2335 FINAL PROJECT</string>
     <!--movie search-->
     <string name="MovieGreeting">MOVIE SEARCH</string>
-    <string name="search_movie">enter title</string>
-    <string name="start_search">there is no result for now</string>
+    <string name="edit_hint">enter title</string>
+    <string name="search_result">there is no result for now</string>
     <string name="searchButton">Search</string>
     <string name="searchHistory">History</string>
-    <string name="app_name">CST2335 MileStone1</string>
+
+    <string name="app_name">Final Project</string>
+    <!--movie action bar-->
+    <string name="menuItem1">HELP</string>
+    <string name="menuItem2">OCTRANSP</string>
+    <string name="menuItem3">NUTRITION</string>
+    <string name="menuItem4">CBCNEWS</string>
+    <!--movie help-->
+    <string name="movie_about">ABOUT APP</string>
+    <string name="help">Enter key words or movie title to start searching
+            \nClick item to see the movie detail,after the searching list shows up
+            \nClick SAVE Button to save to local Database for later use.
+            \nClick HISTORY button to show history list
+            \nClick STATISTIC Button to show the dialog of statistic
+            \nClick Buttons to sort list as specific order
+            \n********************************************\n
+            \n Author:  Zhenyu Yin
+            \n Student Number: 040888832
+            \n Email: yin00031@algonquinlive.com</string>
 
 
+    <!--movie statistic tool bar-->
 
     <string name="removeAll">Remove All</string>
+    <string name="dialog_message">Are you sure to delete all saved movies ?</string>
+    <string name="dialog_button_sure">SO SURE</string>
+    <string name="dialog_button_cancel">cancel</string>
     <string name="sortByRuntime">By Runtime</string>
     <string name="radioButton">STATISTIC</string>
     <string name="sortByYear">By Year</string>
     <string name="sortByRating">By Rating</string>
+    <string name="remove_item">delete</string>
+    <string name="add_item">add movie</string>
+
+    <!--movie detail page-->
+    <string name="save_movie">SAVE</string>
+    <string name="movie_rating">Rating:</string>
+    <string name="movie_type">Type:</string>
+    <string name="movie_actors">Actors:</string>
+    <string name="movie_genre" >Genre:</string>
+    <string name="movie_summary">Summary:</string>
+    <string name="movie_release_date">Release Date:</string>
+    <string name="movie_year">Year:</string>
+    <string name="movie_director">Director:</string>
+    <string name="movie_title">Title:</string>
 
 
 
-    <!--OC_Transport-->
-    <string name="desc">Image</string>
-    <string name="welcome">OC Transpo Search</string>
-    <string name="select">Please select only one route below!</string>
-    <string name="deleteALL">Delete All?</string>
-    <string name="byStop">Search</string>
-    <string name="goHome">Return</string>
-    <string name="hint">Please enter the stop number</string>
 
 
     <!--Food Nutrition-->
     <string name="NutritionButton">Food Nutrition</string>
     <string name="ExitButton">Back Home</string>
     <string name="Hint">search nutrition here</string>
+    <string name="food">Type a Food Item</string>
+    <string name="FoodButton">Food Nutrition Database</string>
+    <string name="search">Search</string>
+    <string name="SearchItem">Search</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="SaveItem">Save this Item?</string>
+    <string name="Save">Save</string>
+    <string name="Saved">Saved!</string>
+    <string name="Author">Teng Fan</string>
+    <string name="HowTo">Search a food item in the text field and hit the Search Button</string>
+    <string name="Help">Help</string>
+    <string name="Error">Enter a valid food item ie: Apple</string>
+    <string name="Delete">Delete</string>
+    <string name="DeleteMenu">Do you want to delete this food item</string>
+    <string name="versionNum">Version: 2.0</string>
+    <string name="foodSearch">Food Search</string>
+    <string name="favoritesList">Favorites List</string>
+    <string name="jsonDL">Json Data is downloading</string>
+
+
 
 
     <string name="cbc_search">Search</string>
@@ -45,17 +88,41 @@
     <string name="cbc_button_save">Save</string>
     <string name="cbc_button_quit">Quit</string>
     <string name="cbc_button_search">Search</string>
+    <string name="author">Aisha Ali</string>
+    <string name="instructions">Instructions</string>
+    <string name="ok">OK</string>
 
-    <string name="menuItem1">HOME</string>
-    <string name="menuItem2">OCTRANSP</string>
-    <string name="menuItem3">NUTRITION</string>
-    <string name="menuItem4">CBCNEWS</string>
 
+
+
+    <!--OC_Transport-->
+    <string name="oc_about">Author: Guanghua He \nVersion 1.1 \nEmail:he000068@algonquinlive.com</string>
+    <string name="oc_help">
+
+\n- To view buses for a bus stop, click an item in the Bus Stops list.
+
+\n- To view bus information for a particular route, click an item in the Buses list.
+
+\n- To add a bus stop to the list, click the "Add Station Number" button.
+
+\n- To delete a bus stop, go inside the routepage and choose to delete this stop.
+
+\n- To refresh bus data, click the "Refresh Bus Data" button.
+
+\n- To view bus statistics, click the "View Statistics" button.
+
+\n- To navigate to another application, click the appropriate icon in the toolbar.</string>
+
+    <string name="desc">Image</string>
+    <string name="welcome">OC Transpo Search</string>
+    <string name="select">Please select only one route below!</string>
+    <string name="deleteALL">Delete all stop numbers</string>
+    <string name="hint">Please enter the stop number</string>
 
     <!--  OC TRANSPO STRING VARIABLES-->
-    <string name="oc_badinput">Station number must be an integer value</string>
-    <string name="oc_station_w_number">Station with number </string>
-    <string name="oc_station_not_found"> was not found on the OC database. It is recommended to delete this station.</string>
+    <string name="oc_wronginput">Stop number should be an integer</string>
+    <string name="oc_stop_w_no">Station with number </string>
+    <string name="oc_stop_not_found"> was not found on the OC database. It is recommended to delete this station.</string>
     <string name="oc_refresh">Refreshing...</string>
     <string name="oc_route">Route </string>
     <string name="oc_direction">Direction:</string>
@@ -63,15 +130,20 @@
     <string name="oc_adjustedtime">Adjusted time: </string>
     <string name="oc_latlong">Latitude/Longitude:</string>
     <string name="oc_gpsspeed">GPS Speed: </string>
-    <string name="oc_infounavailable">Information unavailable</string>
-    <string name="oc_deletestationbutton">Delete Station</string>
+    <string name="oc_deletestationbutton">Delete This Stop</string>
     <string name="oc_refreshbutton">Refresh</string>
-    <string name="oc_addstationbutton">Add Station Number</string>
-    <string name="oc_help">Help</string>
+    <string name="oc_addstationbutton">Add Stop Number</string>
     <string name="oc_authorinfo">Author:  Guanghua He\nVersion num:  1.0</string>
     <string name="oc_instructions">\nThe main page shows a list of stations.</string>
     <string name="oc_datasummary">\nThis application stores all of the station numbers entered into a database. </string>
     <string name="routeno"> Route number:  </string>
+
+    <string name="OK"> OK </string>
+    <string name="pibstn"> Please input bus stop number: </string>
+    <string name="view_stats"> View Statistics </string>
+    <string name="cal_stat"> Calculating average adjusted schedule time... </string>
+
+
     <string name="OCT"> OC Transpo </string>
 
 
@@ -87,4 +159,5 @@
     <string name="cbc_item_help">Help</string>
     <string name="cbc_item_exit">Exit</string>
     <string name="cancel">Cancel</string>
+
 </resources>

@@ -4,12 +4,17 @@ package com.example.guanghuahe.cst2335_finalmilestone1.movie.activities;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.Xml;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.BitmapConverter;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.database.DatabaseHelper;
@@ -22,26 +27,32 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * just show the template for mileStone 1.
- * logic business will update later
+ * a instance of this class will reveive a movie from search page
+ *
+ * use AsyncTask to load Url second time to assemble info totally.
+ *
+ * then setText to de page showing detail of movie
+ *
  */
 public class MovieDetail extends AppCompatActivity {
 
     protected static final String TAG = "MovieDetail";
-    private static final String URL_ID = "http://www.omdbapi.com/?plot=full&apikey=ce73c386&r=xml&i=";
+    private static final String URL_ID = "https://www.omdbapi.com/?apikey=ce73c386&r=xml&i=";
     private MovieDTO active;
     private Button save;
     private DatabaseHelper databaseHelper;
+    private ProgressBar historyProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
 
-
         active =  (MovieDTO) getIntent().getParcelableExtra("Movie");
 
         databaseHelper = Movie.databaseHelper;
+
+        historyProgressBar = findViewById(R.id.history_ProgressBar);
 
         /**
          * check local first
@@ -49,9 +60,10 @@ public class MovieDetail extends AppCompatActivity {
         String id = active.getImDbId();
         MovieDTO temp = databaseHelper.readMovieDetail(id);
         /**
-         * if selected movie has not exist in DB, load movie from URL doing in the back process.
+         * if selected movie has not exist in DB, or saved from search list by click add button
+         * load movie from URL doing in the back process.
          */
-        if(temp == null) {
+        if(temp == null || temp.getSummary() == null) {
             MyTask myTask = new MyTask();
             myTask.execute(URL_ID + id);
 
@@ -60,7 +72,22 @@ public class MovieDetail extends AppCompatActivity {
              */
         }else{active = temp; startPostDetail();}
         save = findViewById(R.id.save_movie);
-        save.setOnClickListener(e-> {databaseHelper.insertMovie(active);finish(); });
+        save.setOnClickListener(e-> {databaseHelper.insertMovie(active);
+
+
+
+                finish();
+
+
+        });
+
+
+        /**
+         * give a hint showing how to save locally
+         *
+         */
+
+        Toast.makeText(this, "click save button to store in DateBase", Toast.LENGTH_LONG).show();
 
     }
 
@@ -96,7 +123,7 @@ public class MovieDetail extends AppCompatActivity {
     class MyTask extends AsyncTask<String, Integer, String> {
 
 
-        //onPreExecute方法用于在执行后台任务前做一些UI操作
+        //onPreExecute, only do some UI operation
         @Override
         protected void onPreExecute() {
             Log.i(TAG, "onPreExecute() called");
@@ -132,22 +159,22 @@ public class MovieDetail extends AppCompatActivity {
                     if (eventType == XmlPullParser.START_TAG) {
                         if (parser.getName().equals("movie")) {
                             active.setSummary(parser.getAttributeValue(null, "plot"));
-
+                                publishProgress(20);
                             active.setReleasedDate(parser.getAttributeValue(null, "released"));
-
+                            publishProgress(30);
                             active.setRatings_imDb(parser.getAttributeValue(null, "imdbRating"));
-
+                            publishProgress(40);
                             active.setRuntime(parser.getAttributeValue(null, "runtime"));
-
+                            publishProgress(50);
                             active.setGener(parser.getAttributeValue(null, "genre"));
-
+                            publishProgress(60);
                             active.setDirector(parser.getAttributeValue(null, "director"));
-
+                            publishProgress(70);
                             active.setActors(parser.getAttributeValue(null, "actors"));
-
+                            publishProgress(80);
                             active.setImage(BitmapConverter.getBitmapFromUrl(parser.getAttributeValue(null, "poster")));
                             Log.i(TAG, "   Image  isExist ?  =" +(active.getImage() == null));
-
+                            publishProgress(100);
                         }
                     }
                     eventType = parser.next();
@@ -165,8 +192,8 @@ public class MovieDetail extends AppCompatActivity {
 
         @Override
         protected void onProgressUpdate(Integer... value) {
-          //  movieProgressBar.setVisibility(View.VISIBLE);
-          //  movieProgressBar.setProgress(value[0]);
+           historyProgressBar.setVisibility(View.VISIBLE);
+          historyProgressBar.setProgress(value[0]);
         }
 
         @Override
@@ -181,6 +208,9 @@ public class MovieDetail extends AppCompatActivity {
         }
     }
 
+    /**
+     * display movie details.
+     */
     private void startPostDetail(){
         TextView movieName = (TextView) findViewById(R.id.movie_name_value);
         movieName.setText(active.getMovieName());

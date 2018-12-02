@@ -5,19 +5,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.BitmapConverter;
+import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.dto.MovieDTO;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * this Adapter just for searching.
+ *
+ * loading the movies from url to List view locally
+ *
+ * click item to see detail page and then ready to save.
+ *
+ *
+ * a movie as long as saved will be stored in SQLiteDatabse for later user
+ */
 public  class MovieAdapter extends ArrayAdapter<MovieDTO> {
-    private static final String LOG_TAG = MovieAdapter.class.getSimpleName();
+    private static final String TAG = MovieAdapter.class.getSimpleName();
     protected List<MovieDTO> movieList;
     private int resourceId;
 
@@ -29,17 +40,13 @@ public  class MovieAdapter extends ArrayAdapter<MovieDTO> {
 
     }
 
-    public void setMoviesList(List<MovieDTO> list){
-        movieList = (ArrayList<MovieDTO>) list;
-    }
+
 
     public MovieDTO getMovie(int indx){
         return movieList.get(indx);
     }
 
-    public void setMovie(int indx, MovieDTO m){
-        movieList.set(indx,m);
-    }
+
 
 
 
@@ -50,16 +57,18 @@ public  class MovieAdapter extends ArrayAdapter<MovieDTO> {
         View result =LayoutInflater.from(getContext()).inflate(resourceId, null);
 
 
-
-
-        TextView title = result.findViewById(R.id.history_list_item_title);
+        /**
+         *
+         */
+        TextView title = result.findViewById(R.id.list_item_title);
         title.setText(movie.getMovieName());
         TextView year = result.findViewById(R.id.history_movie_year);
         year.setText(movie.getYear());
         ImageView image = result.findViewById(R.id.list_item_image);
-
-
         image.setImageBitmap(BitmapConverter.getBitmapFromUrl(movie.getPosterLink()));
+
+
+
 
         return result;
     }

@@ -1,14 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+<TextView
+    android:id="@+id/text_view9"
+    android:text="@string/start_welcome"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textColor="@color/purple"
+    android:layout_marginTop="40sp"
+    android:textStyle="bold|italic"
+    android:textSize="32sp"
+    android:textAlignment="center"
+    android:orientation="vertical"
+    />
+
+
+
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="20dp"
     tools:context=".MainActivity">
 
+
+
     <ImageView
-        android:id="@+id/Nutrition"
+        android:id="@+id/FoodButton"
         android:contentDescription="@string/desc"
         android:layout_width="160dp"
         android:layout_height="160dp"
@@ -16,7 +40,7 @@
         android:layout_row="0"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
-        android:src="@drawable/food" />
+        android:src="@drawable/food2" />
 
     <ImageView
         android:id="@+id/CBC"
@@ -38,7 +62,7 @@
         android:layout_row="1"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
-        android:src="@drawable/film" />
+        android:src="@drawable/film1" />
 
     <ImageView
         android:id="@+id/OCTranspo"
@@ -54,3 +78,5 @@
 
 
 </GridLayout>
+
+</LinearLayout>
