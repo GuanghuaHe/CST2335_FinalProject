@@ -28,6 +28,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.guanghuahe.cst2335_finalmilestone1.CBC;
 import com.example.guanghuahe.cst2335_finalmilestone1.Food.FoodActivity;
 
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.adapters.StationAdapter;
@@ -214,7 +215,7 @@ public class OCTranspo extends AppCompatActivity {
                 startActivity(intent3);
                 break;
             case R.id.menuItemCBC:
-                Intent intent4 = new Intent(OCTranspo.this, Movie.class);
+                Intent intent4 = new Intent(OCTranspo.this, CBC.class);
                 startActivity(intent4);
                 break;
             case R.id.menuItemAbout:
