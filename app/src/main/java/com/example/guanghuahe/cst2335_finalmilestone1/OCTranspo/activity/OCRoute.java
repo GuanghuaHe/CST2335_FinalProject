@@ -139,49 +139,51 @@ public class OCRoute {
                     if(eventType == XmlPullParser.START_TAG ){
                         Log.e("jin de lai ","222222222222" );
 
-                        tagName = xpp.getName();
+
+                             tagName = xpp.getName();
 
 
 
 
-                        if("TripDestination".equalsIgnoreCase(tagName)) {
-                            temp = new String[9];
-                            temp[0] = xpp.nextText();
-                            Log.e("destination", "" + temp[0]);
-                        }
-                        else if("TripStartTime".equalsIgnoreCase(tagName)) {
-                            temp[1] = xpp.nextText();
-                            Log.e("start  time", "" + temp[1]);
-                        }
-                        else if("AdjustedScheduleTime".equalsIgnoreCase(tagName)){
-                            temp[2] = xpp.nextText();
-                            Log.e("adjust time", "" + temp[2]);
-                        }
-                        else if("AdjustmentAge".equalsIgnoreCase(tagName)){
-                            temp[3] = xpp.nextText();
-                            Log.e("AdjustmentAge ", "" + temp[3]);
-                        }else if("LastTripOfSchedule".equalsIgnoreCase(tagName)){
-                            temp[4] = xpp.nextText();
-                            Log.e("LastTripOfSchedule ", "" + temp[4]);
-                        }else if("BusType".equalsIgnoreCase(tagName)){
-                            temp[5] = xpp.nextText();
-                            Log.e("BusType ", "" + temp[5]);
+                                if("TripDestination".equalsIgnoreCase(tagName)) {
+                                    temp = new String[9];
+                                    temp[0] = xpp.nextText();
+                                    Log.e("destination", "" + temp[0]);
+                                }
+                                else if("TripStartTime".equalsIgnoreCase(tagName)) {
+                                    temp[1] = xpp.nextText();
+                                    Log.e("start  time", "" + temp[1]);
+                                }
+                                else if("AdjustedScheduleTime".equalsIgnoreCase(tagName)){
+                                    temp[2] = xpp.nextText();
+                                    Log.e("adjust time", "" + temp[2]);
+                                }
+                                else if("AdjustmentAge".equalsIgnoreCase(tagName)){
+                                    temp[3] = xpp.nextText();
+                                    Log.e("AdjustmentAge ", "" + temp[3]);
+                                }else if("LastTripOfSchedule".equalsIgnoreCase(tagName)){
+                                    temp[4] = xpp.nextText();
+                                    Log.e("LastTripOfSchedule ", "" + temp[4]);
+                                }else if("BusType".equalsIgnoreCase(tagName)){
+                                    temp[5] = xpp.nextText();
+                                    Log.e("BusType ", "" + temp[5]);
 
-                        }
-                        else if("Latitude".equalsIgnoreCase(tagName)) {
+                                }
+                                else if("Latitude".equalsIgnoreCase(tagName)) {
 
-                            temp[6] = xpp.nextText();
-                            Log.e("latitude   ", "" + temp[6]);
-                        }
-                        else if("Longitude".equalsIgnoreCase(tagName)){
-                            temp[7] = xpp.nextText();
-                            Log.e("longitude  ", "" + temp[7]);
-                        }
-                        else if("GPSSpeed".equalsIgnoreCase(tagName)) {
-                            temp[8] = xpp.nextText();
-                            Log.e("GPS Speed  ", "" + temp[8]);
-                            tempList.add(temp);
-                        }else{}
+                                    temp[6] = xpp.nextText();
+                                    Log.e("latitude   ", "" + temp[6]);
+                                }
+                                else if("Longitude".equalsIgnoreCase(tagName)){
+                                    temp[7] = xpp.nextText();
+                                    Log.e("longitude  ", "" + temp[7]);
+                                }
+                                else if("GPSSpeed".equalsIgnoreCase(tagName)) {
+                                    temp[8] = xpp.nextText();
+                                    Log.e("GPS Speed  ", "" + temp[8]);
+                                    routeList.add(temp);
+                                }else{}
+
 
 
 
