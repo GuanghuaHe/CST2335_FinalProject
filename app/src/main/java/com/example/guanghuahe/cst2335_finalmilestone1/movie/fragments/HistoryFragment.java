@@ -19,6 +19,7 @@ import com.example.guanghuahe.cst2335_finalmilestone1.R;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.MovieDetail;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.adapters.HistoryAdapter;
+import com.example.guanghuahe.cst2335_finalmilestone1.movie.adapters.MovieAdapter;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.database.DatabaseHelper;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.dto.MovieDTO;
 
@@ -120,7 +121,7 @@ public class HistoryFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
         historyView.setOnItemClickListener((a,b,c,d)-> {
-            Log.e(TAG, "transfer into MovieDetail Activity");
+            Log.e(TAG, "HISTORYFRAGMENT =====> MovieDetail Activity");
             //get selected item
             MovieDTO MOVIE = historyAdapter.getMovie(c);
             //go to detail
@@ -186,4 +187,6 @@ public class HistoryFragment extends Fragment {
     private Integer average(List<Integer> years) {
         return  years.stream().reduce(0,(a,b) ->a+b)/years.size();
     }
+
+
 }

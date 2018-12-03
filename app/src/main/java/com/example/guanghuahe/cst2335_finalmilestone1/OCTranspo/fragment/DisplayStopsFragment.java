@@ -1,3 +1,10 @@
+/**
+ * The fragment for listview of octanspo bus stop
+ * @Author: Guanghua He
+ * @Version: 1.1
+ * @Since:1.0
+ */
+
 package com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.fragment;
 
 import android.os.Bundle;

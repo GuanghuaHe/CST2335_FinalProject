@@ -57,9 +57,10 @@ public  class MovieAdapter extends ArrayAdapter<MovieDTO> {
         View result =LayoutInflater.from(getContext()).inflate(resourceId, null);
 
 
-
-
-        TextView title = result.findViewById(R.id.history_list_item_title);
+        /**
+         *
+         */
+        TextView title = result.findViewById(R.id.list_item_title);
         title.setText(movie.getMovieName());
         TextView year = result.findViewById(R.id.history_movie_year);
         year.setText(movie.getYear());

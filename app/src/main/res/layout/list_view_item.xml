@@ -14,7 +14,7 @@
         android:src="@drawable/placeholder1"
         />
     <TextView
-        android:id="@+id/history_list_item_title"
+        android:id="@+id/list_item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="This is the title for the Category which can grow longer"

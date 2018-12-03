@@ -1,7 +1,6 @@
 package com.example.guanghuahe.cst2335_finalmilestone1.Food;
 
 import android.app.AlertDialog;
-
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,8 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-
-
+import android.support.v7.app.AppCompatActivity;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -35,7 +33,10 @@ public class FoodFragment extends Fragment {
     FoodActivity parent;
 
    public FoodFragment(){
+
     }
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +46,8 @@ public class FoodFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        // Bundle infoToPass = getArguments();
-        //super.onCreate(savedInstanceState);
+        Bundle infoToPass = getArguments();
+//        super.onCreate(savedInstanceState);
 
         dbHelper = new FoodDatabaseHelper(getActivity());
         db = dbHelper.getWritableDatabase();
@@ -57,6 +58,11 @@ public class FoodFragment extends Fragment {
         //((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         //if (this.getActivity().getActionBar() != null) this.getActivity().getActionBar().setDisplayShowTitleEnabled(false);
         //setHasOptionsMenu(false); //needed to make option menus to appear
+        toolbar = (Toolbar) view.findViewById(R.id.toolbar); //set up toolbar
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+//        if (this.getActivity().getActionBar() != null) this.getActivity().getActionBar().setDisplayShowTitleEnabled(false);
+//        setHasOptionsMenu(false); //needed to make option menus to appear
+
 
 
         Cursor foods = db.rawQuery("select * from " + FoodDatabaseHelper.TABLE_NAME, null);

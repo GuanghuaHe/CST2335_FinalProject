@@ -1,13 +1,19 @@
+/**
+ * The activity for display route information, when use clicked a route number will invoke this activity
+ * @Author: Guanghua He
+ * @Version: 1.1
+ * @Since:1.0
+ */
+
+
 package com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -19,7 +25,6 @@ import android.widget.Toast;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.activity.OCRoute;
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,7 +41,7 @@ public class DisplayRouteInfor extends Activity {
     Button refresh;
     ListView routeDetailList;
     String stationNum,routeNum;
-
+    RouteDetailAdapter adapter = null;
 
 
 
@@ -57,7 +62,7 @@ public class DisplayRouteInfor extends Activity {
            routeNum = bundles.getString("routeno");
 
 
-
+        OCRoute.updateData(getRouteInfo+stationNum+getRouteInfoTrailer+routeNum );
        /* new Update().execute();
         try {
             Thread.sleep(500);
@@ -110,15 +115,17 @@ public class DisplayRouteInfor extends Activity {
     private void setDisplay() {
 
         list = OCRoute.routeList;
-       // Log.e("OCRoute LIST DETAIL:",""+ list.get(0)[0]+ "\t" + list.get(0)[1]+"\t"+list.get(0)[2]+"\t"+list.get(0)[3]+"\t" + list.get(0)[4]);
-        RouteDetailAdapter adapter = new RouteDetailAdapter(this, R.layout.route_detail_item, list);
+
+   
+         adapter = new RouteDetailAdapter(this, R.layout.route_detail_item, list);
+
         routeDetailList.setAdapter(adapter);
 
     }
 
     /**
      * uses Async to get updated bus details from server
-     */
+     *
     public class Update extends AsyncTask<String, Integer, String> {
         @Override
         protected String doInBackground(String... strings) {
@@ -135,9 +142,12 @@ public class DisplayRouteInfor extends Activity {
             return null;
         }
 
-
+        @Override
+        protected void onPostExecute(String s) {
+            adapter.notifyDataSetChanged();
+        }
     }
-
+*/
 
     class RouteDetailAdapter extends ArrayAdapter{
     TextView busDetail, routeDestination, direction, startTime, adjustTime, longlat, speed;
@@ -159,7 +169,7 @@ public class DisplayRouteInfor extends Activity {
             busDetail = result.findViewById(R.id.bus_details);
             busDetail.setText("Route: " + routeNum);
             routeDestination = result.findViewById(R.id.routenoDestinationView);
-            routeDestination.setText("Direction: " + info[0]);
+            routeDestination.setText("Trip destination: " + info[0]);
             direction = result.findViewById(R.id.directionView);
             direction.setText("Start time: " + info[1]);
             startTime = result.findViewById(R.id.startTimeView);
@@ -179,18 +189,11 @@ public class DisplayRouteInfor extends Activity {
         }
     }
 
-
+    double sum = 0;
     public String getStatistic(List<String[]> detailList){
         if(detailList == null || detailList.size() == 0) return "satistic is not available yet";
-        List<Double> adjustTimes= new ArrayList<>();
-        detailList.stream().forEach(array->{
-             adjustTimes.add(Double.valueOf(array[2]));
-        });
-
-        double sum = 0;
-        for(Double d : adjustTimes){
-           sum+=d;
-        }
-        return sum/adjustTimes.size()+"";
+        sum = 0;
+        detailList.forEach(array->  sum += Double.valueOf(array[2]));
+        return sum/detailList.size()+"";
     }
 }

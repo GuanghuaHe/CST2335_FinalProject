@@ -50,12 +50,13 @@
             android:layout_height="wrap_content"
             android:text="@string/oc_addstationbutton" />
 
-
         <Button
             android:id="@+id/delAllStopNoButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/deleteALL" />
+
+
         <!--<Button-->
             <!--android:id="@+id/helpButton"-->
             <!--android:layout_width="match_parent"-->

@@ -1,3 +1,10 @@
+/**
+ * The activity for display stop information, when use clicked a stop number will invoke this activity
+ * @Author: Guanghua He
+ * @Version: 1.1
+ * @Since:1.0
+ */
+
 package com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.adapters;
 
 import android.app.Activity;
@@ -46,7 +53,7 @@ public class DisplayStopInfor extends Activity {
     public static String getRouteInfoTrailer = "&routeNo=";
 
     int progress;
-    int stationNumber;
+    String stationNumber;
 
     private Context ctx = this;
     private static boolean deleteStops = false;
@@ -79,7 +86,7 @@ public class DisplayStopInfor extends Activity {
         if (extras == null) {
             Log.i(ACTIVITY_NAME, "输入有错 Error: no kind of stop number");
         } else {
-            stationNumber = Integer.parseInt(extras.getString("stationNumber"));
+            stationNumber = extras.getString("stationNumber");
             stationNameView.setText("Bus stop: " + stopName);
         }
 
@@ -93,7 +100,7 @@ public class DisplayStopInfor extends Activity {
         delete.setOnClickListener((e) -> {
             Log.i(ACTIVITY_NAME, "删除按钮 click Delete button");
             deleteStops = true;
-            lastStop = Integer.toString(stationNumber);
+            lastStop = stationNumber;
             finish();
         });
 
@@ -180,7 +187,7 @@ public class DisplayStopInfor extends Activity {
         Button dialogButton = dialog.findViewById(R.id.dialogButtonOK);
 
         dialogButton.setOnClickListener((x) -> dialog.dismiss());
-        dialog.show();
+        if(!isFinishing())dialog.show();
         //   *************************************************   //
     }
 
@@ -237,13 +244,13 @@ public class DisplayStopInfor extends Activity {
 
         @Override
         protected String doInBackground(String... array) {
-            Log.i(ACTIVITY_NAME, "开始查询 background activity started..");
+            Log.i(ACTIVITY_NAME, "开始查询 background activity started.............");
 
-            connStationNumber = Integer.toString(stationNumber); // test with algonquin stop for now.
+
 
             try {
-                //      URL url = new URL(getRouteSummaryForStop + connStationNumber);
-                URL url = new URL(getRouteSummaryForStop.concat(connStationNumber));
+                     URL url = new URL(getRouteSummaryForStop + stationNumber);
+              // URL url = new URL(getRouteSummaryForStop.concat(connStationNumber));
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setReadTimeout(10000 /* milliseconds */);
                 conn.setConnectTimeout(15000 /* milliseconds */);
@@ -298,7 +305,7 @@ public class DisplayStopInfor extends Activity {
                             } else if (lastTag.equals("RouteHeading")) {
                                 currentRouteDestination = xpp.getText();
                                 updateProgressBar(10,80);
-                                routesList.add(new OCRoute(currentRouteno, currentRouteDestination, currentRouteDirection, Integer.toString(stationNumber)));
+                                routesList.add(new OCRoute(currentRouteno, currentRouteDestination, currentRouteDirection, stationNumber));
                             }
                             break;
                         default:
