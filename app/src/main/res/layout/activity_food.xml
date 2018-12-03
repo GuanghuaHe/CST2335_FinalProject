@@ -4,10 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".Food.FoodActivity">
 
-
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
     <EditText
         android:id="@+id/itemText"
         android:layout_width="match_parent"
@@ -15,23 +19,41 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="465dp"
+        android:layout_marginRight="0dp"
         android:layout_toLeftOf="@id/searchItem"
         android:hint="@string/food"
         android:singleLine="true" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/searchItem"
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="0dp"
-        android:text="@string/SearchItem" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/searchItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="463dp"
+            android:layout_marginEnd="3dp"
+            android:text="@string/SearchItem" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
 
     <ListView
-        android:id="@+id/list"
+        android:id="@+id/food_list"
         android:layout_width="match_parent"
         android:layout_height="470dp"
         android:layout_below="@+id/itemText"
@@ -51,5 +73,5 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:visibility="invisible"/>
 
-
+    </LinearLayout>
 </RelativeLayout>
