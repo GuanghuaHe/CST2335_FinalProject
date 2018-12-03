@@ -25,11 +25,11 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
 
 
     /**
-     * Constructor: sets up the initial database
-     * @param ctx
+     * Constructor  adatabase
+     * @param context
      */
-    public FoodDatabaseHelper(Context ctx){
-        super(ctx,DATABASE_NAME,null,VERSION_NUM);
+    public FoodDatabaseHelper(Context context){
+        super(context,DATABASE_NAME,null,VERSION_NUM);
     }
 
     /**
@@ -43,17 +43,17 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * On upgrade method, drops and creates new table on upgrade
+     * drops old version and upgrade to new version
      * @param db
      * @param oldVersion
      * @param newVersion
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.i("FoodDatabaseHelper", "Calling onUpgrade, oldVersion=" + oldVersion + " newVersion=" + newVersion);
+        Log.i("FoodDatabaseHelper", "oldVersion=" + oldVersion + " newVersion=" + newVersion);
         db.execSQL("DROP TABLE IF EXISTS "+ TABLE_NAME);
         onCreate(db);
-        Log.i(ACTIVITY_NAME, "Calling onUpgrade, Old version = " + oldVersion + " New version = " + newVersion);
+        Log.i(ACTIVITY_NAME, "Old version = " + oldVersion + " New version = " + newVersion);
     }
 
     @Override
