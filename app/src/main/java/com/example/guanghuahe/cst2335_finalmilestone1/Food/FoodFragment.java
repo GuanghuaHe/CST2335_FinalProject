@@ -58,8 +58,8 @@ public class FoodFragment extends Fragment {
         //((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         //if (this.getActivity().getActionBar() != null) this.getActivity().getActionBar().setDisplayShowTitleEnabled(false);
         //setHasOptionsMenu(false); //needed to make option menus to appear
-        toolbar = (Toolbar) view.findViewById(R.id.toolbar); //set up toolbar
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+       // toolbar = (Toolbar) view.findViewById(R.id.toolbar); //set up toolbar
+       // ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 //        if (this.getActivity().getActionBar() != null) this.getActivity().getActionBar().setDisplayShowTitleEnabled(false);
 //        setHasOptionsMenu(false); //needed to make option menus to appear
 
