@@ -6,7 +6,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.example.guanghuahe.cst2335_finalmilestone1.Food.FoodActivity;
+import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.activity.OCTranspo;
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
+import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
 
 public class CBCActivity extends AppCompatActivity   {
 
@@ -31,6 +34,19 @@ public class CBCActivity extends AppCompatActivity   {
             case R.id.action_help:
                 showHelpDialog();
                 break;
+            case R.id.cbcitem1:
+                Intent intent2 = new Intent(CBCActivity.this, FoodActivity.class);
+                startActivity(intent2);
+                break;
+            case R.id.cbcitem2:
+                Intent intent3 = new Intent(CBCActivity.this, Movie.class);
+                startActivity(intent3);
+                break;
+            case R.id.cbcitem3:
+                Intent intent4 = new Intent(CBCActivity.this, OCTranspo.class);
+                startActivity(intent4);
+                break;
+
             default:
                 break;
         }

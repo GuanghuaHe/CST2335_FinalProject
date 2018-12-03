@@ -221,11 +221,11 @@ public class Movie extends AppCompatActivity {
                         .setTitle(getApplicationContext().getString(R.string.movie_about))
                         .setMessage(getApplicationContext().getString(R.string.help))
 
-                        /**
-                         * set yes/no button on the alertDialog
-                         */
+                /**
+                 * set yes/no button on the alertDialog
+                 */
                         .setNegativeButton("OK", (dg, which) -> dg.dismiss())// cancel current operate
-                        .create();
+                    .create();
 
                 dialog.show();
 

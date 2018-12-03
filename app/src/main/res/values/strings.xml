@@ -101,7 +101,7 @@
 
 \n- To view bus information for a particular route, click an item in the Buses list.
 
-\n- To add a bus stop to the list, click the "Add Station Number" button.
+\n- To add a bus stop to the list, click the "Add stop Number" button.
 
 \n- To delete a bus stop, go inside the routepage and choose to delete this stop.
 
@@ -119,7 +119,7 @@
 
     <!--  OC TRANSPO STRING VARIABLES-->
     <string name="oc_wronginput">Stop number should be an integer</string>
-    <string name="oc_stop_w_no">Station with number </string>
+    <string name="oc_stop_w_no">Stop with number </string>
     <string name="oc_stop_not_found"> was not found on the OC database. It is recommended to delete this station.</string>
     <string name="oc_refresh">Refreshing...</string>
     <string name="oc_route">Route </string>
@@ -132,8 +132,8 @@
     <string name="oc_refreshbutton">Refresh</string>
     <string name="oc_addstationbutton">Add Stop Number</string>
     <string name="oc_authorinfo">Author:  Guanghua He\nVersion num:  1.0</string>
-    <string name="oc_instructions">\nThe main page shows a list of stations.</string>
-    <string name="oc_datasummary">\nThis application stores all of the station numbers entered into a database. </string>
+    <string name="oc_instructions">\nThe main page shows a list of stops.</string>
+    <string name="oc_datasummary">\nThis application stores all of the stop numbers entered into a database. </string>
     <string name="routeno"> Route number:  </string>
     <string name="OK"> OK </string>
     <string name="pibstn"> Please input bus stop number: </string>

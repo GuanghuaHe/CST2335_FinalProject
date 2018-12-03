@@ -53,7 +53,7 @@ public class FoodFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_food,container,false);
 
         toolbar = (Toolbar) view.findViewById(R.id.toolbar); //set up toolbar
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        //((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 //        if (this.getActivity().getActionBar() != null) this.getActivity().getActionBar().setDisplayShowTitleEnabled(false);
 //        setHasOptionsMenu(false); //needed to make option menus to appear
 
