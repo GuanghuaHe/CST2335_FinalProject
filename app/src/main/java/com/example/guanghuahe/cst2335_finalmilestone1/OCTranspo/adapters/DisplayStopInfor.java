@@ -233,7 +233,7 @@ public class DisplayStopInfor extends Activity {
 
 
     public class OCQuery extends AsyncTask<String, Integer, String> {
-        public String connStationNumber;
+
 
         public ArrayList<OCRoute> routesList = new ArrayList<OCRoute>();
 

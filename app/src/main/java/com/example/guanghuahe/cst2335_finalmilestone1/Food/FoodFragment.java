@@ -113,7 +113,9 @@ public class FoodFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         int id = item.getItemId();
+
         if (id == R.id.action_favorite) {
             Snackbar.make(getActivity().findViewById(android.R.id.content),R.string.favoritesList, Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();

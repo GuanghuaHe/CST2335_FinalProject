@@ -11,11 +11,39 @@
 
 
     <item
+        android:id="@+id/cbcitem1"
+        android:icon="@drawable/food2"
+        android:orderInCategory="500"
+        android:title="@string/menuItem1"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/cbcitem2"
+
+        android:icon="@drawable/film1"
+
+        android:orderInCategory="200"
+
+        android:title="@string/menuItem2"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/cbcitem3"
+        android:icon="@drawable/bus_icon"
+        android:orderInCategory="300"
+        android:title="@string/menuItem3"
+        app:showAsAction="always" />
+
+
+    <item
         android:id="@+id/action_help"
         android:orderInCategory="100"
-        app:showAsAction="always"
+        app:showAsAction="never"
         android:icon="@drawable/ic_help_black_24dp"
-        android:title="Save"/>
+        android:title="About"/>
+
+
+
+
 
 
 </menu>
