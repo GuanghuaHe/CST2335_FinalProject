@@ -69,22 +69,17 @@ public class FoodActivity extends AppCompatActivity {
         food_progressBar.setVisibility(View.VISIBLE);
         foodItemList = new ArrayList<>();
 
-      //Toolbar toolbar = findViewById(R.id.toolbar); //set up toolbar
-      //setSupportActionBar(toolbar);
-      //if (getActionBar() != null) getActionBar().setDisplayShowTitleEnabled(true);
-
         foodDatabaseHelper = new FoodDatabaseHelper(this);
         db = foodDatabaseHelper.getWritableDatabase();
 
         /**
-         *
-         */
-
+         * http request
+         **/
         food_searchButton.setOnClickListener(click->{
             food_search = food_editText.getText().toString();
             food_search = food_search.replace(" ","%20");
             FoodQuery querry = new FoodQuery();
-            querry.execute(); // call http request
+            querry.execute();
             food_progressBar.setVisibility(View.VISIBLE);
             food_editText.setText("");
         });

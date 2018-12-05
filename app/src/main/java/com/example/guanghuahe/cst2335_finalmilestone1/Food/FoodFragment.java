@@ -43,34 +43,31 @@ public class FoodFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
+    /**
+     * Inflate the layout
+     **/
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        Bundle infoToPass = getArguments();
-//        super.onCreate(savedInstanceState);
+
+        //Bundle infoToPass = getArguments();
+        //super.onCreate(savedInstanceState);
 
         dbHelper = new FoodDatabaseHelper(getActivity());
         db = dbHelper.getWritableDatabase();
         parent = new FoodActivity();
         View view = inflater.inflate(R.layout.fragment_food,container,false);
 
-        //toolbar = (Toolbar) view.findViewById(R.id.toolbar); //set up toolbar
-        //((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        //if (this.getActivity().getActionBar() != null) this.getActivity().getActionBar().setDisplayShowTitleEnabled(false);
-        //setHasOptionsMenu(false); //needed to make option menus to appear
-       // toolbar = (Toolbar) view.findViewById(R.id.toolbar); //set up toolbar
-       // ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-//        if (this.getActivity().getActionBar() != null) this.getActivity().getActionBar().setDisplayShowTitleEnabled(false);
-//        setHasOptionsMenu(false); //needed to make option menus to appear
-
-
-
         Cursor foods = db.rawQuery("select * from " + FoodDatabaseHelper.TABLE_NAME, null);
         ListView favList= view.findViewById(R.id.food_favorite_listview);
 
 
         String[] columns = new String[] { FoodDatabaseHelper.KEY_LABEL, FoodDatabaseHelper.KEY_CALORIES, FoodDatabaseHelper.KEY_FAT, FoodDatabaseHelper.KEY_CARBS };
-        // THE XML DEFINED VIEWS WHICH THE DATA WILL BE BOUND TO
+
+
+        /**
+         * Define data view
+         **/
         int[] to = new int[] { R.id.foodLabel, R.id.food_calories_view, R.id.food_fat_view, R.id.food_cabrbo_view };
         favList.setAdapter(new SimpleCursorAdapter(getActivity(), R.layout.food_info, foods, columns, to));
 
@@ -113,9 +110,7 @@ public class FoodFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         int id = item.getItemId();
-
         if (id == R.id.action_favorite) {
             Snackbar.make(getActivity().findViewById(android.R.id.content),R.string.favoritesList, Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();

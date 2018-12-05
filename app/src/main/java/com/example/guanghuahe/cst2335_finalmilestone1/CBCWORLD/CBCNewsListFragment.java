@@ -1,6 +1,6 @@
 package com.example.guanghuahe.cst2335_finalmilestone1.CBCWORLD;
 
-//import statements
+//source:https://www.programcreek.com/java-api-examples/?code=frank-tan/XYZReader/XYZReader-master/XYZReader/src/main/java/com/example/xyzreader/ui/ArticleDetailFragment.java
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -31,14 +31,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewsListFragment extends Fragment {
+public class CBCNewsListFragment extends Fragment {
 
-    private static final String TAG = "NewsListFragment";
+    private static final String TAG = "CBCNewsListFragment";
     private static final String KEY_NEWS = "news";
 
     private RecyclerView mNewsRecyclerView;
     private CardAdapter mAdapter;
-    private RSSParser mRSSParser;
+    private CBCRSSParser mRSSParser;
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
     private String baseURL="https://www.cbc.ca/cmlink/rss-world";
@@ -52,8 +52,8 @@ public class NewsListFragment extends Fragment {
             Log.v("HTTP", "Network available");
 
             if (savedInstanceState != null){
-                ArrayList<Article> newNews = savedInstanceState.getParcelableArrayList(KEY_NEWS);
-                News.get(getActivity()).setArticles(newNews);
+                ArrayList<CBCArticle> newNews = savedInstanceState.getParcelableArrayList(KEY_NEWS);
+                CBCNews.get(getActivity()).setArticles(newNews);
             } else {
                 new DownloadWebpageTask().execute();
             }
@@ -77,7 +77,7 @@ public class NewsListFragment extends Fragment {
         mNewsRecyclerView = (RecyclerView) view.findViewById(R.id.news_recycler_view);
         mNewsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        mRSSParser = new RSSParser();
+        mRSSParser = new CBCRSSParser();
 
 
          //networkAvailable
@@ -123,10 +123,13 @@ public class NewsListFragment extends Fragment {
         return false;
     } // isNetwork
 
+    /**
+     * used to download the webpage using the baseURL
+     */
     private class DownloadWebpageTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
-            News.get(getActivity()).clearArticles();
+            CBCNews.get(getActivity()).clearArticles();
             try {
                 downloadUrl(baseURL);
                 return "Web page retrieved";
@@ -134,17 +137,27 @@ public class NewsListFragment extends Fragment {
                 return "Unable to retrieve web page. URL may be invalid.";
             }
         }
-        // onPostExecute displays the results of the AsyncTask.
+
+        /**
+         * displays the results of the AsyncTask
+         * @param result
+         */
         @Override
         protected void onPostExecute(String result) {
             Log.i("onPostExecute", result);
             updateUI();
         }
-    } // DownloadWebpageTask
+    }
 
-    // Given a URL, establishes an HttpUrlConnection and retrieves
-    // the web page content as a InputStream, which it returns as
-    // a string.
+
+    /**
+     * downloadURL establishes an HttpUrlConnection given a URL and retrieves the web page content as
+     * an InputStream and converts it to a string and returns the value
+     * closes the inputStream after it's done
+     * conn is closeable
+     * @param myurl
+     * @throws IOException
+     */
     private void downloadUrl(String myurl) throws IOException {
         InputStream is = null;
 
@@ -155,7 +168,6 @@ public class NewsListFragment extends Fragment {
             conn.setConnectTimeout(15000 /* milliseconds */);
             conn.setRequestMethod("GET");
             conn.setDoInput(true);
-            // Starts the query
             conn.connect();
             int response = conn.getResponseCode();
             Log.i("HTTP: downloadUrl: ", "The response is: " + response);
@@ -163,20 +175,19 @@ public class NewsListFragment extends Fragment {
 
             mRSSParser.parseXML(getActivity(),is);
 
-            // Makes sure that the InputStream is closed after the app is
-            // finished using it.
+
         } finally {
             if (is != null) {
                 is.close();
             }
         }
-    } //dowloadURL
+    }
 
     private class CardHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView mNewsTextView;
         private ImageView mImageView;
-        private Article mArticle;
-        //private Resources res;
+        private CBCArticle mArticle;
+
 
         public CardHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_card, parent, false));
@@ -188,26 +199,26 @@ public class NewsListFragment extends Fragment {
 
         @Override
         public void onClick(View view){
-            Intent intent = ArticleDetailActivity.newIntent(getActivity(), mArticle.getId());
+            Intent intent = CBCArticleDetailActivity.newIntent(getActivity(), mArticle.getId());
             startActivity(intent);
         }
 
-        public void bind(Article article){
+        public void bind(CBCArticle article){
             mArticle = article;
             updateImage();
             updateHeadline();
         }
 
         /**
-         * Sets the question in the TextView when the button is pressed
+         * Sets the headLone in the TextView when the button is pressed
          */
         private void updateHeadline() {
-            String news = mArticle.getHeadline(); //get the headline
-            mNewsTextView.setText(news); //set the headline
+            String news = mArticle.getHeadline();
+            mNewsTextView.setText(news);
         }
 
         /**
-         * Sets the new image in the ImageView when the user presses "Next Question"
+         * Sets the new image in the ImageView when the user presses
          */
         private void updateImage() {
 
@@ -221,13 +232,13 @@ public class NewsListFragment extends Fragment {
     }
 
     private class CardAdapter extends RecyclerView.Adapter<CardHolder>{
-        private List<Article> mArticles;
+        private List<CBCArticle> mArticles;
 
-        public CardAdapter(List<Article> articles){
+        public CardAdapter(List<CBCArticle> articles){
             mArticles = articles;
         }
 
-        public void setArticles(List<Article> articles){
+        public void setArticles(List<CBCArticle> articles){
             mArticles = articles;
         }
 
@@ -240,7 +251,7 @@ public class NewsListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(CardHolder holder, int position){
-            Article article = mArticles.get(position);
+            CBCArticle article = mArticles.get(position);
             holder.bind(article);
         }
 
@@ -257,8 +268,8 @@ public class NewsListFragment extends Fragment {
     }
 
     private void updateUI() {
-        News news = News.get(getActivity());
-        List<Article> articles = news.getArticles();
+        CBCNews news = CBCNews.get(getActivity());
+        List<CBCArticle> articles = news.getArticles();
 
         if (mAdapter == null) {
             mAdapter = new CardAdapter(articles);
@@ -288,6 +299,6 @@ public class NewsListFragment extends Fragment {
     public void onSaveInstanceState(Bundle savedInstanceState){
         super.onSaveInstanceState(savedInstanceState);
         Log.i(TAG, "onSaveInstanceState");
-        savedInstanceState.putParcelableArrayList(KEY_NEWS,News.get(getActivity()).getArticles());
+        savedInstanceState.putParcelableArrayList(KEY_NEWS,CBCNews.get(getActivity()).getArticles());
     }
 }

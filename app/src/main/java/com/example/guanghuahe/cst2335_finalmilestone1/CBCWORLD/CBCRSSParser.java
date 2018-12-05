@@ -12,17 +12,22 @@ import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-/**
- * Author: Akanksha Malik
- * ID: 140901360
- * Created 2017-11-18
+/** source:https://www.androidauthority.com/simple-rss-reader-full-tutorial-733245/
  */
 
-public class RSSParser {
-
+/**
+ * This class is used to carry the content of CBC world news
+ * and used to to stay up-to-date with the content
+ */
+public class CBCRSSParser {
+    /**
+     * The parser extracts data for articles and and ignores the rest of the data
+     * @param activity
+     * @param is
+     */
     public void parseXML(Activity activity, InputStream is){
-        News news = News.get(activity);
-        ArrayList<Article> articles = news.getArticles();
+        CBCNews news = CBCNews.get(activity);
+        ArrayList<CBCArticle> articles = news.getArticles();
 
         try {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -45,7 +50,7 @@ public class RSSParser {
                     String theImageUrl = articleDescription[0];
                     String paragraph = articleDescription[1];
 
-                    Article article = new Article(theHeadline, theImageUrl, theNewsUrl, paragraph);
+                    CBCArticle article = new CBCArticle(theHeadline, theImageUrl, theNewsUrl, paragraph);
                     articles.add(article);
                 }
             }
