@@ -17,7 +17,7 @@ import com.example.guanghuahe.cst2335_finalmilestone1.R;
 
 public class CBCWebViewActivity extends AppCompatActivity {
 
-    private static final String EXTRA_ID = "ca.wlu.amalik.cbcnews";
+    private static final String EXTRA_ID = "com.example.guanghuahe.cst2335_finalmilestone1.CBCWORLD";
 
     private WebView myWebView;
     private ProgressBar mProgressBar;

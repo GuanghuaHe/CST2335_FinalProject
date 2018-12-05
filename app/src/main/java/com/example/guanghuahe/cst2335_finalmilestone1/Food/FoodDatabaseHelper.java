@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 /**
- * Class for setting up the database for the food activity
+ * setting up database for the food activity
  */
 public class FoodDatabaseHelper extends SQLiteOpenHelper {
     /**
@@ -25,7 +25,7 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
 
 
     /**
-     * Constructor  adatabase
+     * Construct database
      * @param context
      */
     public FoodDatabaseHelper(Context context){
@@ -33,7 +33,7 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * On create method creates the table
+     * creates the table
      * @param db
      */
     @Override

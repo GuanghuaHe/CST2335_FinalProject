@@ -9,6 +9,7 @@ import com.example.guanghuahe.cst2335_finalmilestone1.R;
 
 /**
  * Lloads fragment for favorites list
+ * * @param savedInstanceState
  */
 public class FoodFavorites extends AppCompatActivity {
 
