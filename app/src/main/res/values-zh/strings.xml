@@ -90,7 +90,8 @@
     <string name="empty_string">...</string>
     <string name="added_toast">New article has been added</string>
     <string name="more_button">More</string>
-
+    <string name="cbc_help"> Reads news stories from the CBC website: https://www.cbc.ca/cmlink/rss-world. </string>>
+    <string name="cbc_about">Author: Aisha Ali \nVersion 1.1 </string>
 
     <!--OC_Transport-->
     <string name="desc">图片</string>
