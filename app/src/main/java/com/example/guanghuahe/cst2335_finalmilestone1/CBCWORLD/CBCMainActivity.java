@@ -1,6 +1,6 @@
 package com.example.guanghuahe.cst2335_finalmilestone1.CBCWORLD;
 
-//Import Statements
+//source: https://www.programcreek.com/java-api-examples/?code=frank-tan/XYZReader/XYZReader-master/XYZReader/src/main/java/com/example/xyzreader/ui/ArticleDetailFragment.java
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,7 +28,7 @@ public class CBCMainActivity extends AppCompatActivity{
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
 
         if (fragment == null) {
-            fragment = new NewsListFragment();
+            fragment = new CBCNewsListFragment();
             fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
         }
 
@@ -62,7 +62,7 @@ public class CBCMainActivity extends AppCompatActivity{
                 startActivity(intent4);
                 break;
             case R.id.menuItemAbout:
-                final AlertDialog.Builder builder = new AlertDialog.Builder(ctxt).setTitle("CBC News Reader").setCancelable(false);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(ctxt).setTitle("CBC CBCNews Reader").setCancelable(false);
 
                 String displayAboutString = getString(R.string.cbc_about);
 
@@ -78,7 +78,7 @@ public class CBCMainActivity extends AppCompatActivity{
                 break;
 
             case R.id.menuItemHelp:
-                final AlertDialog.Builder builder_help = new AlertDialog.Builder(ctxt).setTitle("CBC News Reade").setCancelable(false);
+                final AlertDialog.Builder builder_help = new AlertDialog.Builder(ctxt).setTitle("CBC CBCNews Reade").setCancelable(false);
 
                 String displayHelpString = getString(R.string.cbc_help);
 

@@ -25,14 +25,14 @@
         <activity android:name=".OCTranspo.adapters.DisplayStopInfor" />
         <activity android:name=".OCTranspo.adapters.DisplayRouteInfor"></activity>
         <activity
-            android:name=".CBCWORLD.ArticleDetailActivity"
+            android:name=".CBCWORLD.CBCArticleDetailActivity"
             android:parentActivityName=".CBCWORLD.CBCMainActivity">
         </activity>
 
         <activity android:name=".CBCWORLD.CBCMainActivity"/>
 
         <activity
-            android:name=".CBCWORLD.WebViewActivity"
+            android:name=".CBCWORLD.CBCWebViewActivity"
             android:parentActivityName=".CBCWORLD.CBCMainActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize">
         </activity>

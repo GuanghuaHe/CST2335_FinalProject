@@ -1,5 +1,5 @@
 package com.example.guanghuahe.cst2335_finalmilestone1.CBCWORLD;
-//import statements
+//source: https://www.programcreek.com/java-api-examples/?code=frank-tan/XYZReader/XYZReader-master/XYZReader/src/main/java/com/example/xyzreader/ui/ArticleDetailFragment.java
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
@@ -23,25 +23,27 @@ import com.squareup.picasso.Picasso;
 
 import java.util.UUID;
 
-public class ArticleDetailFragment extends Fragment {
+public class CBCArticleDetailFragment extends Fragment {
 
-    //Constants
+    /**
+     * Constant variable ARG_CARD_ID
+     */
     private static final String ARG_CARD_ID = "card_id";
 
     //variables
     private ImageView mImageView;
     private TextView mNewsTextView;
     private Button mMoreButton;
-    private Article mArticle;
+    private CBCArticle mArticle;
 
     /**
      * param cardId
      * return fragment
      */
-    public static ArticleDetailFragment newInstance(UUID cardId){
+    public static CBCArticleDetailFragment newInstance(UUID cardId){
         Bundle args = new Bundle();
         args.putSerializable(ARG_CARD_ID, cardId);
-        ArticleDetailFragment fragment = new ArticleDetailFragment();
+        CBCArticleDetailFragment fragment = new CBCArticleDetailFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -49,17 +51,15 @@ public class ArticleDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setHasOptionsMenu(true);
 
         UUID cardId = (UUID) getArguments().getSerializable(ARG_CARD_ID);
-        mArticle = News.get(getActivity()).getArticle(cardId);
+        mArticle = CBCNews.get(getActivity()).getArticle(cardId);
     }
 
 
     @Override
     public void onPause(){
         super.onPause();
-        //News.get(getActivity()).updateCard(mArticle);
     }
 
     @TargetApi(11)
@@ -91,7 +91,7 @@ public class ArticleDetailFragment extends Fragment {
         }
     }
 
-    /**
+    /** setView inflates the widges NewsTexwView, ImageView, and moreButton
      * inflates the widgets
      * param view v
      */
@@ -107,7 +107,7 @@ public class ArticleDetailFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (isNetworkAvailable()) {
-                    Intent intent = WebViewActivity.newIntent(getActivity(),mArticle.getNewsUrl());
+                    Intent intent = CBCWebViewActivity.newIntent(getActivity(),mArticle.getNewsUrl());
                     startActivity(intent);
                     Log.v("HTTP", "Network available");
 
@@ -119,12 +119,17 @@ public class ArticleDetailFragment extends Fragment {
             }
         });
     }
+
+    /**
+     * if no network is available networkInfo will be null
+     * otherwise check if we are connected
+     * @return boolean
+     */
     public boolean isNetworkAvailable() {
         ConnectivityManager cm = (ConnectivityManager)
                 getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-        // if no network is available networkInfo will be null
-        // otherwise check if we are connected
+
         if (networkInfo != null && networkInfo.isConnected()) {
             return true;
         }
@@ -134,17 +139,18 @@ public class ArticleDetailFragment extends Fragment {
 
     /**
      * Sets the answer in the TextView when the button is pressed
+     * gets the paragraph of the descripton
      */
     private void showDescription() {
-        String description = mArticle.getDescription(); //get the paragraph
-        mNewsTextView.setText(description); //set the paragraph
+        String description = mArticle.getDescription();
+        mNewsTextView.setText(description);
     }
 
     /**
-     * Sets the new image in the ImageView when the user presses "Next Question"
+     * Sets the new image in the ImageView when the user presses and gets the image url
      */
     private void updateImage() {
-        String imageName = mArticle.getImageUrl(); //get the image url
+        String imageName = mArticle.getImageUrl();
 
         Picasso.with(getContext())
                 .load(imageName)
