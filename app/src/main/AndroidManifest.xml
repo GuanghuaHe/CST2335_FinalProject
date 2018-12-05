@@ -24,9 +24,19 @@
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".OCTranspo.adapters.DisplayStopInfor" />
         <activity android:name=".OCTranspo.adapters.DisplayRouteInfor"></activity>
-        <activity android:name=".CBCNews.CBCActivity"/>
-        <activity android:name=".CBCNews.DetailActivity" />
-        <activity android:name=".CBCNews.StatisticsActivity" />
+        <activity
+            android:name=".CBCWORLD.ArticleDetailActivity"
+            android:parentActivityName=".CBCWORLD.CBCMainActivity">
+        </activity>
+
+        <activity android:name=".CBCWORLD.CBCMainActivity"/>
+
+        <activity
+            android:name=".CBCWORLD.WebViewActivity"
+            android:parentActivityName=".CBCWORLD.CBCMainActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize">
+        </activity>
+
 
         <activity android:name=".movie.activities.Movie"/>
         <activity android:name=".movie.activities.MovieDetail" />

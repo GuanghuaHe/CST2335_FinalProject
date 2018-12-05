@@ -22,7 +22,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-import com.example.guanghuahe.cst2335_finalmilestone1.CBC;
+
+import com.example.guanghuahe.cst2335_finalmilestone1.CBCWORLD.CBCMainActivity;
 import com.example.guanghuahe.cst2335_finalmilestone1.Nutrition;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.activity.OCTranspo;
 import com.example.guanghuahe.cst2335_finalmilestone1.R;
@@ -239,7 +240,7 @@ public class Movie extends AppCompatActivity {
                 startActivity(intent3);
                 break;
             case R.id.movieItem4:
-                Intent intent4 = new Intent(Movie.this, CBC.class);
+                Intent intent4 = new Intent(Movie.this, CBCMainActivity.class);
                 startActivity(intent4);
                 break;
         }

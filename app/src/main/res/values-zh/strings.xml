@@ -10,12 +10,12 @@
     <string name="searchButton">开始搜索</string>
     <string name="searchHistory">本地收藏</string>
     <string name="app_name">电影搜索</string>
-        <!--APP 导航键-->
+    <!--APP 导航键-->
     <string name="menuItem1">帮助</string>
     <string name="menuItem2">交通查询</string>
     <string name="menuItem3">食品营养</string>
     <string name="menuItem4">CBC新闻</string>
-        <!--电影帮助页面-->
+    <!--电影帮助页面-->
     <string name="movie_about">使用指南</string>
     <string name="help">输入电影关键字或名称， 点击“开始搜索” ，
             点击清单内电影条目，查看详细介绍，
@@ -26,7 +26,7 @@
               作者:  殷振宇
                  学号：     040888832
               邮箱: yin00031@algonquinlive.com</string>
-        <!--APP 统计 操作键-->
+    <!--APP 统计 操作键-->
     <string name="removeAll">删除全部</string>
     <string name="dialog_message">您确定吗？ 这些岛片蛮珍贵的啊 ！</string>
     <string name="dialog_button_sure">戒了！ 戒了！</string>
@@ -38,7 +38,7 @@
     <string name="remove_item">删除</string>
     <string name="add_item">收藏</string>
 
-        <!--电影详细介绍页面-->
+    <!--电影详细介绍页面-->
     <string name="save_movie">收藏</string>
     <string name="movie_rating">评分:</string>
     <string name="movie_type">类型:</string>
@@ -86,6 +86,12 @@
     <string name="instructions">说明</string>
     <string name="ok">好的</string>
 
+    <string name="next_button">Next</string>
+    <string name="empty_string">...</string>
+    <string name="added_toast">New article has been added</string>
+    <string name="more_button">More</string>
+    <string name="cbc_help"> Reads news stories from the CBC website: https://www.cbc.ca/cmlink/rss-world. </string>>
+    <string name="cbc_about">Author: Aisha Ali \nVersion 1.1 </string>
 
     <!--OC_Transport-->
     <string name="desc">图片</string>
