@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.guanghuahe.cst2335_finalmilestone1.CBCNews.CBCActivity;
+import com.example.guanghuahe.cst2335_finalmilestone1.CBCWORLD.CBCMainActivity;
 import com.example.guanghuahe.cst2335_finalmilestone1.Food.FoodActivity;
 import com.example.guanghuahe.cst2335_finalmilestone1.OCTranspo.activity.OCTranspo;
 import com.example.guanghuahe.cst2335_finalmilestone1.movie.activities.Movie;
@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
         cbc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CBCActivity.class);
+                Intent intent = new Intent(MainActivity.this, CBCMainActivity.class);
                 startActivity(intent);
                 Log.i(ACTIVITY_NAME, "In onClick()");
             }
